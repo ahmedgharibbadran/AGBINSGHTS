@@ -7,228 +7,96 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        body {
-            background-color: #030b17;
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-
-        /* الجزء العلوي - Header */
-        header {
-            padding: 80px 20px;
-            background: radial-gradient(circle at center, #0a192f 0%, #030b17 100%);
-        }
-
-        h1 {
-            color: #4ed9ff;
-            font-size: 50px;
-            margin: 0;
-            text-shadow: 0 0 20px rgba(78, 217, 255, 0.4);
-        }
-
-        .subtitle {
-            color: #8892b0;
-            font-size: 14px;
-            letter-spacing: 3px;
-            margin-top: 10px;
-        }
-
-        .social-links {
-            margin-top: 25px;
-        }
-
-        .social-links a {
-            color: #4ed9ff;
-            font-size: 22px;
-            margin: 0 15px;
-            border: 1px solid #4ed9ff;
-            padding: 12px;
-            border-radius: 50%;
-            transition: 0.3s;
-            display: inline-block;
-        }
-
-        .social-links a:hover {
-            background: rgba(78, 217, 255, 0.1);
-            box-shadow: 0 0 20px #4ed9ff;
-        }
-
-        /* أزرار التصفح (Daily, Detail, Modern) */
-        .tabs {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 50px 0;
-        }
-
-        .tab-btn {
-            background: #0a192f;
-            border: 1px solid #4ed9ff;
-            color: #4ed9ff;
-            padding: 12px 30px;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .tab-btn:hover {
-            background: #4ed9ff;
-            color: #030b17;
-        }
-
-        /* العناوين الجانبية */
-        .section-header {
-            text-align: left;
-            margin: 60px 0 30px 10%;
-            color: #4ed9ff;
-            border-left: 4px solid #4ed9ff;
-            padding-left: 20px;
-        }
-
-        /* كروت المهارات - 3D */
-        .skills-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            padding: 0 10%;
-        }
-
-        .skill-card {
-            background: #0a192f;
-            border: 1px solid rgba(78, 217, 255, 0.2);
-            padding: 25px;
-            width: 140px;
-            border-radius: 12px;
-            transition: 0.4s ease;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-15px);
-            border-color: #4ed9ff;
-            box-shadow: 0 15px 30px rgba(78, 217, 255, 0.2);
-        }
-
-        .skill-card i { font-size: 35px; color: #4ed9ff; margin-bottom: 15px; display: block; }
-        .skill-card span { font-size: 12px; color: #ccd6f6; }
-
-        /* عرض المشاريع الاحترافي كما في الصورة 67 */
-        .projects-section {
-            padding: 40px 10%;
-        }
-
-        .project-block {
-            display: flex;
-            align-items: center;
-            background: #0a192f;
-            border-radius: 20px;
-            margin-bottom: 60px;
-            overflow: hidden;
-            border: 1px solid rgba(78, 217, 255, 0.1);
-            transition: 0.4s;
-        }
-
-        .project-block:hover {
-            transform: scale(1.02);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
-        }
-
-        .project-image { width: 60%; }
-        .project-image img { width: 100%; display: block; }
-
-        .project-content {
-            width: 40%;
-            padding: 40px;
-            text-align: left;
-        }
-
-        .project-content h3 { color: #4ed9ff; font-size: 24px; margin-top: 0; }
-        .project-content p { color: #8892b0; line-height: 1.6; font-size: 15px; }
-
-        .action-btn {
-            display: inline-block;
+        body { background-color: #030b17; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; overflow-x: hidden; }
+        header { padding: 60px 20px; background: radial-gradient(circle at center, #0a192f 0%, #030b17 100%); }
+        h1 { color: #4ed9ff; font-size: clamp(30px, 5vw, 50px); margin: 0; text-shadow: 0 0 20px rgba(78, 217, 255, 0.4); }
+        
+        /* جعل المهارات في صف واحد */
+        .skills-grid { 
+            display: flex; 
+            justify-content: center; 
+            gap: 10px; 
+            flex-wrap: nowrap; /* يمنع النزول لسطر جديد */
+            padding: 0 5%; 
             margin-top: 20px;
-            padding: 10px 25px;
-            border: 1px solid #4ed9ff;
-            color: #4ed9ff;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 500;
-            transition: 0.3s;
         }
+        .skill-card { 
+            background: #0a192f; 
+            border: 1px solid rgba(78, 217, 255, 0.2); 
+            padding: 15px 5px; 
+            width: 110px; /* تصغير العرض لضمان الصف الواحد */
+            border-radius: 10px; 
+            transition: 0.4s; 
+        }
+        .skill-card:hover { transform: translateY(-10px); border-color: #4ed9ff; box-shadow: 0 10px 20px rgba(78, 217, 255, 0.2); }
+        .skill-card i { font-size: 25px; color: #4ed9ff; margin-bottom: 10px; display: block; }
+        .skill-card span { font-size: 10px; color: #ccd6f6; white-space: nowrap; }
 
-        .action-btn:hover {
-            background: #4ed9ff;
-            color: #030b17;
-        }
+        .section-header { text-align: left; margin: 50px 0 20px 10%; color: #4ed9ff; border-left: 4px solid #4ed9ff; padding-left: 15px; }
 
-        footer {
-            padding: 50px;
-            color: #495670;
-            font-size: 13px;
+        /* كروت المشاريع */
+        .project-block { 
+            display: flex; 
+            align-items: center; 
+            background: #0a192f; 
+            border-radius: 20px; 
+            margin: 0 10% 40px 10%; 
+            overflow: hidden; 
+            border: 1px solid rgba(78, 217, 255, 0.1); 
+            transition: 0.4s; 
         }
+        .project-image { width: 55%; cursor: pointer; }
+        .project-image img { width: 100%; display: block; }
+        .project-content { width: 45%; padding: 30px; text-align: left; }
+        .action-btn { 
+            display: inline-block; 
+            margin-top: 15px; 
+            padding: 10px 20px; 
+            background: #4ed9ff; 
+            color: #030b17; 
+            text-decoration: none; 
+            border-radius: 5px; 
+            font-weight: bold; 
+            transition: 0.3s; 
+        }
+        .action-btn:hover { transform: scale(1.05); background: white; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Ahmed Gharib</h1>
-        <div class="subtitle">DATA ANALYST | #AGBINSIGHTS</div>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="mailto:info@agbinsights.com"><i class="far fa-envelope"></i></a>
-        </div>
+        <p style="color: #8892b0;">DATA ANALYST | #AGBINSIGHTS</p>
     </header>
-
-    <div class="tabs">
-        <div class="tab-btn">DAILY</div>
-        <div class="tab-btn">DETAIL</div>
-        <div class="tab-btn">MODERN</div>
-    </div>
 
     <h2 class="section-header">01. Technical Expertise</h2>
     <div class="skills-grid">
         <div class="skill-card"><i class="fas fa-database"></i><span>Data Modeling</span></div>
         <div class="skill-card"><i class="fas fa-link"></i><span>Relationships</span></div>
-        <div class="skill-card"><i class="fas fa-microchip"></i><span>ETL (Power Query)</span></div>
+        <div class="skill-card"><i class="fas fa-microchip"></i><span>ETL (Query)</span></div>
         <div class="skill-card"><i class="fas fa-code"></i><span>Advanced DAX</span></div>
-        <div class="skill-card"><i class="fas fa-chart-line"></i><span>Visual Storytelling</span></div>
+        <div class="skill-card"><i class="fas fa-chart-line"></i><span>Visualizing</span></div>
     </div>
 
     <h2 class="section-header">02. Featured Projects</h2>
-    <div class="projects-section">
-        
-        <div class="project-block">
-            <div class="project-image">
-                <img src="hr.png.png" alt="HR Analysis">
-            </div>
-            <div class="project-content">
-                <h3>HR Attrition Analysis</h3>
-                <p>A comprehensive dashboard identifying key drivers of employee turnover, providing actionable insights for workforce retention strategies.</p>
-                <a href="#" class="action-btn">View Full Analysis</a>
-            </div>
+    
+    <div class="project-block">
+        <div class="project-image"><a href="hr.png.png" target="_blank"><img src="hr.png.png"></a></div>
+        <div class="project-content">
+            <h3>HR Attrition Analysis</h3>
+            <p>A comprehensive dashboard identifying key drivers of employee turnover.</p>
+            <a href="hr.png.png" target="_blank" class="action-btn">View Full Analysis</a>
         </div>
-
-        <div class="project-block" style="flex-direction: row-reverse;">
-            <div class="project-image">
-                <img src="sales.png1.png" alt="Sales Performance">
-            </div>
-            <div class="project-content" style="text-align: right;">
-                <h3>Sales Performance</h3>
-                <p>Advanced tracking of revenue trends and regional performance to optimize commercial growth and profitability across departments.</p>
-                <a href="#" class="action-btn">Explore Dashboard</a>
-            </div>
-        </div>
-
     </div>
 
-    <footer>
-        Designed & Built by Ahmed Gharib © 2025 | AGBINSIGHTS
-    </footer>
+    <div class="project-block" style="flex-direction: row-reverse;">
+        <div class="project-image"><a href="sales.png1.png" target="_blank"><img src="sales.png1.png"></a></div>
+        <div class="project-content" style="text-align: right;">
+            <h3>Sales Performance</h3>
+            <p>Advanced tracking of revenue trends and regional performance.</p>
+            <a href="sales.png1.png" target="_blank" class="action-btn">Explore Dashboard</a>
+        </div>
+    </div>
 
 </body>
 </html>
