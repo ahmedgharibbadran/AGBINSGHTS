@@ -13,70 +13,71 @@
         
         body { background-color: var(--dark-bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
         
-        /* شاشة ترحيب فخمة ومنظمة */
+        /* رسالة ترحيب قوية جداً وفخمة */
         #welcome-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at center, #0a192f 0%, #030b17 100%);
             display: flex; align-items: center; justify-content: center;
-            z-index: 10000; transition: 1s ease-in-out;
+            z-index: 10000; transition: 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .welcome-box {
             background: var(--card-bg); border: 2px solid var(--neon-blue);
-            padding: 50px; border-radius: 40px; width: 90%; max-width: 450px;
-            box-shadow: 0 0 80px rgba(78, 217, 255, 0.3);
-            animation: fadeIn 0.8s ease-in-out;
+            padding: 60px 50px; border-radius: 40px; max-width: 500px;
+            box-shadow: 0 0 80px rgba(78, 217, 255, 0.4);
+            animation: welcomeIn 0.8s ease-out;
         }
-        .welcome-logo { width: 130px; height: 130px; border-radius: 50%; border: 4px solid var(--neon-blue); box-shadow: 0 0 30px var(--neon-blue); margin-bottom: 25px; object-fit: cover; }
-        .welcome-box h2 { color: var(--neon-blue); font-size: 30px; margin: 0; letter-spacing: 1px; }
+        .welcome-logo { 
+            width: 140px; height: 140px; margin-bottom: 30px; border-radius: 50%; 
+            border: 4px solid var(--neon-blue); object-fit: cover;
+            box-shadow: 0 0 40px var(--neon-blue);
+        }
+        .welcome-box h2 { color: var(--neon-blue); font-size: 32px; font-weight: 900; margin: 0; }
         .start-btn {
-            background: var(--neon-blue); color: var(--dark-bg); padding: 15px 45px;
-            border: none; border-radius: 10px; font-weight: 900; cursor: pointer;
-            margin-top: 30px; text-transform: uppercase; animation: pulse 2s infinite;
+            background: var(--neon-blue); color: var(--dark-bg);
+            padding: 18px 50px; border: none; border-radius: 12px;
+            font-weight: 900; cursor: pointer; margin-top: 35px; 
+            text-transform: uppercase; letter-spacing: 2px;
+            animation: pulseGlow 2s infinite; transition: 0.3s;
         }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(78, 217, 255, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(78, 217, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(78, 217, 255, 0); } }
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes welcomeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulseGlow { 0% { box-shadow: 0 0 0 0 rgba(78, 217, 255, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(78, 217, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(78, 217, 255, 0); } }
 
         /* الموقع الرئيسي */
-        #main-site { opacity: 0; display: none; transition: 1s; }
+        #main-site { opacity: 0; transition: 1.2s; display: none; }
         nav { padding: 30px 8%; display: flex; justify-content: space-between; align-items: center; }
-        .nav-logo-group { display: flex; align-items: center; gap: 15px; }
-        .nav-img { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--neon-blue); }
-        .nav-text { font-weight: 900; color: var(--neon-blue); letter-spacing: 2px; }
+        .nav-brand { display: flex; align-items: center; gap: 15px; font-weight: 900; color: var(--neon-blue); font-size: 22px; }
+        .nav-logo-small { width: 45px; height: 45px; border-radius: 50%; border: 1px solid var(--neon-blue); }
 
-        /* هيدر منظم جداً */
-        header { padding: 80px 20px 40px; }
-        .job-title { color: var(--neon-blue); font-size: 13px; letter-spacing: 6px; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; display: block; }
-        h1 { font-size: clamp(40px, 8vw, 70px); margin: 0; font-weight: 900; line-height: 1.1; }
-        .hero-desc { max-width: 650px; margin: 25px auto; color: var(--text-gray); font-size: 19px; line-height: 1.6; }
+        header { padding: 60px 20px 40px; }
+        .job-tag { color: var(--neon-blue); font-size: 13px; letter-spacing: 6px; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; display: block; }
+        h1 { font-size: clamp(40px, 8vw, 75px); margin: 0; font-weight: 900; line-height: 1.1; }
+        .hero-desc { max-width: 750px; margin: 25px auto; color: var(--text-gray); font-size: 20px; line-height: 1.7; }
+        .highlight { color: var(--neon-blue); font-weight: 800; }
 
-        /* شريط إحصائيات هادئ */
-        .stats-grid { display: flex; justify-content: center; gap: 60px; margin: 40px auto; padding: 25px; max-width: 700px; border-top: 1px solid rgba(78, 217, 255, 0.1); border-bottom: 1px solid rgba(78, 217, 255, 0.1); }
-        .stat-box b { display: block; font-size: 32px; color: var(--neon-blue); }
-        .stat-box span { font-size: 12px; color: var(--text-gray); font-weight: bold; }
+        /* الأقسام والمهارات */
+        .section-title { text-align: left; margin: 60px 10% 30px; color: var(--neon-blue); border-left: 5px solid var(--neon-blue); padding-left: 20px; font-size: 24px; font-weight: 900; }
+        .grid-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0 10%; margin-bottom: 50px; }
+        .card-3d { 
+            background: var(--card-bg); border: 1px solid rgba(255,255,255,0.05); 
+            padding: 35px 25px; border-radius: 25px; min-width: 150px; flex: 1;
+            transition: 0.5s; transform-style: preserve-3d; cursor: pointer;
+        }
+        .card-3d:hover { transform: translateY(-15px) rotateX(10deg) rotateY(10deg); border-color: var(--neon-blue); box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+        .card-3d i { font-size: 40px; margin-bottom: 20px; display: block; }
 
-        /* الأقسام */
-        .section-header { text-align: left; margin: 80px 10% 30px; border-left: 4px solid var(--neon-blue); padding-left: 15px; }
-        .section-header h2 { color: var(--neon-blue); font-size: 24px; margin: 0; }
+        /* المشاريع */
+        .project-item { background: var(--card-bg); display: flex; align-items: center; margin: 40px 10%; border-radius: 35px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: 0.5s; }
+        .project-item:hover { transform: translateY(-5px); border-color: var(--neon-blue); }
+        .p-img { width: 55%; } .p-img img { width: 100%; display: block; height: 100%; object-fit: cover; }
+        .p-text { width: 45%; padding: 60px; text-align: left; }
+        .btn-view { border: 2px solid var(--neon-blue); color: var(--neon-blue); padding: 14px 35px; border-radius: 10px; font-weight: 900; cursor: pointer; display: inline-block; margin-top: 25px; text-decoration: none; transition: 0.3s; }
+        .btn-view:hover { background: var(--neon-blue); color: var(--dark-bg); }
 
-        .skills-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0 10%; }
-        .skill-item { background: var(--card-bg); padding: 30px; border-radius: 20px; min-width: 140px; flex: 1; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; }
-        .skill-item:hover { transform: translateY(-10px); border-color: var(--neon-blue); box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
-        .skill-item i { font-size: 35px; margin-bottom: 15px; display: block; }
+        footer { padding: 80px 20px; background: #020811; border-top: 1px solid rgba(255,255,255,0.05); }
+        .social-link { color: var(--neon-blue); font-size: 28px; margin: 0 20px; text-decoration: none; transition: 0.4s; display: inline-block; }
+        .social-link:hover { transform: scale(1.2) translateY(-5px); }
 
-        .project-card { background: var(--card-bg); margin: 30px 10%; border-radius: 30px; display: flex; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: 0.5s; }
-        .project-img { width: 55%; } .project-img img { width: 100%; height: 100%; object-fit: cover; }
-        .project-info { width: 45%; padding: 50px; text-align: left; }
-        .btn-open { border: 2px solid var(--neon-blue); color: var(--neon-blue); padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; display: inline-block; margin-top: 20px; transition: 0.3s; }
-        .btn-open:hover { background: var(--neon-blue); color: var(--dark-bg); }
-
-        footer { padding: 60px 20px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-gray); font-size: 14px; }
-        .socials { margin-bottom: 20px; }
-        .socials a { color: var(--neon-blue); font-size: 24px; margin: 0 15px; transition: 0.3s; }
-        .socials a:hover { transform: translateY(-5px); color: white; }
-
-        /* Case Study View */
-        #case-view { display: none; padding: 60px 10%; text-align: left; }
-        .case-top { background: var(--card-bg); padding: 40px; border-radius: 25px; margin-bottom: 40px; border-left: 5px solid var(--neon-blue); }
+        #case-study-view { display:none; background: var(--dark-bg); padding: 60px 10%; text-align: left; }
     </style>
 </head>
 <body>
@@ -85,111 +86,92 @@
     <div class="welcome-box">
         <img src="logo.png" class="welcome-logo">
         <h2>Ahmed Gharib</h2>
-        <p style="color:var(--text-gray); margin-top:10px;">Data Analyst Portfolio</p>
-        <button class="start-btn" onclick="start()">Explore Projects</button>
+        <p style="color:var(--text-gray); margin-top:10px; font-weight: bold; letter-spacing: 1px;">DATA INSIGHTS UNIVERSE</p>
+        <button class="start-btn" onclick="enterSite()">Begin Journey</button>
     </div>
 </div>
 
 <div id="main-site">
     <nav>
-        <div class="nav-logo-group">
-            <img src="logo.png" class="nav-img">
-            <span class="nav-text">AGBINSIGHTS</span>
-        </div>
-        <a href="https://wa.me/201020189281" style="color:var(--neon-blue); text-decoration:none; font-weight:bold;" target="_blank">GET IN TOUCH</a>
+        <div class="nav-brand"><img src="logo.png" class="nav-logo-small"> AGBINSIGHTS</div>
+        <a href="https://wa.me/201020189281" style="color:var(--neon-blue); font-weight:bold; text-decoration:none;" target="_blank">CONTACT</a>
     </nav>
 
     <header>
-        <span class="job-title">Data Analyst</span>
+        <span class="job-tag">Professional Data Analyst</span>
         <h1>Ahmed Gharib</h1>
-        <p class="hero-desc">I specialize in data transformation and interactive visualization using Power BI and Excel to drive business decisions.</p>
-        
-        <div class="stats-grid">
-            <div class="stat-box"><b>02</b><span>Core Projects</span></div>
-            <div class="stat-box"><b>PRO</b><span>Power BI Expert</span></div>
-            <div class="stat-box"><b>ETL</b><span>Data Cleaning</span></div>
-        </div>
+        <p class="hero-desc">Transforming complex datasets into <span class="highlight">clear narratives</span>. Specialist in Power BI ecosystem and end-to-end data transformation.</p>
     </header>
 
-    <div class="section-header"><h2>Technical Expertise</h2></div>
-    <div class="skills-row">
-        <div class="skill-item"><i class="fas fa-chart-bar" style="color:var(--pbi-yellow)"></i><span>Power BI</span></div>
-        <div class="skill-item"><i class="fas fa-file-excel" style="color:var(--excel-green)"></i><span>Excel</span></div>
-        <div class="skill-item"><i class="fas fa-project-diagram"></i><span>Modeling</span></div>
-        <div class="skill-item"><i class="fas fa-calculator"></i><span>DAX Logic</span></div>
-        <div class="skill-item"><i class="fas fa-filter"></i><span>Power Query</span></div>
+    <div class="section-title">Technical Expertise</div>
+    <div class="grid-container">
+        <div class="card-3d"><i class="fas fa-chart-bar" style="color:var(--pbi-yellow)"></i><span>Power BI</span></div>
+        <div class="card-3d"><i class="fas fa-file-excel" style="color:var(--excel-green)"></i><span>Excel</span></div>
+        <div class="card-3d"><i class="fas fa-project-diagram"></i><span>Modeling</span></div>
+        <div class="card-3d"><i class="fas fa-calculator"></i><span>DAX Logic</span></div>
+        <div class="card-3d"><i class="fas fa-database"></i><span>ETL</span></div>
     </div>
 
-    <div class="section-header"><h2>Featured Work</h2></div>
-    <div class="project-card">
-        <div class="project-img"><img src="hr.png.png"></div>
-        <div class="project-info">
+    <div class="section-title">Featured Projects</div>
+    <div class="project-item">
+        <div class="p-img"><img src="hr.png.png"></div>
+        <div class="p-text">
             <h3>HR Attrition Analysis</h3>
-            <p style="color:var(--text-gray)">In-depth study of workforce retention and turnover factors.</p>
-            <div class="btn-open" onclick="openCase('hr')">View Details</div>
+            <p style="color:var(--text-gray)">In-depth study of workforce retention and turnover factors using advanced BI modeling.</p>
+            <div class="btn-view" onclick="showStudy('hr')">VIEW CASE</div>
         </div>
     </div>
 
-    <div class="project-card" style="flex-direction: row-reverse;">
-        <div class="project-img"><img src="sales.png1.png"></div>
-        <div class="project-info" style="text-align: right;">
+    <div class="project-item" style="flex-direction: row-reverse;">
+        <div class="p-img"><img src="sales.png1.png"></div>
+        <div class="p-text" style="text-align: right;">
             <h3>Sales Performance</h3>
-            <p style="color:var(--text-gray)">Tracking revenue trends and regional growth metrics.</p>
-            <div class="btn-open" onclick="openCase('sales')">View Details</div>
+            <p style="color:var(--text-gray)">Strategic tracking of revenue trends and regional growth metrics for clear auditing.</p>
+            <div class="btn-view" onclick="showStudy('sales')">VIEW CASE</div>
         </div>
     </div>
 
     <footer>
-        <div class="socials">
-            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://wa.me/201020189281" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="mailto:info@agbinsights.com"><i class="far fa-envelope"></i></a>
+        <div style="margin-bottom: 30px;">
+            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://wa.me/201020189281" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:info@agbinsights.com" class="social-link"><i class="far fa-envelope"></i></a>
         </div>
-        <p>AHMED GHARIB | AGBINSIGHTS</p>
+        <p style="font-size: 13px; color: #495670; letter-spacing: 2px;">AHMED GHARIB | AGBINSIGHTS</p>
     </footer>
 </div>
 
-<div id="case-view">
-    <div onclick="closeCase()" style="cursor:pointer; color:var(--neon-blue); font-weight:bold; margin-bottom:30px;">← Back to Portfolio</div>
-    <div id="case-header"></div>
-    <div id="case-imgs" style="max-width:1000px; margin:auto;"></div>
+<div id="case-study-view">
+    <div onclick="hideStudy()" style="cursor:pointer; color:var(--neon-blue); font-weight:900; margin-bottom:50px;">← RETURN TO PORTFOLIO</div>
+    <div id="study-images" style="max-width:1100px; margin:auto;"></div>
 </div>
 
 <script>
-    function start() {
-        document.getElementById('welcome-overlay').style.opacity = '0';
+    function enterSite() {
+        const overlay = document.getElementById('welcome-overlay');
+        overlay.style.opacity = '0';
         setTimeout(() => {
-            document.getElementById('welcome-overlay').style.display = 'none';
+            overlay.style.display = 'none';
             document.getElementById('main-site').style.display = 'block';
             setTimeout(() => document.getElementById('main-site').style.opacity = '1', 50);
-        }, 800);
+        }, 1000);
     }
 
-    const data = {
-        'hr': { title: "HR Attrition Case Study", chal: "Identifying turnover reasons.", sol: "Automated Power BI Dashboard.", res: "Insightful retention data.", imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png'] },
-        'sales': { title: "Sales Performance Case Study", chal: "Regional growth tracking.", sol: "Executive Sales Report.", res: "Faster revenue auditing.", imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png'] }
+    const projects = {
+        'hr': ['hr.png.png', 'hr.png2.png', 'hr.png3.png'],
+        'sales': ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
     };
 
-    function openCase(id) {
-        const p = data[id];
-        document.getElementById('case-header').innerHTML = `
-            <div class="case-top">
-                <h1 style="color:var(--neon-blue); margin-top:0;">${p.title}</h1>
-                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:20px; margin-top:20px;">
-                    <div><b>CHALLENGE</b><br>${p.chal}</div>
-                    <div><b>SOLUTION</b><br>${p.sol}</div>
-                    <div><b>OUTCOME</b><br>${p.res}</div>
-                </div>
-            </div>`;
-        document.getElementById('case-imgs').innerHTML = p.imgs.map(img => `<img src="${img}" style="width:100%; margin-bottom:30px; border-radius:20px; box-shadow:0 15px 40px rgba(0,0,0,0.5)">`).join('');
+    function showStudy(id) {
+        document.getElementById('study-images').innerHTML = projects[id].map(img => `<img src="${img}" style="width:100%; margin-bottom:40px; border-radius:30px; box-shadow:0 20px 50px rgba(0,0,0,0.6)">`).join('');
         document.getElementById('main-site').style.display = 'none';
-        document.getElementById('case-view').style.display = 'block';
+        document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
     }
 
-    function closeCase() {
+    function hideStudy() {
         document.getElementById('main-site').style.display = 'block';
-        document.getElementById('case-view').style.display = 'none';
+        document.getElementById('case-study-view').style.display = 'none';
     }
 </script>
 </body>
