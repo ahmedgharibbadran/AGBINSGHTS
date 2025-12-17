@@ -10,108 +10,145 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --neon: #00f2ff; --bg: #02060c; --card: #0b111a; }
-        * { box-sizing: border-box; }
-        body { background-color: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow: hidden; }
-
-        /* شاشة ترحيب 3D باسمك */
+        :root { --neon-blue: #4ed9ff; --dark-bg: #030b17; --card-bg: #0a192f; }
+        body { background-color: var(--dark-bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; overflow-x: hidden; }
+        
+        /* إعادة رسالة الترحيب الأصلية (كما في الصورة 13) */
         #welcome-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, #0a192f 0%, #02060c 100%);
-            display: flex; align-items: center; justify-content: center;
-            z-index: 10000; transition: 1s ease; perspective: 1000px;
+            background: var(--dark-bg); display: flex; align-items: center; justify-content: center;
+            z-index: 10000; transition: 0.8s ease-in-out;
         }
         .welcome-box {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            padding: 60px;
-            border-radius: 30px;
-            border: 1px solid rgba(0, 242, 255, 0.2);
-            text-align: center;
-            transform: rotateX(10deg);
-            box-shadow: 0 50px 100px rgba(0,0,0,0.5), inset 0 0 20px rgba(0, 242, 255, 0.1);
-            max-width: 500px;
+            border: 2px solid var(--neon-blue); padding: 50px; border-radius: 25px;
+            background: rgba(10, 25, 47, 0.4); box-shadow: 0 0 30px rgba(78, 217, 255, 0.15);
+            max-width: 500px; text-align: center;
         }
-        .welcome-box h2 { font-size: 40px; margin: 0; letter-spacing: -1px; }
-        .welcome-box h2 span { color: var(--neon); text-shadow: 0 0 20px rgba(0, 242, 255, 0.5); }
-        .welcome-box p { color: #8892b0; margin: 20px 0 35px; font-size: 18px; }
-        .start-btn {
-            background: var(--neon); color: black; padding: 15px 50px;
-            border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
-            font-size: 18px; transition: 0.3s; box-shadow: 0 10px 30px rgba(0, 242, 255, 0.3);
-        }
-        .start-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 242, 255, 0.5); }
-
-        /* الموقع الرئيسي */
-        #main-site { opacity: 0; transition: 1.5s; height: 100vh; overflow-y: auto; }
-        nav { padding: 30px 8%; display: flex; justify-content: space-between; align-items: center; }
-        .brand { font-weight: 900; font-size: 22px; color: var(--neon); letter-spacing: 3px; }
-
-        header { padding: 100px 8% 50px; text-align: center; }
-        header h1 { font-size: clamp(45px, 10vw, 90px); margin: 0; font-weight: 900; }
+        .welcome-box i { font-size: 60px; color: var(--neon-blue); margin-bottom: 25px; display: block; }
+        .welcome-box h2 { font-size: 32px; margin: 10px 0; }
+        .welcome-box p { color: #8892b0; font-size: 16px; line-height: 1.6; margin: 20px 0; }
         
-        .projects { padding: 60px 8%; }
-        .project-card {
-            display: flex; background: var(--card); border-radius: 25px; margin-bottom: 80px;
-            overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); transition: 0.5s;
+        .start-btn {
+            background: var(--neon-blue); color: #030b17; padding: 12px 40px;
+            border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+            font-size: 18px; transition: 0.3s;
         }
-        .project-card:hover { transform: scale(1.02); border-color: var(--neon); }
-        .p-img { width: 55%; height: 450px; }
-        .p-img img { width: 100%; height: 100%; object-fit: cover; }
-        .p-info { width: 45%; padding: 60px; display: flex; flex-direction: column; justify-content: center; text-align: right; }
-        .p-title { font-size: 35px; margin: 10px 0; }
-        .view-btn { align-self: flex-start; padding: 12px 35px; border: 1px solid var(--neon); color: var(--neon); text-decoration: none; border-radius: 5px; font-weight: bold; }
 
-        @media (max-width: 1100px) { .project-card { flex-direction: column; } .p-img, .p-info { width: 100%; } }
+        #main-site { opacity: 0; transition: 1.2s; }
+
+        /* الهيدر والمحتوى الأصلي (كما في الصور 18، 20) */
+        nav { padding: 30px 8%; display: flex; justify-content: flex-end; align-items: center; gap: 10px; }
+        .nav-brand { color: var(--neon-blue); font-weight: bold; font-size: 20px; letter-spacing: 1px; }
+
+        header { padding: 60px 20px 40px; }
+        header h1 { font-size: 65px; margin: 0; }
+        header h1 span { color: var(--neon-blue); }
+        header p { color: var(--neon-blue); font-size: 18px; margin-top: 15px; letter-spacing: 2px; text-transform: uppercase; }
+
+        .section-title { text-align: left; margin: 80px 10% 30px; color: var(--neon-blue); font-size: 20px; font-weight: bold; }
+
+        /* قسم الخبرات التقنية (كما في الصورة 20) */
+        .skills-container { display: flex; justify-content: center; gap: 20px; padding: 0 8%; flex-wrap: wrap; }
+        .skill-card {
+            background: var(--card-bg); padding: 40px 20px; border-radius: 15px; width: 180px;
+            border: 1px solid rgba(255,255,255,0.05); transition: 0.4s;
+        }
+        .skill-card:hover { transform: translateY(-10px); border-color: var(--neon-blue); }
+        .skill-card i { font-size: 35px; color: var(--neon-blue); margin-bottom: 15px; display: block; }
+
+        /* المشاريع Side-by-Side (كما في الصور 21، 22) */
+        .projects-container { padding: 20px 8%; }
+        .project-card {
+            display: flex; background: var(--card-bg); border-radius: 25px; margin-bottom: 60px;
+            overflow: hidden; border: 1px solid rgba(255,255,255,0.03); transition: 0.5s;
+        }
+        .p-image { width: 55%; }
+        .p-image img { width: 100%; height: 100%; object-fit: cover; }
+        .p-info { width: 45%; padding: 50px; text-align: right; display: flex; flex-direction: column; justify-content: center; }
+        .p-tag { color: var(--neon-blue); font-size: 12px; font-weight: bold; letter-spacing: 3px; }
+        .p-title { font-size: 32px; margin: 15px 0; }
+        .p-desc { color: #8892b0; margin-bottom: 30px; line-height: 1.7; }
+        .btn-view { align-self: flex-start; padding: 12px 30px; border: 1px solid var(--neon-blue); color: var(--neon-blue); text-decoration: none; border-radius: 5px; font-weight: bold; }
+
+        footer { padding: 80px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .socials a { color: var(--neon-blue); font-size: 24px; margin: 0 20px; text-decoration: none; border: 1px solid var(--neon-blue); padding: 15px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; width: 55px; height: 55px; }
+
+        @media (max-width: 1000px) { .project-card { flex-direction: column; } .p-image, .p-info { width: 100%; } }
     </style>
 </head>
 <body>
 
 <div id="welcome-overlay">
     <div class="welcome-box">
-        <h2>Hello, I'm <br><span>Ahmed Gharib</span></h2>
-        <p>Expert Data Analyst & BI Specialist</p>
-        <button class="start-btn" onclick="enter()">Explore My Universe</button>
+        <i class="fas fa-database"></i>
+        <h2>Hello, I'm Ahmed!</h2>
+        <p>Step into my data universe where complex numbers become clear business stories. Ready to explore?</p>
+        <button class="start-btn" onclick="enterSite()">Start Exploring</button>
     </div>
 </div>
 
 <div id="main-site">
-    <nav><div class="brand">AGBINSIGHTS</div></nav>
+    <nav>
+        <div class="nav-brand">AGBINSIGHTS <i class="fas fa-chart-line"></i></div>
+    </nav>
+
     <header>
-        <h1>Ahmed <span style="color: var(--neon)">Gharib</span></h1>
-        <p style="color: #8892b0; font-size: 20px;">Turning Raw Data Into Business Success</p>
+        <h1>Ahmed <span>Gharib</span></h1>
+        <p>Data Analyst & BI Specialist</p>
     </header>
 
-    <div class="projects">
+    <div class="section-title">01. Technical Expertise</div>
+    <div class="skills-container">
+        <div class="skill-card"><i class="fas fa-chart-pie"></i>Power BI</div>
+        <div class="skill-card"><i class="fas fa-file-excel"></i>Advanced Excel</div>
+        <div class="skill-card"><i class="fas fa-project-diagram"></i>Data Modeling</div>
+        <div class="skill-card"><i class="fas fa-calculator"></i>DAX Queries</div>
+        <div class="skill-card"><i class="fas fa-filter"></i>ETL Processes</div>
+    </div>
+
+    <div class="section-title">02. Featured Projects</div>
+    <div class="projects-container">
         <div class="project-card">
-            <div class="p-img"><img src="hr.png.png"></div>
+            <div class="p-image"><img src="hr.png.png" alt="HR Analysis"></div>
             <div class="p-info">
+                <span class="p-tag">PROJECT 01</span>
                 <h3 class="p-title">HR Attrition Analysis</h3>
-                <p style="color: #8892b0;">تحليل شامل لمعدلات ترك العمل وتقديم حلول استراتيجية لبيئة عمل أفضل.</p>
-                <a href="#" class="view-btn">View Case Study</a>
+                <p class="p-desc">Identifying key drivers of employee turnover with strategic dashboards.</p>
+                <a href="#" class="btn-view">View Case Study</a>
             </div>
         </div>
+
         <div class="project-card" style="flex-direction: row-reverse;">
-            <div class="p-img"><img src="sales.png1.png"></div>
+            <div class="p-image"><img src="sales.png1.png" alt="Sales Analysis"></div>
             <div class="p-info">
+                <span class="p-tag">PROJECT 02</span>
                 <h3 class="p-title">Sales Performance</h3>
-                <p style="color: #8892b0;">متابعة نمو المبيعات وتحليل الأرباح عبر الأقاليم بدقة عالية.</p>
-                <a href="#" class="view-btn">View Case Study</a>
+                <p class="p-desc">Strategic revenue tracking and performance analytics for global business growth.</p>
+                <a href="#" class="btn-view">View Case Study</a>
             </div>
         </div>
     </div>
+
+    <footer>
+        <h2 style="margin-bottom: 40px;">Ready to unlock your data's potential?</h2>
+        <div class="socials">
+            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://wa.me/201020189281"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:info@agbinsights.com"><i class="far fa-envelope"></i></a>
+        </div>
+        <p style="margin-top: 40px; color: #444;">© Ahmed Gharib | AGBINSIGHTS</p>
+    </footer>
 </div>
 
 <script>
-    function enter() {
+    function enterSite() {
         document.getElementById('welcome-overlay').style.opacity = '0';
-        document.getElementById('welcome-overlay').style.transform = 'translateZ(500px)';
         setTimeout(() => {
             document.getElementById('welcome-overlay').style.display = 'none';
             document.getElementById('main-site').style.opacity = '1';
-            document.body.style.overflowY = 'auto';
-        }, 1000);
+        }, 800);
     }
 </script>
+
 </body>
 </html>
