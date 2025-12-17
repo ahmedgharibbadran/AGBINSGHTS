@@ -47,11 +47,14 @@
         /* الهيكل الرئيسي وتصحيح الفجوة */
         #main-site { opacity: 0.2; filter: blur(8px); transition: 1.2s; perspective: 1200px; }
         
-        /* تقليل padding الهيدر لغلق الفجوة التي حددتها */
         header { padding: 110px 20px 0px; background: radial-gradient(circle at center, #0a192f 0%, #030b17 100%); }
         
         .name-logo-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 15px; }
         h1 { color: var(--neon-blue); font-size: clamp(28px, 6vw, 45px); margin: 0; font-weight: bold; }
+
+        /* الوصف تحت الاسم */
+        .about-section { max-width: 700px; margin: 15px auto; color: #8892b0; font-size: 17px; line-height: 1.8; padding: 0 20px; }
+        .highlight { color: var(--neon-blue); font-weight: bold; }
 
         /* كروت المنهجية */
         .intro-cards { display: flex; justify-content: center; gap: 15px; margin: 20px auto 10px; max-width: 900px; flex-wrap: wrap; }
@@ -59,8 +62,8 @@
         .i-card h3 { color: #4effca; margin: 0; font-size: 14px; letter-spacing: 1.5px; }
         .i-card p { color: #8892b0; font-size: 12px; margin-top: 5px; }
 
-        /* مهارات تقنية وتقليل المسافات */
-        .section-title { text-align: left; margin: 20px 0 20px 10%; color: var(--neon-blue); border-left: 3px solid var(--neon-blue); padding-left: 15px; font-size: 18px; }
+        /* مهارات تقنية */
+        .section-title { text-align: left; margin: 25px 0 20px 10%; color: var(--neon-blue); border-left: 3px solid var(--neon-blue); padding-left: 15px; font-size: 18px; }
         .skills-row { display: flex; justify-content: center; gap: 15px; margin: 10px 0 40px; flex-wrap: wrap; padding: 0 5%; }
         .s-box { 
             background: var(--card-bg); border: 1px solid rgba(78, 217, 255, 0.1); 
@@ -83,7 +86,7 @@
         .btn-view { border: 1px solid var(--neon-blue); color: var(--neon-blue); padding: 10px 25px; border-radius: 5px; cursor: pointer; transition: 0.3s; font-weight: bold; }
         .btn-view:hover { background: var(--neon-blue); color: var(--dark-bg); }
 
-        /* الفوتر مع الإيميل والروابط */
+        /* الفوتر */
         footer { padding: 60px 20px; background: #020811; border-top: 1px solid rgba(78, 217, 255, 0.05); }
         .footer-cta { color: var(--neon-blue); font-size: 22px; margin-bottom: 30px; font-weight: bold; }
         .social-icons a { color: var(--neon-blue); font-size: 22px; margin: 0 15px; border: 1px solid var(--neon-blue); padding: 12px; border-radius: 50%; display: inline-block; transition: 0.4s; text-decoration: none; }
@@ -115,6 +118,10 @@
         <div style="color: var(--neon-blue); font-size: 10px; letter-spacing: 4px; margin-bottom: 15px;">DATA ANALYST PORTFOLIO</div>
         <h1>Ahmed Gharib</h1>
         
+        <div class="about-section">
+            I turn raw data into <span class="highlight">meaningful stories</span>. Specialized in Power BI, Excel, and Data Modeling to help businesses make <span class="highlight">smarter decisions</span>.
+        </div>
+
         <div class="intro-cards">
             <div class="i-card"><h3>DAILY</h3><p>Skill Development</p></div>
             <div class="i-card"><h3>DETAIL</h3><p>Oriented Analyst</p></div>
@@ -132,6 +139,7 @@
     </div>
 
     <div class="section-title">02. Featured Projects</div>
+    
     <div class="project-item">
         <div class="p-img"><img src="hr.png.png"></div>
         <div class="p-text">
@@ -141,50 +149,17 @@
         </div>
     </div>
 
+    <div class="project-item" style="flex-direction: row-reverse;">
+        <div class="p-img"><img src="sales.png1.png"></div>
+        <div class="p-text" style="text-align: right;">
+            <h3>Sales Performance</h3>
+            <p>Strategic revenue tracking and performance dashboards for commercial growth.</p>
+            <div class="btn-view" onclick="showStudy('sales')">View Case Study</div>
+        </div>
+    </div>
+
     <footer>
         <div class="footer-cta">Ready to unlock your data's potential?</div>
         <div class="social-icons">
             <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://wa.me/201020189281" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="mailto:info@agbinsights.com" title="Email"><i class="far fa-envelope"></i></a>
-        </div>
-        <p style="margin-top: 30px; font-size: 14px; color: var(--neon-blue);">info@agbinsights.com</p>
-        <div style="margin-top: 20px; font-size: 11px; color: #495670;">© 2025 Ahmed Gharib | AGBINSIGHTS</div>
-    </footer>
-</div>
-
-<div id="case-study-view">
-    <div onclick="hideStudy()" style="color:var(--neon-blue); cursor:pointer; margin-bottom:20px; font-weight:bold;">← Back to Home</div>
-    <div id="study-images" style="max-width: 1000px; margin: auto;"></div>
-</div>
-
-<script>
-    function startExploring() {
-        document.getElementById('welcome-overlay').style.opacity = '0';
-        setTimeout(() => {
-            document.getElementById('welcome-overlay').style.display = 'none';
-            document.getElementById('main-site').style.opacity = '1';
-            document.getElementById('main-site').style.filter = 'none';
-        }, 600);
-    }
-
-    const data = {
-        'hr': ['hr.png.png', 'hr.png2.png', 'hr.png3.png'],
-        'sales': ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
-    };
-
-    function showStudy(id) {
-        const viewer = document.getElementById('study-images');
-        viewer.innerHTML = data[id].map(img => `<img src="${img}" style="width:100%; border-radius:15px; margin-bottom:40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">`).join('');
-        document.getElementById('main-site').style.display = 'none';
-        document.getElementById('case-study-view').style.display = 'block';
-        window.scrollTo(0,0);
-    }
-
-    function hideStudy() {
-        document.getElementById('main-site').style.display = 'block';
-        document.getElementById('case-study-view').style.display = 'none';
-    }
-</script>
-</body>
-</html>
+            <a href="https://wa.me/201020189281" target="_
