@@ -12,58 +12,52 @@
         :root { --neon-blue: #4ed9ff; --dark-bg: #030b17; --card-bg: #0a192f; --pbi-yellow: #f2c811; --excel-green: #21a366; --text-gray: #8892b0; }
         body { background-color: var(--dark-bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
         
-        /* شاشة ترحيب مبهرة */
         #welcome-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a192f 0%, #030b17 100%); display: flex; align-items: center; justify-content: center; z-index: 10000; transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
         .welcome-box { text-align: center; animation: fadeIn 1.5s ease; }
-        .welcome-logo { width: 140px; height: 140px; margin-bottom: 25px; border-radius: 50%; border: 3px solid var(--neon-blue); box-shadow: 0 0 50px var(--neon-blue); animation: pulseLogo 2s infinite; }
-        .welcome-box h2 { font-size: 45px; font-weight: 900; letter-spacing: 2px; margin: 0; color: white; text-shadow: 0 0 20px var(--neon-blue); }
-        .welcome-box p { color: var(--text-gray); font-size: 18px; margin-top: 10px; font-weight: 300; }
+        .welcome-logo { width: 140px; height: 140px; margin-bottom: 25px; border-radius: 50%; border: 3px solid var(--neon-blue); box-shadow: 0 0 50px var(--neon-blue); }
+        .welcome-box h2 { font-size: 45px; font-weight: 900; color: white; text-shadow: 0 0 20px var(--neon-blue); }
         .start-btn { background: transparent; color: var(--neon-blue); padding: 15px 50px; border: 2px solid var(--neon-blue); border-radius: 50px; font-weight: 800; cursor: pointer; margin-top: 40px; text-transform: uppercase; transition: 0.4s; letter-spacing: 2px; }
         .start-btn:hover { background: var(--neon-blue); color: var(--dark-bg); box-shadow: 0 0 30px var(--neon-blue); }
 
-        @keyframes pulseLogo { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         #main-site { opacity: 0; transition: 1s ease-in-out; display: none; perspective: 1500px; }
-        nav { width: 100%; padding: 25px 8%; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
+        nav { width: 100%; padding: 25px 8%; display: flex; justify-content: center; align-items: center; box-sizing: border-box; }
         .nav-brand { display: flex; align-items: center; gap: 12px; }
         .nav-logo-img { width: 45px; height: 45px; border-radius: 50%; border: 1px solid var(--neon-blue); }
         .nav-text { font-weight: 800; color: var(--neon-blue); letter-spacing: 2px; }
-        .hire-me { border: 1px solid var(--neon-blue); color: var(--neon-blue); padding: 10px 25px; border-radius: 5px; text-decoration: none; font-weight: 900; transition: 0.3s; }
-        .hire-me:hover { background: var(--neon-blue); color: var(--dark-bg); }
 
-        header { padding: 60px 20px 20px; }
-        h1 { color: white; font-size: clamp(40px, 8vw, 80px); margin: 0; font-weight: 900; }
-        .job-tag { color: var(--neon-blue); font-size: 14px; letter-spacing: 6px; font-weight: 800; text-transform: uppercase; margin-top: 10px; display: block; }
-        .about-section { max-width: 750px; margin: 30px auto; color: var(--text-gray); font-size: 20px; line-height: 1.7; }
+        header { padding: 40px 20px 20px; }
+        h1 { color: white; font-size: clamp(40px, 8vw, 75px); margin: 0; font-weight: 900; }
+        .job-tag { color: var(--neon-blue); font-size: 16px; letter-spacing: 4px; font-weight: 600; text-transform: uppercase; margin-top: 5px; display: block; opacity: 0.9; }
+        .about-section { max-width: 750px; margin: 30px auto; color: var(--text-gray); font-size: 19px; line-height: 1.7; }
         .highlight { color: var(--neon-blue); font-weight: bold; }
 
-        .stats-bar { display: flex; justify-content: center; gap: 40px; margin: 40px auto; padding: 25px; background: rgba(78, 217, 255, 0.03); border-radius: 20px; max-width: 850px; border: 1px solid rgba(78, 217, 255, 0.1); }
-        .stat-item { text-align: center; }
-        .stat-num { display: block; font-size: 32px; font-weight: 900; color: var(--neon-blue); }
-        .stat-label { font-size: 11px; color: var(--text-gray); text-transform: uppercase; letter-spacing: 2px; }
-
-        .section-title { text-align: left; margin: 70px 0 30px 10%; color: var(--neon-blue); border-left: 4px solid var(--neon-blue); padding-left: 20px; font-weight: bold; font-size: 24px; text-transform: uppercase; letter-spacing: 1px; }
+        .section-title { text-align: left; margin: 60px 0 30px 10%; color: var(--neon-blue); border-left: 4px solid var(--neon-blue); padding-left: 20px; font-weight: bold; font-size: 22px; text-transform: uppercase; }
         
-        /* تفعيل الـ 3D لجميع الكروت */
         .grid-container, .process-flow { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0 8%; margin-bottom: 50px; }
-        .card-3d, .process-step { background: var(--card-bg); border: 1px solid rgba(78, 217, 255, 0.08); padding: 40px 20px; border-radius: 25px; min-width: 160px; flex: 1; transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); transform-style: preserve-3d; cursor: pointer; }
+        .card-3d, .process-step { background: var(--card-bg); border: 1px solid rgba(78, 217, 255, 0.08); padding: 40px 20px; border-radius: 25px; min-width: 160px; flex: 1; transition: 0.5s; transform-style: preserve-3d; cursor: pointer; }
         .card-3d:hover, .process-step:hover { transform: translateY(-15px) rotateX(10deg) rotateY(10deg); border-color: var(--neon-blue); box-shadow: 0 25px 50px rgba(0,0,0,0.6); }
         
-        .card-3d i, .process-step i { font-size: 45px; margin-bottom: 20px; display: block; transition: 0.4s; color: var(--neon-blue); }
+        .card-3d i, .process-step i { font-size: 45px; margin-bottom: 20px; display: block; color: var(--neon-blue); transition: 0.4s; }
         .card-3d:hover i, .process-step:hover i { transform: translateZ(50px); }
-        .card-3d span, .process-step h4 { font-size: 14px; font-weight: 800; color: #ccd6f6; display: block; text-transform: uppercase; letter-spacing: 1px; }
+        .card-3d span, .process-step h4 { font-size: 14px; font-weight: 800; color: #ccd6f6; display: block; text-transform: uppercase; }
 
         .project-item { background: var(--card-bg); display: flex; align-items: center; margin: 40px 10%; border-radius: 35px; overflow: hidden; border: 1px solid rgba(255,255,255,0.03); transition: 0.5s; }
-        .project-item:hover { border-color: var(--neon-blue); transform: translateY(-5px); }
         .p-img { width: 55%; } .p-img img { width: 100%; display: block; }
-        .p-text { width: 45%; padding: 60px; text-align: left; }
-        .btn-view { border: 2px solid var(--neon-blue); color: var(--neon-blue); padding: 14px 35px; border-radius: 10px; cursor: pointer; display: inline-block; margin-top: 25px; font-weight: 900; text-decoration: none; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
-        .btn-view:hover { background: var(--neon-blue); color: var(--dark-bg); }
+        .p-text { width: 45%; padding: 50px; text-align: left; }
+        .btn-view { border: 2px solid var(--neon-blue); color: var(--neon-blue); padding: 12px 30px; border-radius: 10px; cursor: pointer; display: inline-block; margin-top: 20px; font-weight: 900; text-decoration: none; }
+
+        #case-study-view { display:none; background: var(--dark-bg); padding: 60px 5%; }
+        .case-header { max-width: 1000px; margin: 0 auto 40px; text-align: left; background: var(--card-bg); padding: 35px; border-radius: 25px; border-left: 6px solid var(--neon-blue); }
+        .case-header h2 { color: var(--neon-blue); margin-top: 0; font-size: 28px; }
+        .case-info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 20px; }
+        .info-tag { font-size: 14px; color: var(--text-gray); line-height: 1.6; }
+        .info-tag b { color: white; display: block; margin-bottom: 8px; font-size: 12px; letter-spacing: 1px; }
 
         footer { padding: 80px 20px; background: #020811; border-top: 1px solid rgba(255,255,255,0.05); }
         .social-icons a { color: var(--neon-blue); font-size: 26px; margin: 0 20px; transition: 0.4s; display: inline-block; }
-        .social-icons a:hover { transform: translateY(-10px); color: white; text-shadow: 0 0 15px var(--neon-blue); }
+        .social-icons a:hover { transform: translateY(-10px); color: white; }
     </style>
 </head>
 <body>
@@ -72,7 +66,6 @@
     <div class="welcome-box">
         <img src="logo.png" class="welcome-logo">
         <h2>Ahmed Gharib</h2>
-        <p>Architecting Data Excellence & Strategic Insights</p>
         <button class="start-btn" onclick="startExploring()">Initiate Experience</button>
     </div>
 </div>
@@ -83,46 +76,23 @@
             <img src="logo.png" class="nav-logo-img">
             <span class="nav-text">AGBINSIGHTS</span>
         </div>
-        <a href="https://wa.me/201020189281" class="hire-me" target="_blank">CONNECT</a>
     </nav>
 
     <header>
         <h1>Ahmed Gharib</h1>
-        <span class="job-tag">Professional Data Analyst Portfolio</span>
+        <span class="job-tag">Data Analyst</span>
         
         <div class="about-section">
             I turn raw data into <span class="highlight">meaningful stories</span>. Specialized in Power BI and Excel to help businesses make <span class="highlight">smarter decisions</span>.
-        </div>
-        
-        <div class="stats-bar">
-            <div class="stat-item"><span class="stat-num">02</span><span class="stat-label">Featured Projects</span></div>
-            <div class="stat-item"><span class="stat-num">ETL</span><span class="stat-label">Data Transformation</span></div>
-            <div class="stat-item"><span class="stat-num">PRO</span><span class="stat-label">Interactive BI</span></div>
         </div>
     </header>
 
     <div class="section-title">01. The Analytics Journey</div>
     <div class="process-flow">
-        <div class="process-step">
-            <i class="fas fa-database"></i>
-            <h4>Extract</h4>
-            <p style="font-size:12px; color:var(--text-gray); margin-top:10px;">Connecting disparate sources.</p>
-        </div>
-        <div class="process-step">
-            <i class="fas fa-broom"></i>
-            <h4>Clean</h4>
-            <p style="font-size:12px; color:var(--text-gray); margin-top:10px;">Ensuring data quality & integrity.</p>
-        </div>
-        <div class="process-step">
-            <i class="fas fa-layer-group"></i>
-            <h4>Model</h4>
-            <p style="font-size:12px; color:var(--text-gray); margin-top:10px;">Advanced Logic & DAX.</p>
-        </div>
-        <div class="process-step">
-            <i class="fas fa-chart-line"></i>
-            <h4>Insight</h4>
-            <p style="font-size:12px; color:var(--text-gray); margin-top:10px;">Impactful Visual Stories.</p>
-        </div>
+        <div class="process-step"><i class="fas fa-database"></i><h4>Extract</h4></div>
+        <div class="process-step"><i class="fas fa-broom"></i><h4>Clean</h4></div>
+        <div class="process-step"><i class="fas fa-layer-group"></i><h4>Model</h4></div>
+        <div class="process-step"><i class="fas fa-chart-line"></i><h4>Insight</h4></div>
     </div>
 
     <div class="section-title">02. Technical Expertise</div>
@@ -131,8 +101,6 @@
         <div class="card-3d"><i class="fas fa-file-excel" style="color: var(--excel-green);"></i><span>Advanced Excel</span></div>
         <div class="card-3d"><i class="fas fa-project-diagram"></i><span>Data Modeling</span></div>
         <div class="card-3d"><i class="fas fa-calculator"></i><span>DAX Logic</span></div>
-        <div class="card-3d"><i class="fas fa-server"></i><span>ETL Processes</span></div>
-        <div class="card-3d"><i class="fas fa-eye"></i><span>Visualization</span></div>
     </div>
 
     <div class="section-title">03. Featured Projects</div>
@@ -160,12 +128,13 @@
             <a href="https://wa.me/201020189281" target="_blank"><i class="fab fa-whatsapp"></i></a>
             <a href="mailto:info@agbinsights.com"><i class="far fa-envelope"></i></a>
         </div>
-        <div style="margin-top: 40px; font-size: 13px; color: #495670; letter-spacing: 2px;">© AHMED GHARIB | AGBINSIGHTS</div>
+        <div style="margin-top: 40px; font-size: 13px; color: #495670;">© AHMED GHARIB | AGBINSIGHTS</div>
     </footer>
 </div>
 
-<div id="case-study-view" style="display:none; background:var(--dark-bg); padding:60px 10%;">
-    <div onclick="hideStudy()" style="color:var(--neon-blue); cursor:pointer; margin-bottom:40px; font-weight:900; text-align:left; letter-spacing:2px;">← BACK TO PORTFOLIO</div>
+<div id="case-study-view">
+    <div onclick="hideStudy()" style="color:var(--neon-blue); cursor:pointer; margin-bottom:40px; font-weight:900; text-align:left;">← BACK</div>
+    <div id="case-header-content"></div>
     <div id="study-images" style="max-width: 1100px; margin: auto;"></div>
 </div>
 
@@ -181,10 +150,23 @@
         }, 1000);
     }
 
-    const imgs = { 'hr': ['hr.png.png', 'hr.png2.png', 'hr.png3.png'], 'sales': ['sales.png1.png', 'sales.png2.png', 'sales.png3.png'] };
+    const projectDetails = {
+        'hr': { title: "HR Attrition Analysis", challenge: "Understanding turnover patterns.", solution: "Interactive dashboard tracking retention.", impact: "Visualized critical factors affecting staff stability.", imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png'] },
+        'sales': { title: "Sales Performance", challenge: "Revenue tracking across regions.", solution: "Automated Power BI sales monitoring.", impact: "Real-time visibility into sales growth.", imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png'] }
+    };
     
     function showStudy(id) {
-        document.getElementById('study-images').innerHTML = imgs[id].map(img => `<img src="${img}" style="width:100%; margin-bottom:40px; border-radius:30px; box-shadow: 0 20px 60px rgba(0,0,0,0.7);">`).join('');
+        const d = projectDetails[id];
+        document.getElementById('case-header-content').innerHTML = `
+            <div class="case-header">
+                <h2>${d.title}</h2>
+                <div class="case-info-grid">
+                    <div class="info-tag"><b>THE CHALLENGE</b>${d.challenge}</div>
+                    <div class="info-tag"><b>MY SOLUTION</b>${d.solution}</div>
+                    <div class="info-tag"><b>THE RESULT</b>${d.impact}</div>
+                </div>
+            </div>`;
+        document.getElementById('study-images').innerHTML = d.imgs.map(img => `<img src="${img}" style="width:100%; margin-bottom:40px; border-radius:30px; box-shadow: 0 20px 60px rgba(0,0,0,0.7);">`).join('');
         document.getElementById('main-site').style.display = 'none';
         document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
