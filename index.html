@@ -7,98 +7,67 @@
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { 
-            --dark-deep: #050a14;
-            --dark-card: #0a1120;
-            --accent-cyan: #38bdf8;
-            --text-white: #f8fafc;
-            --primary-blue: #2563eb;
-        }
+        :root { --assal-blue: #1e40af; --assal-bg: #f8fafc; --dark: #0f172a; }
         
-        body { background-color: var(--dark-deep); color: var(--text-white); font-family: 'Inter', sans-serif; margin: 0; transition: 0.3s; overflow-x: hidden; }
+        body { background-color: var(--assal-bg); color: #334155; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
 
-        /* شاشة الترحيب الفخمة */
-        #welcome-overlay { position: fixed; inset: 0; background: var(--dark-deep); display: flex; align-items: center; justify-content: center; z-index: 10000; transition: 0.8s ease; }
-        .welcome-logo { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--accent-cyan); margin-bottom: 25px; box-shadow: 0 0 30px rgba(56, 189, 248, 0.2); }
-        .start-btn { background: var(--accent-cyan); color: var(--dark-deep); padding: 14px 40px; border: none; border-radius: 8px; font-weight: 800; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+        /* شاشة الترحيب */
+        #welcome-overlay { position: fixed; inset: 0; background: white; display: flex; align-items: center; justify-content: center; z-index: 10000; transition: 0.8s ease; }
+        .welcome-box { text-align: center; }
+        .welcome-logo { width: 110px; height: 110px; border-radius: 50%; border: 3px solid var(--assal-blue); margin-bottom: 20px; }
+        .start-btn { background: var(--dark); color: white; padding: 12px 35px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; transition: 0.3s; }
 
         #main-site { display: none; opacity: 0; transition: 1s ease; }
 
-        /* Navbar - اللوجو يسار دائماً وأبداً */
-        nav { 
-            width: 100%; padding: 15px 5%; display: flex; align-items: center; 
-            background: rgba(10, 17, 32, 0.95); backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.05); position: sticky; top: 0; z-index: 1000;
-            flex-direction: row !important; /* قفل الاتجاه */
-        }
-        .nav-brand { display: flex; align-items: center; gap: 12px; margin-right: auto !important; margin-left: 0 !important; }
+        /* Navbar - ثابت تماماً */
+        nav { width: 100%; padding: 15px 5%; display: flex; align-items: center; background: white; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; box-sizing: border-box; }
+        .nav-brand { display: flex; align-items: center; gap: 10px; margin-right: auto; }
         .nav-logo-img { width: 35px; height: 35px; border-radius: 50%; }
         
-        .lang-switcher { display: flex; gap: 12px; margin-left: auto !important; margin-right: 0 !important; flex-direction: row !important; }
+        .lang-switcher { display: flex; gap: 10px; margin-left: auto; }
         .lang-btn { cursor: pointer; border-radius: 50%; width: 30px; height: 30px; overflow: hidden; border: 2px solid transparent; transition: 0.3s; }
-        .lang-btn.active { border-color: var(--accent-cyan); transform: scale(1.1); }
         .lang-btn img { width: 100%; height: 100%; object-fit: cover; }
+        .lang-btn.active { border-color: var(--assal-blue); transform: scale(1.1); }
 
-        header { padding: 100px 20px 60px; text-align: center; }
-        h1 { font-size: clamp(40px, 8vw, 75px); font-weight: 900; margin: 0; letter-spacing: -2px; }
-        .job-tag { color: var(--accent-cyan); font-weight: 700; letter-spacing: 4px; text-transform: uppercase; margin-top: 15px; display: block; }
+        header { padding: 60px 20px; text-align: center; }
+        h1 { color: var(--dark); font-size: clamp(35px, 8vw, 65px); font-weight: 800; margin: 0; }
+        .job-tag { color: var(--assal-blue); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 10px; display: block; }
 
-        /* الأقسام كما في الصورة التي علمت عليها */
-        .section-container { padding: 60px 10%; }
-        .section-title { font-size: 22px; font-weight: 800; color: var(--accent-cyan); border-left: 4px solid var(--accent-cyan); padding-left: 15px; margin-bottom: 40px; text-transform: uppercase; text-align: left; }
-        body[dir="rtl"] .section-title { text-align: right; border-left: none; border-right: 4px solid var(--accent-cyan); padding-right: 15px; }
+        .section-title { text-align: left; margin: 40px 10% 20px; color: var(--dark); border-left: 4px solid var(--assal-blue); padding-left: 15px; font-weight: 800; }
+        body[dir="rtl"] .section-title { text-align: right; border-left: none; border-right: 4px solid var(--assal-blue); padding-right: 15px; }
 
-        .journey-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 25px; }
-        .j-card { 
-            background: var(--dark-card); padding: 45px 20px; border-radius: 20px; text-align: center; 
-            border: 1px solid rgba(255,255,255,0.05); transition: 0.4s;
+        /* نظام الصفوف (4 فوق و 5 تحت) مع 3D */
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 0 10%; margin-bottom: 30px; }
+        .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; padding: 0 10%; margin-bottom: 50px; }
+        
+        .card-3d { 
+            background: white; padding: 25px 15px; border-radius: 12px; border: 1px solid #e2e8f0; 
+            text-align: center; transition: 0.5s; cursor: pointer;
         }
-        .j-card:hover { transform: translateY(-10px); border-color: var(--accent-cyan); background: rgba(56, 189, 248, 0.05); }
-        .j-card i { font-size: 45px; color: var(--accent-cyan); margin-bottom: 20px; display: block; }
-        .j-card span { font-weight: 700; font-size: 14px; letter-spacing: 1px; }
+        .card-3d:hover { transform: translateY(-10px) rotateX(10deg) rotateY(10deg); border-color: var(--assal-blue); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .card-3d i { font-size: 30px; color: var(--assal-blue); margin-bottom: 12px; display: block; }
+        .card-3d span { font-weight: 700; color: var(--dark); font-size: 13px; }
 
-        /* قسم المشاريع المطور */
-        .project-item { 
-            background: var(--dark-card); border-radius: 25px; overflow: hidden; 
-            display: flex; margin-bottom: 40px; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s;
+        /* المشاريع - تفاصيل كاملة */
+        .project-card { background: white; border: 1px solid #e2e8f0; margin: 30px 10%; border-radius: 20px; overflow: hidden; display: flex; transition: 0.4s; }
+        .p-img { width: 45%; } .p-img img { width: 100%; height: 100%; object-fit: cover; }
+        .p-info { width: 55%; padding: 40px; }
+        .view-btn { display: inline-block; margin-top: 20px; padding: 10px 25px; background: var(--assal-blue); color: white; text-decoration: none; border-radius: 5px; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .project-card { flex-direction: column; }
+            .p-img, .p-info { width: 100%; }
         }
-        .p-image-side { width: 55%; position: relative; cursor: pointer; overflow: hidden; }
-        .p-image-side img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-        .p-image-side:hover img { transform: scale(1.05); }
-        .p-image-side .overlay-zoom { position: absolute; inset: 0; background: rgba(5,10,20,0.6); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; }
-        .p-image-side:hover .overlay-zoom { opacity: 1; }
-
-        .p-info-side { width: 45%; padding: 50px; display: flex; flex-direction: column; justify-content: center; }
-        .p-info-side h3 { font-size: 28px; margin: 0 0 15px; color: var(--accent-cyan); }
-        .p-info-side p { line-height: 1.6; color: #94a3b8; }
-
-        /* نافذة معاينة الصور (Lightbox) */
-        #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 20000; display: none; align-items: center; justify-content: center; padding: 40px; }
-        #lightbox img { max-width: 100%; max-height: 90vh; border-radius: 10px; border: 2px solid var(--accent-cyan); }
-        .close-light { position: absolute; top: 30px; right: 40px; font-size: 40px; color: white; cursor: pointer; }
-
-        @media (max-width: 900px) {
-            .project-item { flex-direction: column; }
-            .p-image-side, .p-info-side { width: 100%; }
-            .journey-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        footer { text-align: center; padding: 60px; border-top: 1px solid rgba(255,255,255,0.05); color: #64748b; font-size: 13px; font-weight: 700; }
     </style>
 </head>
 <body>
 
-<div id="lightbox" onclick="this.style.display='none'">
-    <span class="close-light">&times;</span>
-    <img id="light-img" src="">
-</div>
-
 <div id="welcome-overlay">
-    <div style="text-align: center;">
+    <div class="welcome-box">
         <img src="logo.png" class="welcome-logo">
-        <h2 style="font-weight: 900; font-size: 35px; margin: 0 0 10px;">Ahmed Gharib</h2>
-        <p style="color: var(--accent-cyan); letter-spacing: 3px; margin-bottom: 30px;">THE DATA JOURNEY</p>
-        <button class="start-btn" id="w-btn" onclick="enterSite()">Open Experience</button>
+        <h2 style="font-weight: 800; margin: 0 0 20px;">Ahmed Gharib</h2>
+        <button class="start-btn" id="w-btn" onclick="enterSite()">Enter Portfolio</button>
     </div>
 </div>
 
@@ -106,7 +75,7 @@
     <nav>
         <div class="nav-brand">
             <img src="logo.png" class="nav-logo-img">
-            <span style="font-weight: 900; font-size: 18px;">AGBINSIGHTS</span>
+            <span style="font-weight: 800; color: var(--dark);">AGBINSIGHTS</span>
         </div>
         <div class="lang-switcher">
             <div class="lang-btn active" onclick="changeLang('en', this)"><img src="https://flagcdn.com/w40/us.png"></div>
@@ -116,53 +85,48 @@
     </nav>
 
     <header>
-        <h1>Ahmed Gharib</h1>
+        <h1 id="h-name">Ahmed Gharib</h1>
         <span class="job-tag" id="tag">Data Analyst</span>
-        <p id="desc" style="max-width: 650px; margin: 25px auto; font-size: 19px; color: #94a3b8;">Transforming complex data into visual stories that drive growth.</p>
     </header>
 
-    <section class="section-container">
-        <div class="section-title" id="t1">01. THE ANALYTICS JOURNEY</div>
-        <div class="journey-grid">
-            <div class="j-card"><i class="fas fa-database"></i><span id="s1">EXTRACT</span></div>
-            <div class="j-card"><i class="fas fa-broom"></i><span id="s2">CLEAN</span></div>
-            <div class="j-card"><i class="fas fa-layer-group"></i><span id="s3">MODEL</span></div>
-            <div class="j-card"><i class="fas fa-chart-line"></i><span id="s4">INSIGHT</span></div>
-        </div>
-    </section>
+    <div class="section-title" id="t1">ANALYTICS JOURNEY</div>
+    <div class="grid-4">
+        <div class="card-3d"><i class="fas fa-database"></i><span id="s1">EXTRACT</span></div>
+        <div class="card-3d"><i class="fas fa-broom"></i><span id="s2">CLEAN</span></div>
+        <div class="card-3d"><i class="fas fa-layer-group"></i><span id="s3">MODEL</span></div>
+        <div class="card-3d"><i class="fas fa-chart-line"></i><span id="s4">INSIGHT</span></div>
+    </div>
 
-    <section class="section-container">
-        <div class="section-title" id="t2">02. FEATURED PROJECTS</div>
-        
-        <div class="project-item">
-            <div class="p-image-side" onclick="openFull('hr.png.png')">
-                <img src="hr.png.png">
-                <div class="overlay-zoom"><i class="fas fa-expand-alt fa-2x"></i></div>
-            </div>
-            <div class="p-info-side">
-                <h3 id="p1-t">HR Attrition Dashboard</h3>
-                <p id="p1-d">Strategic analysis of employee turnover patterns using advanced modeling to predict and prevent attrition.</p>
-            </div>
-        </div>
+    <div class="section-title" id="t2">TECHNICAL SKILLS</div>
+    <div class="grid-5">
+        <div class="card-3d"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
+        <div class="card-3d"><i class="fas fa-file-excel"></i><span>Excel</span></div>
+        <div class="card-3d"><i class="fas fa-calculator"></i><span>DAX</span></div>
+        <div class="card-3d"><i class="fas fa-project-diagram"></i><span>Modeling</span></div>
+        <div class="card-3d"><i class="fas fa-brain"></i><span>Analysis</span></div>
+    </div>
 
-        <div class="project-item" style="flex-direction: row-reverse;">
-            <div class="p-image-side" onclick="openFull('sales.png1.png')">
-                <img src="sales.png1.png">
-                <div class="overlay-zoom"><i class="fas fa-expand-alt fa-2x"></i></div>
-            </div>
-            <div class="p-info-side">
-                <h3 id="p2-t">Global Sales Intelligence</h3>
-                <p id="p2-d">Interactive forecasting system that consolidates revenue streams and tracks KPI targets across regions.</p>
-            </div>
+    <div class="section-title" id="t3">FEATURED PROJECTS</div>
+    <div class="project-card">
+        <div class="p-img"><img src="hr.png.png"></div>
+        <div class="p-info">
+            <h3 id="p1-t">HR Attrition Project</h3>
+            <p id="p1-d">Comprehensive study of employee retention and turnover factors.</p>
+            <a href="hr-details.html" class="view-btn" id="v1">View Full Project</a>
         </div>
-    </section>
+    </div>
 
-    <footer>
-        <div style="margin-bottom: 20px;">
-            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" style="color:white; margin:0 15px; font-size:20px;"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:info@agbinsights.com" style="color:white; margin:0 15px; font-size:20px;"><i class="fas fa-envelope"></i></a>
+    <div class="project-card" style="flex-direction: row-reverse;">
+        <div class="p-img"><img src="sales.png1.png"></div>
+        <div class="p-info">
+            <h3 id="p2-t">Sales Performance</h3>
+            <p id="p2-d">Interactive dashboard for revenue tracking and forecasting.</p>
+            <a href="sales-details.html" class="view-btn" id="v2">View Full Project</a>
         </div>
-        <p>© 2025 AHMED GHARIB - AGBINSIGHTS PORTFOLIO</p>
+    </div>
+
+    <footer style="text-align: center; padding: 40px; border-top: 1px solid #e2e8f0;">
+        <p>© 2025 AHMED GHARIB - AGBINSIGHTS</p>
     </footer>
 </div>
 
@@ -176,14 +140,9 @@
         }, 800);
     }
 
-    function openFull(src) {
-        document.getElementById('light-img').src = src;
-        document.getElementById('lightbox').style.display = 'flex';
-    }
-
     const dict = {
-        'en': { tag: "Data Analyst", t1: "01. THE ANALYTICS JOURNEY", s1: "EXTRACT", s2: "CLEAN", s3: "MODEL", s4: "INSIGHT", t2: "02. FEATURED PROJECTS", p1t: "HR Attrition Dashboard", p1d: "Strategic analysis of employee turnover patterns.", p2t: "Global Sales Intelligence", p2d: "Interactive forecasting system.", wBtn: "Open Experience", dir: "ltr" },
-        'ar': { tag: "محلل بيانات", t1: "01. رحلة تحليل البيانات", s1: "استخراج", s2: "تنظيف", s3: "نمذجة", s4: "رؤية", t2: "02. المشاريع المختارة", p1t: "تحليل استقالات الموظفين", p1d: "تحليل استراتيجي لأنماط دوران الموظفين باستخدام النمذجة المتقدمة.", p2t: "ذكاء المبيعات العالمي", p2d: "نظام تنبؤ تفاعلي يدمج مصادر الإيرادات وتتبع الأهداف.", wBtn: "دخول المعرض", dir: "rtl" }
+        'en': { tag: "Data Analyst", t1: "01. JOURNEY", s1: "EXTRACT", s2: "CLEAN", s3: "MODEL", s4: "INSIGHT", t2: "02. SKILLS", t3: "PROJECTS", p1t: "HR Analysis", p1d: "Study of employee turnover.", p2t: "Sales Report", p2d: "Revenue forecasting.", v: "View Full Project", wBtn: "Enter Portfolio" },
+        'ar': { tag: "محلل بيانات", t1: "01. الرحلة", s1: "استخراج", s2: "تنظيف", s3: "نمذجة", s4: "رؤية", t2: "02. المهارات", t3: "المشاريع المختارة", p1t: "تحليل الموظفين", p1d: "دراسة معدلات الاستقالة.", p2t: "تقرير المبيعات", p2d: "توقعات أداء المبيعات.", v: "عرض المشروع بالكامل", wBtn: "دخول المعرض" }
     };
 
     function changeLang(lang, btn) {
@@ -195,12 +154,15 @@
         document.getElementById('s3').innerText = d.s3;
         document.getElementById('s4').innerText = d.s4;
         document.getElementById('t2').innerText = d.t2;
+        document.getElementById('t3').innerText = d.t3;
         document.getElementById('p1-t').innerText = d.p1t;
         document.getElementById('p1-d').innerText = d.p1d;
         document.getElementById('p2-t').innerText = d.p2t;
         document.getElementById('p2-d').innerText = d.p2d;
+        document.getElementById('v1').innerText = d.v;
+        document.getElementById('v2').innerText = d.v;
         document.getElementById('w-btn').innerText = d.wBtn;
-        document.body.dir = d.dir;
+        document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
         document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
     }
