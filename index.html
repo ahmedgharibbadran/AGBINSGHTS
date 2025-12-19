@@ -7,82 +7,73 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { 
-            --primary-blue: #2563eb; 
-            --bg-premium: #f3f4f6; /* الرصاصي الفخم */
-            --text-black: #111827; /* أسود حاد للعناوين */
-            --text-gray: #4b5563; 
-            --card-white: #ffffff;
+            --bg-dark: #020617; /* كحلي غامق جداً أفخم من الأسود */
+            --card-bg: #0f172a; 
+            --accent-blue: #38bdf8; 
+            --text-white: #f8fafc;
+            --text-dim: #94a3b8;
         }
         
-        body { background-color: var(--bg-premium); color: var(--text-gray); font-family: 'Inter', 'Segoe UI', sans-serif; margin: 0; scroll-behavior: smooth; overflow-x: hidden; }
+        body { background-color: var(--bg-dark); color: var(--text-white); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
 
-        /* شاشة الترحيب */
-        #welcome-overlay { position: fixed; inset: 0; background: var(--bg-premium); display: flex; align-items: center; justify-content: center; z-index: 10000; transition: 0.8s ease; }
-        .welcome-box h2 { font-size: 42px; color: var(--text-black); font-weight: 800; margin-bottom: 20px; }
-        .start-btn { background: var(--text-black); color: white; padding: 15px 40px; border: none; border-radius: 5px; font-weight: 700; cursor: pointer; text-transform: uppercase; }
+        /* شاشة ترحيب قوية */
+        #welcome-overlay { position: fixed; inset: 0; background: var(--bg-dark); display: flex; align-items: center; justify-content: center; z-index: 10000; }
+        .welcome-box { text-align: center; }
+        .welcome-box h2 { font-size: 50px; background: linear-gradient(to right, #fff, var(--accent-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
+        .start-btn { background: transparent; border: 2px solid var(--accent-blue); color: var(--accent-blue); padding: 12px 40px; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .start-btn:hover { background: var(--accent-blue); color: var(--bg-dark); }
 
-        #main-site { display: none; opacity: 0; transition: 1s; perspective: 1000px; }
+        #main-site { display: none; opacity: 0; transition: 1s; }
 
-        nav { padding: 20px 5%; display: flex; justify-content: flex-start; }
-        .nav-text { font-weight: 800; color: var(--text-black); letter-spacing: 1px; }
+        nav { padding: 25px 5%; display: flex; align-items: center; gap: 15px; }
+        .nav-logo { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--accent-blue); }
 
-        header { padding: 40px 5%; text-align: center; }
-        h1 { color: var(--text-black); font-size: clamp(35px, 8vw, 70px); font-weight: 900; margin: 0; }
-        .job-tag { color: var(--primary-blue); font-weight: 700; letter-spacing: 3px; display: block; margin-top: 10px; }
+        header { padding: 60px 5% 40px; text-align: center; }
+        h1 { font-size: clamp(40px, 10vw, 85px); margin: 0; font-weight: 900; letter-spacing: -2px; }
+        .job-tag { color: var(--accent-blue); font-weight: 700; letter-spacing: 5px; text-transform: uppercase; margin-top: 10px; display: block; }
 
-        /* تعديل الموبايل واللاب ليكون Grid */
-        .section-title { text-align: left; margin: 40px 5%; color: var(--text-black); border-left: 4px solid var(--primary-blue); padding-left: 15px; font-weight: 800; text-transform: uppercase; }
+        /* تعديل الموبايل 2 جنب بعض */
+        .section-title { text-align: left; margin: 40px 5%; color: var(--accent-blue); border-left: 3px solid var(--accent-blue); padding-left: 15px; font-weight: 800; text-transform: uppercase; }
         
-        .grid-container, .process-flow { 
+        .grid-container { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
-            gap: 20px; 
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+            gap: 15px; 
             padding: 0 5%; 
-            margin-bottom: 40px; 
         }
 
-        .card-3d, .process-step { 
-            background: var(--card-white); 
-            padding: 30px 15px; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
-            transition: 0.5s; 
-            transform-style: preserve-3d;
+        .card-3d { 
+            background: var(--card-bg); 
+            padding: 30px 10px; 
+            border-radius: 15px; 
+            border: 1px solid rgba(56, 189, 248, 0.1);
             text-align: center;
+            transition: 0.4s;
         }
-
-        .card-3d:hover { transform: translateY(-10px) rotateY(10deg); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .card-3d i { font-size: 35px; color: var(--primary-blue); margin-bottom: 15px; display: block; }
-        .card-3d span { font-weight: 700; color: var(--text-black); font-size: 13px; }
+        .card-3d:hover { transform: translateY(-10px); border-color: var(--accent-blue); }
+        .card-3d i { font-size: 30px; color: var(--accent-blue); margin-bottom: 10px; display: block; }
 
         /* المشاريع */
         .project-item { 
-            background: var(--card-white); 
-            display: flex; 
+            background: var(--card-bg); 
             margin: 30px 5%; 
-            border-radius: 15px; 
+            border-radius: 20px; 
             overflow: hidden; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: 0.5s;
+            display: flex; 
+            border: 1px solid rgba(255,255,255,0.05);
         }
-        
-        .project-item:hover { transform: scale(1.02); }
         .p-img { width: 50%; } .p-img img { width: 100%; height: 100%; object-fit: cover; }
-        .p-text { width: 50%; padding: 30px; text-align: left; }
-        .p-text h3 { color: var(--text-black); margin-top: 0; }
+        .p-text { width: 50%; padding: 30px; }
 
-        /* استجابة الموبايل: منع العناصر من البقاء وحيدة في طابور */
         @media (max-width: 768px) {
-            .grid-container { grid-template-columns: repeat(2, 1fr); gap: 10px; } /* يظهر 2 جنب بعض */
+            .grid-container { grid-template-columns: repeat(2, 1fr); } /* إجبار الموبايل يعرض 2 جنب بعض */
             .project-item { flex-direction: column; }
             .p-img, .p-text { width: 100%; }
-            .p-text { padding: 20px; }
-            h1 { font-size: 40px; }
         }
 
-        footer { padding: 40px; background: #e5e7eb; border-top: 1px solid #d1d5db; }
-        .social-icons a { color: var(--text-black); font-size: 24px; margin: 0 15px; opacity: 0.7; transition: 0.3s; }
-        .social-icons a:hover { color: var(--primary-blue); opacity: 1; }
+        footer { padding: 50px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .social-icons a { color: white; font-size: 24px; margin: 0 15px; transition: 0.3s; }
+        .social-icons a:hover { color: var(--accent-blue); }
     </style>
 </head>
 <body>
@@ -90,15 +81,22 @@
 <div id="welcome-overlay">
     <div class="welcome-box">
         <h2>Ahmed Gharib</h2>
-        <button class="start-btn" onclick="enterSite()">Open Experience</button>
+        <button class="start-btn" onclick="enterSite()">View Insights</button>
     </div>
 </div>
 
 <div id="main-site">
-    <nav><div class="nav-brand"><span class="nav-text">AGBINSIGHTS</span></div></nav>
+    <nav>
+        <img src="logo.png" class="nav-logo">
+        <span style="font-weight: 900; letter-spacing: 2px;">AGBINSIGHTS</span>
+    </nav>
+
     <header>
         <h1>Ahmed Gharib</h1>
         <span class="job-tag">Data Analyst</span>
+        <p style="color: var(--text-dim); max-width: 600px; margin: 20px auto; font-size: 18px;">
+            I transform complex data into <span style="color:white; font-weight:bold;">strategic stories</span>.
+        </p>
     </header>
 
     <div class="section-title">Technical Expertise</div>
@@ -107,16 +105,14 @@
         <div class="card-3d"><i class="fas fa-file-excel"></i><span>Excel</span></div>
         <div class="card-3d"><i class="fas fa-database"></i><span>Modeling</span></div>
         <div class="card-3d"><i class="fas fa-calculator"></i><span>DAX</span></div>
-        <div class="card-3d"><i class="fas fa-server"></i><span>ETL</span></div>
-        <div class="card-3d"><i class="fas fa-eye"></i><span>Visuals</span></div>
     </div>
 
-    <div class="section-title">Projects</div>
+    <div class="section-title">Featured Work</div>
     <div class="project-item">
         <div class="p-img"><img src="hr.png.png"></div>
         <div class="p-text">
-            <h3>HR Attrition</h3>
-            <p>Retention and employee behavior analytics.</p>
+            <h3>HR Analytics</h3>
+            <p style="color: var(--text-dim);">Employee retention & turnover insights.</p>
         </div>
     </div>
 
@@ -125,7 +121,7 @@
             <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank"><i class="fab fa-linkedin"></i></a>
             <a href="mailto:info@agbinsights.com"><i class="far fa-envelope"></i></a>
         </div>
-        <div style="margin-top: 20px; font-weight: 700;">© AHMED GHARIB</div>
+        <p style="margin-top: 20px; font-size: 12px; color: var(--text-dim);">© 2025 AHMED GHARIB</p>
     </footer>
 </div>
 
