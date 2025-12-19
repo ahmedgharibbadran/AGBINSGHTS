@@ -9,62 +9,63 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* تم تغيير اللون للرصاصي الداكن الاحترافي */
         :root { 
             --neon-blue: #4ed9ff; 
-            --dark-bg: #1a1c1e; 
-            --card-bg: #252729; 
+            --dark-bg: #0b111a; 
+            --card-bg: #151c26; 
             --pbi-yellow: #f2c811; 
             --excel-green: #21a366; 
-            --text-gray: #a0a0a0; 
+            --text-gray: #8892b0; 
         }
 
         body { background-color: var(--dark-bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
         
-        /* شاشة الترحيب */
-        #welcome-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark-bg); display: flex; align-items: center; justify-content: center; z-index: 10000; transition: 1.2s ease; }
+        /* شاشة ترحيب */
+        #welcome-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark-bg); display: flex; align-items: center; justify-content: center; z-index: 10000; transition: 1s; }
         .welcome-box { text-align: center; }
-        .welcome-logo { width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--neon-blue); box-shadow: 0 0 30px rgba(78, 217, 255, 0.3); }
+        .welcome-logo { width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--neon-blue); box-shadow: 0 0 40px rgba(78, 217, 255, 0.3); margin-bottom: 20px; }
 
-        /* الهيدر الثابت مع اللغات */
+        /* الهيدر الثابت */
         nav { 
             width: 100%; padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; 
-            background: rgba(26, 28, 30, 0.95); position: sticky; top: 0; z-index: 1000; box-sizing: border-box;
+            background: rgba(11, 17, 26, 0.95); position: sticky; top: 0; z-index: 1000; box-sizing: border-box;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         .nav-brand { display: flex; align-items: center; gap: 12px; }
         .nav-logo-img { width: 40px; height: 40px; border-radius: 50%; }
-        .nav-text { font-weight: 900; color: white; letter-spacing: 2px; font-size: 18px; }
+        .nav-text { font-weight: 900; letter-spacing: 2px; font-size: 18px; }
         
-        /* اللغات */
-        .lang-switcher { display: flex; gap: 15px; }
-        .lang-switcher img { width: 28px; cursor: pointer; border-radius: 4px; transition: 0.3s; opacity: 0.7; }
-        .lang-switcher img:hover { opacity: 1; transform: scale(1.1); }
+        .lang-bar { display: flex; gap: 15px; }
+        .lang-bar img { width: 28px; cursor: pointer; border-radius: 4px; transition: 0.3s; opacity: 0.8; }
+        .lang-bar img:hover { opacity: 1; transform: scale(1.2); }
 
         #main-site { opacity: 0; transition: 1s; display: none; }
-        header { padding: 60px 20px 40px; }
-        h1 { font-size: clamp(40px, 8vw, 75px); font-weight: 900; margin: 0; }
-        .job-tag { color: var(--neon-blue); letter-spacing: 5px; text-transform: uppercase; font-weight: 600; }
-        .about-section { max-width: 800px; margin: 30px auto; color: var(--text-gray); font-size: 19px; line-height: 1.6; }
+        
+        header { padding: 80px 20px; }
+        h1 { font-size: clamp(40px, 8vw, 70px); margin: 0; font-weight: 900; }
+        .job-tag { color: var(--neon-blue); letter-spacing: 5px; text-transform: uppercase; font-weight: bold; margin-top: 10px; display: block; }
+        .about-section { max-width: 800px; margin: 30px auto; color: var(--text-gray); font-size: 20px; line-height: 1.6; }
         .highlight { color: white; font-weight: bold; border-bottom: 2px solid var(--neon-blue); }
 
         .section-title { text-align: left; margin: 60px 0 30px 10%; color: var(--neon-blue); border-left: 5px solid var(--neon-blue); padding-left: 20px; font-weight: bold; font-size: 24px; text-transform: uppercase; }
         
-        .grid-container, .process-flow { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0 8%; margin-bottom: 50px; }
-        .card-3d, .process-step { background: var(--card-bg); border-radius: 20px; padding: 40px 20px; flex: 1; min-width: 150px; border: 1px solid rgba(255,255,255,0.03); transition: 0.4s; }
-        .card-3d:hover, .process-step:hover { transform: translateY(-10px); border-color: var(--neon-blue); }
-        .card-3d i, .process-step i { font-size: 40px; color: var(--neon-blue); margin-bottom: 20px; display: block; }
+        /* الرحلة والخبرة التقنية */
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 0 10%; margin-bottom: 50px; }
+        .card-item { background: var(--card-bg); border-radius: 15px; padding: 40px 20px; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; }
+        .card-item:hover { transform: translateY(-10px); border-color: var(--neon-blue); }
+        .card-item i { font-size: 40px; color: var(--neon-blue); margin-bottom: 15px; display: block; }
 
         /* المشاريع */
-        .project-item { display: flex; background: var(--card-bg); margin: 40px 10%; border-radius: 25px; overflow: hidden; align-items: center; border: 1px solid rgba(255,255,255,0.03); }
-        .p-img { width: 50%; } .p-img img { width: 100%; display: block; }
-        .p-text { width: 50%; padding: 50px; text-align: left; }
-        .btn-view { border: 2px solid var(--neon-blue); color: var(--neon-blue); padding: 12px 30px; border-radius: 10px; display: inline-block; margin-top: 20px; font-weight: bold; text-decoration: none; cursor: pointer; }
+        .portfolio-container { padding: 0 10%; }
+        .project-card { display: flex; background: var(--card-bg); border-radius: 20px; margin-bottom: 30px; overflow: hidden; align-items: center; text-align: left; border: 1px solid rgba(255,255,255,0.05); }
+        .project-img { width: 50%; } .project-img img { width: 100%; display: block; }
+        .project-info { width: 50%; padding: 40px; }
+        .btn-view { border: 2px solid var(--neon-blue); color: var(--neon-blue); padding: 10px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 15px; transition: 0.3s; }
         .btn-view:hover { background: var(--neon-blue); color: var(--dark-bg); }
 
-        footer { padding: 60px 20px; background: #151719; border-top: 1px solid rgba(255,255,255,0.05); }
-        .social-icons a { color: var(--neon-blue); font-size: 25px; margin: 0 20px; transition: 0.3s; }
-        .social-icons a:hover { color: white; }
+        footer { padding: 60px 20px; background: #05080c; border-top: 1px solid rgba(255,255,255,0.05); }
+        .social-links a { color: var(--neon-blue); font-size: 25px; margin: 0 15px; transition: 0.3s; }
+        .social-links a:hover { color: white; }
     </style>
 </head>
 <body>
@@ -72,8 +73,8 @@
 <div id="welcome-overlay">
     <div class="welcome-box">
         <img src="logo.png" class="welcome-logo">
-        <h2 style="font-size: 40px;">Ahmed Gharib</h2>
-        <button style="background:transparent; color:var(--neon-blue); border:2px solid var(--neon-blue); padding:15px 40px; border-radius:50px; cursor:pointer; font-weight:900; margin-top:30px;" onclick="startExploring()">Open Experience</button>
+        <h2>Ahmed Gharib</h2>
+        <button style="background:transparent; color:var(--neon-blue); border:1px solid var(--neon-blue); padding:12px 30px; cursor:pointer; font-weight:bold; border-radius:5px;" onclick="enterSite()">Open Experience</button>
     </div>
 </div>
 
@@ -83,7 +84,7 @@
             <img src="logo.png" class="nav-logo-img">
             <span class="nav-text">AGBINSIGHTS</span>
         </div>
-        <div class="lang-switcher">
+        <div class="lang-bar">
             <img src="https://flagcdn.com/w40/us.png" title="English">
             <img src="https://flagcdn.com/w40/eg.png" title="Arabic">
             <img src="https://flagcdn.com/w40/es.png" title="Spanish">
@@ -99,47 +100,61 @@
     </header>
 
     <div class="section-title">01. The Analytics Journey</div>
-    <div class="process-flow">
-        <div class="process-step"><i class="fas fa-database"></i><h4>Extract</h4></div>
-        <div class="process-step"><i class="fas fa-broom"></i><h4>Clean</h4></div>
-        <div class="process-step"><i class="fas fa-layer-group"></i><h4>Model</h4></div>
-        <div class="process-step"><i class="fas fa-chart-line"></i><h4>Insight</h4></div>
+    <div class="grid-container">
+        <div class="card-item"><i class="fas fa-database"></i><h4>EXTRACT</h4></div>
+        <div class="card-item"><i class="fas fa-broom"></i><h4>CLEAN</h4></div>
+        <div class="card-item"><i class="fas fa-layer-group"></i><h4>MODEL</h4></div>
+        <div class="card-item"><i class="fas fa-chart-line"></i><h4>INSIGHT</h4></div>
     </div>
 
     <div class="section-title">02. Technical Expertise</div>
     <div class="grid-container">
-        <div class="card-3d"><i class="fas fa-chart-bar" style="color: var(--pbi-yellow);"></i><span>Power BI</span></div>
-        <div class="card-3d"><i class="fas fa-file-excel" style="color: var(--excel-green);"></i><span>Advanced Excel</span></div>
-        <div class="card-3d"><i class="fas fa-project-diagram"></i><span>Data Modeling</span></div>
-        <div class="card-3d"><i class="fas fa-calculator"></i><span>DAX Logic</span></div>
+        <div class="card-item"><i class="fas fa-brain"></i><h4>Analysis</h4></div>
+        <div class="card-item"><i class="fas fa-project-diagram"></i><h4>Modeling</h4></div>
+        <div class="card-item"><i class="fas fa-calculator"></i><h4>DAX</h4></div>
+        <div class="card-item"><i class="fas fa-file-excel"></i><h4>Excel</h4></div>
+        <div class="card-item"><i class="fas fa-chart-bar"></i><h4>Power BI</h4></div>
     </div>
 
     <div class="section-title">03. Portfolio</div>
-    <div class="project-item">
-        <div class="p-img"><img src="hr.png.png"></div>
-        <div class="p-text">
-            <h3>HR Analysis</h3>
-            <p style="color:var(--text-gray);">In-depth employee turnover and retention study.</p>
-            <div class="btn-view">View Project</div>
+    <div class="portfolio-container">
+        <div class="project-card">
+            <div class="project-img"><img src="hr.png.png"></div>
+            <div class="project-info">
+                <h3>HR Analysis</h3>
+                <p style="color:var(--text-gray);">In-depth employee turnover study.</p>
+                <a href="#" class="btn-view">View Full Project</a>
+            </div>
+        </div>
+        <div class="project-card">
+            <div class="project-img"><img src="sales.png"></div>
+            <div class="project-info">
+                <h3>Sales Report</h3>
+                <p style="color:var(--text-gray);">Revenue growth and forecasting dashboard.</p>
+                <a href="#" class="btn-view">View Full Project</a>
+            </div>
         </div>
     </div>
 
     <footer>
-        <div class="social-icons">
+        <div class="social-links">
             <a href="#"><i class="fab fa-linkedin-in"></i></a>
             <a href="#"><i class="fab fa-whatsapp"></i></a>
             <a href="#"><i class="far fa-envelope"></i></a>
         </div>
-        <div style="margin-top: 30px; font-size: 13px; color: #555; letter-spacing: 2px;">© AHMED GHARIB | AGBINSIGHTS</div>
+        <p style="margin-top: 20px; font-size: 13px; color: var(--text-gray);">© 2025 AHMED GHARIB - AGBINSIGHTS</p>
     </footer>
 </div>
 
 <script>
-    function startExploring() {
-        document.getElementById('welcome-overlay').style.display = 'none';
-        const main = document.getElementById('main-site');
-        main.style.display = 'block';
-        setTimeout(() => main.style.opacity = '1', 50);
+    function enterSite() {
+        document.getElementById('welcome-overlay').style.opacity = '0';
+        setTimeout(() => {
+            document.getElementById('welcome-overlay').style.display = 'none';
+            const main = document.getElementById('main-site');
+            main.style.display = 'block';
+            setTimeout(() => main.style.opacity = '1', 50);
+        }, 800);
     }
 </script>
 </body>
