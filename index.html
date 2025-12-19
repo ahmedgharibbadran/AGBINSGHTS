@@ -4,49 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahmed Gharib | AGBINSIGHTS</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { 
-            --bg-assal: #f8fafc; /* لون العسال الفخم */
+            --bg-assal: #f8fafc; 
             --primary-blue: #2563eb; 
             --text-dark: #111827; 
             --card-white: #ffffff;
         }
         
-        body { background-color: var(--bg-assal); color: #475569; font-family: 'Inter', 'Segoe UI', sans-serif; margin: 0; transition: 0.3s; overflow-x: hidden; }
-        
+        body { background-color: var(--bg-assal); color: #475569; font-family: 'Inter', sans-serif; margin: 0; transition: 0.3s; overflow-x: hidden; }
+
+        /* شاشة الترحيب */
+        #welcome-overlay { position: fixed; inset: 0; background: var(--bg-assal); display: flex; align-items: center; justify-content: center; z-index: 10000; transition: 0.8s ease; }
+        .welcome-box { text-align: center; }
+        .welcome-logo { width: 120px; height: 120px; margin-bottom: 20px; border-radius: 50%; border: 4px solid var(--primary-blue); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .welcome-box h2 { font-size: 40px; font-weight: 900; color: var(--text-dark); margin: 0; }
+        .start-btn { background: var(--text-dark); color: white; padding: 14px 40px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 25px; text-transform: uppercase; transition: 0.3s; }
+        .start-btn:hover { background: var(--primary-blue); transform: translateY(-2px); }
+
+        #main-site { display: none; opacity: 0; transition: 1s ease; perspective: 1200px; }
+
+        /* Navbar مع الأعلام */
         nav { width: 100%; padding: 15px 8%; display: flex; align-items: center; background: white; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; box-sizing: border-box; }
-        .lang-switcher { display: flex; gap: 10px; margin-left: auto; }
-        .lang-btn { cursor: pointer; font-size: 12px; font-weight: 700; color: var(--text-dark); display: flex; align-items: center; gap: 5px; padding: 6px 12px; border: 1px solid #e2e8f0; border-radius: 6px; background: white; transition: 0.2s; }
-        .lang-btn.active { background: var(--text-dark); color: white; border-color: var(--text-dark); }
+        .nav-brand { display: flex; align-items: center; gap: 10px; }
+        .nav-logo-img { width: 35px; height: 35px; border-radius: 50%; border: 1px solid #d1d5db; }
+        
+        .lang-switcher { display: flex; gap: 12px; margin-left: auto; }
+        .lang-btn { cursor: pointer; border-radius: 50%; overflow: hidden; width: 30px; height: 30px; border: 2px solid transparent; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
+        .lang-btn img { width: 100%; height: 100%; object-fit: cover; }
+        .lang-btn.active { border-color: var(--primary-blue); transform: scale(1.1); box-shadow: 0 0 10px rgba(37, 99, 235, 0.2); }
 
         header { padding: 60px 20px; text-align: center; }
         h1 { color: var(--text-dark); font-size: clamp(35px, 8vw, 70px); font-weight: 900; margin: 0; letter-spacing: -1px; }
         .job-tag { color: var(--primary-blue); font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-top: 10px; display: block; }
 
         .section-title { text-align: left; margin: 40px 10% 20px; color: var(--text-dark); border-left: 4px solid var(--primary-blue); padding-left: 15px; font-weight: 800; text-transform: uppercase; }
-        body[dir="rtl"] .section-title { text-align: right; border-left: none; border-right: 4px solid var(--primary-blue); padding-left: 0; padding-right: 15px; }
+        body[dir="rtl"] .section-title { text-align: right; border-left: none; border-right: 4px solid var(--primary-blue); padding-right: 15px; }
 
-        .grid-container { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
-            gap: 20px; padding: 0 10%; margin-bottom: 50px;
+        /* 3D Grid Effects */
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px; padding: 0 10%; margin-bottom: 50px; }
+        .card-3d { 
+            background: var(--card-white); padding: 35px 15px; border-radius: 12px; border: 1px solid #e2e8f0; 
+            text-align: center; transition: 0.5s; transform-style: preserve-3d; cursor: pointer;
         }
-        .card-3d { background: var(--card-white); padding: 30px 10px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center; transition: 0.4s; }
-        .card-3d i { font-size: 30px; color: var(--primary-blue); margin-bottom: 10px; display: block; }
-        .card-3d span { font-weight: 700; color: var(--text-dark); font-size: 13px; }
+        .card-3d:hover { transform: translateY(-10px) rotateX(10deg) rotateY(10deg); border-color: var(--primary-blue); box-shadow: 0 15px 35px rgba(0,0,0,0.08); }
+        .card-3d i { font-size: 35px; color: var(--primary-blue); margin-bottom: 12px; transform: translateZ(20px); display: block; }
+        .card-3d span { font-weight: 700; color: var(--text-dark); font-size: 13px; transform: translateZ(15px); display: block; }
 
         .project-item { background: var(--card-white); display: flex; margin: 30px 10%; border-radius: 15px; overflow: hidden; border: 1px solid #e2e8f0; transition: 0.4s; }
+        .project-item:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
         .p-img { width: 50%; } .p-img img { width: 100%; height: 100%; object-fit: cover; }
         .p-text { width: 50%; padding: 40px; text-align: left; }
         body[dir="rtl"] .p-text { text-align: right; }
-        .p-text h3 { color: var(--text-dark); margin: 0 0 10px; font-size: 24px; }
 
         @media (max-width: 768px) {
             .grid-container { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 5%; }
             .project-item { flex-direction: column; }
             .p-img, .p-text { width: 100%; }
-            .lang-btn span { display: none; }
+            .p-text { padding: 25px; }
         }
 
         footer { padding: 50px; background: white; border-top: 1px solid #e2e8f0; text-align: center; }
@@ -55,91 +72,88 @@
 </head>
 <body>
 
-<nav>
-    <div class="nav-brand"><span style="font-weight: 900; color: var(--text-dark);">AGBINSIGHTS</span></div>
-    <div class="lang-switcher">
-        <div class="lang-btn active" onclick="changeLang('en', this)">🇺🇸 <span>EN</span></div>
-        <div class="lang-btn" onclick="changeLang('ar', this)">🇪🇬 <span>AR</span></div>
-        <div class="lang-btn" onclick="changeLang('es', this)">🇪🇸 <span>ES</span></div>
-    </div>
-</nav>
-
-<header>
-    <h1 id="name">Ahmed Gharib</h1>
-    <span class="job-tag" id="tag">Data Analyst</span>
-    <p id="desc" style="max-width: 600px; margin: 20px auto; font-size: 18px;">Empowering businesses through data-driven insights.</p>
-</header>
-
-<div class="section-title" id="title-exp">EXPERTISE</div>
-<div class="grid-container">
-    <div class="card-3d"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
-    <div class="card-3d"><i class="fas fa-file-excel"></i><span>Excel</span></div>
-    <div class="card-3d"><i class="fas fa-database"></i><span>Modeling</span></div>
-    <div class="card-3d"><i class="fas fa-calculator"></i><span>DAX Logic</span></div>
-</div>
-
-<div class="section-title" id="title-proj">FEATURED PROJECTS</div>
-<div id="projects-container">
-    <div class="project-item">
-        <div class="p-img"><img src="hr.png.png"></div>
-        <div class="p-text">
-            <h3 id="p1-title">HR Attrition Analysis</h3>
-            <p id="p1-desc">Tracking employee turnover and retention strategies.</p>
-        </div>
-    </div>
-    <div class="project-item" style="flex-direction: row-reverse;">
-        <div class="p-img"><img src="sales.png1.png"></div>
-        <div class="p-text">
-            <h3 id="p2-title">Sales Performance</h3>
-            <p id="p2-desc">Unified revenue tracking and growth forecasting.</p>
-        </div>
+<div id="welcome-overlay">
+    <div class="welcome-box">
+        <img src="logo.png" class="welcome-logo">
+        <h2 id="welcome-name">Ahmed Gharib</h2>
+        <p id="welcome-sub" style="letter-spacing: 2px; font-weight: 600;">Data Analytics Portfolio</p>
+        <button class="start-btn" id="welcome-btn" onclick="enterSite()">Enter Portfolio</button>
     </div>
 </div>
 
-<footer>
-    <div class="social-icons">
-        <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-        <a href="mailto:info@agbinsights.com"><i class="far fa-envelope"></i></a>
+<div id="main-site">
+    <nav>
+        <div class="nav-brand">
+            <img src="logo.png" class="nav-logo-img">
+            <span style="font-weight: 900; color: var(--text-dark);">AGBINSIGHTS</span>
+        </div>
+        <div class="lang-switcher">
+            <div class="lang-btn active" onclick="changeLang('en', this)"><img src="https://flagcdn.com/w40/us.png"></div>
+            <div class="lang-btn" onclick="changeLang('ar', this)"><img src="https://flagcdn.com/w40/eg.png"></div>
+            <div class="lang-btn" onclick="changeLang('es', this)"><img src="https://flagcdn.com/w40/es.png"></div>
+        </div>
+    </nav>
+
+    <header>
+        <h1 id="header-name">Ahmed Gharib</h1>
+        <span class="job-tag" id="tag">Data Analyst</span>
+        <p id="desc" style="max-width: 600px; margin: 20px auto; font-size: 18px;">Empowering businesses through data-driven insights.</p>
+    </header>
+
+    <div class="section-title" id="title-exp">EXPERTISE</div>
+    <div class="grid-container">
+        <div class="card-3d"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
+        <div class="card-3d"><i class="fas fa-file-excel"></i><span>Excel</span></div>
+        <div class="card-3d"><i class="fas fa-database"></i><span>Modeling</span></div>
+        <div class="card-3d"><i class="fas fa-calculator"></i><span>DAX Logic</span></div>
     </div>
-    <p style="margin-top: 20px; font-weight: 800; font-size: 12px;">© AHMED GHARIB</p>
-</footer>
+
+    <div class="section-title" id="title-proj">FEATURED PROJECTS</div>
+    <div id="projects-container">
+        <div class="project-item">
+            <div class="p-img"><img src="hr.png.png"></div>
+            <div class="p-text">
+                <h3 id="p1-title">HR Attrition Analysis</h3>
+                <p id="p1-desc">Tracking employee turnover and retention strategies.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="mailto:info@agbinsights.com"><i class="far fa-envelope"></i></a>
+        </div>
+        <p style="margin-top: 20px; font-weight: 800; font-size: 12px;">© AHMED GHARIB</p>
+    </footer>
+</div>
 
 <script>
-    const data = {
-        'en': {
-            tag: "Data Analyst", desc: "Empowering businesses through data-driven insights.",
-            exp: "EXPERTISE", proj: "FEATURED PROJECTS",
-            p1t: "HR Attrition Analysis", p1d: "Tracking employee turnover and retention strategies.",
-            p2t: "Sales Performance", p2d: "Unified revenue tracking and growth forecasting.",
-            dir: "ltr"
-        },
-        'ar': {
-            tag: "محلل بيانات", desc: "تمكين الشركات من خلال رؤى مستندة إلى البيانات.",
-            exp: "المهارات التقنية", proj: "المشاريع المختارة",
-            p1t: "تحليل استقالات الموظفين", p1d: "تتبع معدل دوران الموظفين واستراتيجيات الاحتفاظ بهم.",
-            p2t: "أداء المبيعات", p2d: "تتبع الإيرادات الموحدة وتوقعات النمو.",
-            dir: "rtl"
-        },
-        'es': {
-            tag: "Analista de Datos", desc: "Potenciando empresas mediante conocimientos basados en datos.",
-            exp: "EXPERTISE", proj: "PROYECTOS DESTACADOS",
-            p1t: "Análisis de Rotación", p1d: "Seguimiento de la rotación y estrategias de retención.",
-            p2t: "Rendimiento de Ventas", p2d: "Seguimiento unificado de ingresos y previsión de crecimiento.",
-            dir: "ltr"
-        }
+    function enterSite() {
+        document.getElementById('welcome-overlay').style.opacity = '0';
+        setTimeout(() => {
+            document.getElementById('welcome-overlay').style.display = 'none';
+            const main = document.getElementById('main-site');
+            main.style.display = 'block';
+            setTimeout(() => main.style.opacity = '1', 50);
+        }, 800);
+    }
+
+    const translations = {
+        'en': { welcomeBtn: "Enter Portfolio", tag: "Data Analyst", desc: "Empowering businesses through insights.", exp: "EXPERTISE", proj: "FEATURED PROJECTS", p1t: "HR Attrition Analysis", p1d: "Employee retention strategies.", dir: "ltr" },
+        'ar': { welcomeBtn: "دخول المعرض", tag: "محلل بيانات", desc: "تمكين الشركات من خلال رؤى البيانات.", exp: "المهارات التقنية", proj: "المشاريع المختارة", p1t: "تحليل استقالات الموظفين", p1d: "تتبع معدل دوران الموظفين.", dir: "rtl" },
+        'es': { welcomeBtn: "Entrar", tag: "Analista de Datos", desc: "Potenciando empresas mediante datos.", exp: "EXPERTISE", proj: "PROYECTOS", p1t: "Análisis de Rotación", p1d: "Seguimiento de la rotación.", dir: "ltr" }
     };
 
     function changeLang(lang, btn) {
-        document.getElementById('tag').innerText = data[lang].tag;
-        document.getElementById('desc').innerText = data[lang].desc;
-        document.getElementById('title-exp').innerText = data[lang].exp;
-        document.getElementById('title-proj').innerText = data[lang].proj;
-        document.getElementById('p1-title').innerText = data[lang].p1t;
-        document.getElementById('p1-desc').innerText = data[lang].p1d;
-        document.getElementById('p2-title').innerText = data[lang].p2t;
-        document.getElementById('p2-desc').innerText = data[lang].p2d;
-        
-        document.body.dir = data[lang].dir;
+        document.getElementById('welcome-btn').innerText = translations[lang].welcomeBtn;
+        document.getElementById('tag').innerText = translations[lang].tag;
+        document.getElementById('desc').innerText = translations[lang].desc;
+        document.getElementById('title-exp').innerText = translations[lang].exp;
+        document.getElementById('title-proj').innerText = translations[lang].proj;
+        document.getElementById('p1-title').innerText = translations[lang].p1t;
+        document.getElementById('p1-desc').innerText = translations[lang].p1d;
+        document.body.dir = translations[lang].dir;
         document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
     }
