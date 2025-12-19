@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* تم تغيير النيون للأزرق وتوحيد ألوان الأيقونات */
         :root { --neon-blue: #007bff; --dark-bg: #e0e0e0; --card-bg: #ffffff; --text-gray: #555555; }
         body { background-color: var(--dark-bg); color: #333; font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
         
@@ -26,10 +25,15 @@
 
         #main-site { opacity: 0; transition: 1s ease-in-out; display: none; perspective: 1500px; }
         
-        nav { width: 100%; padding: 30px 8%; display: flex; justify-content: flex-start; align-items: center; box-sizing: border-box; }
+        /* الهيدر مع اللغات */
+        nav { width: 100%; padding: 20px 8%; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; background: rgba(224, 224, 224, 0.9); position: sticky; top: 0; z-index: 1000; }
         .nav-brand { display: flex; align-items: center; gap: 15px; }
         .nav-logo-img { width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--neon-blue); }
         .nav-text { font-weight: 900; color: #333; letter-spacing: 3px; font-size: 20px; }
+        
+        .lang-switcher { display: flex; gap: 12px; }
+        .lang-switcher img { width: 25px; cursor: pointer; border-radius: 3px; transition: 0.3s; opacity: 0.7; }
+        .lang-switcher img:hover { opacity: 1; transform: scale(1.2); }
 
         header { padding: 40px 20px 30px; }
         h1 { color: #333; font-size: clamp(45px, 8vw, 85px); margin: 0; font-weight: 900; }
@@ -45,28 +49,18 @@
         .card-3d, .process-step { padding: 45px 25px; min-width: 170px; flex: 1; }
         .card-3d:hover, .process-step:hover, .project-item:hover { transform: translateY(-20px) rotateX(10deg) rotateY(10deg); border-color: var(--neon-blue); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
         
-        /* توحيد لون الأيقونات للأزرق */
         .card-3d i, .process-step i { font-size: 50px; margin-bottom: 25px; display: block; color: var(--neon-blue); transition: 0.5s; }
-        .card-3d:hover i, .process-step:hover i { transform: translateZ(50px); }
         .card-3d span, .process-step h4 { font-size: 15px; font-weight: 800; color: #333; display: block; text-transform: uppercase; letter-spacing: 1px; }
 
         .project-item { display: flex; align-items: center; margin: 50px 10%; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); }
         .p-img { width: 55%; } .p-img img { width: 100%; display: block; transition: 0.5s; }
-        .project-item:hover .p-img img { transform: scale(1.05); }
         .p-text { width: 45%; padding: 60px; text-align: left; transform: translateZ(30px); color: #333; }
         .btn-view { border: 2px solid var(--neon-blue); color: var(--neon-blue); padding: 14px 35px; border-radius: 12px; cursor: pointer; display: inline-block; margin-top: 30px; font-weight: 900; text-decoration: none; transition: 0.3s; }
         .btn-view:hover { background: var(--neon-blue); color: white; }
 
         #case-study-view { display:none; background: var(--dark-bg); padding: 80px 5%; }
-        .case-header { max-width: 1100px; margin: 0 auto 50px; text-align: left; background: var(--card-bg); padding: 45px; border-radius: 35px; border-left: 8px solid var(--neon-blue); }
-        .case-header h2 { color: var(--neon-blue); margin-top: 0; font-size: 35px; }
-        .case-info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 30px; }
-        .info-tag { font-size: 16px; color: var(--text-gray); line-height: 1.8; }
-        .info-tag b { color: #333; display: block; margin-bottom: 10px; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
-
         footer { padding: 100px 20px; background: #d0d0d0; border-top: 1px solid rgba(0,0,0,0.05); }
         .social-icons a { color: #333; font-size: 30px; margin: 0 25px; transition: 0.4s; display: inline-block; }
-        .social-icons a:hover { transform: translateY(-12px); color: var(--neon-blue); }
     </style>
 </head>
 <body>
@@ -85,6 +79,11 @@
         <div class="nav-brand">
             <img src="logo.png" class="nav-logo-img">
             <span class="nav-text">AGBINSIGHTS</span>
+        </div>
+        <div class="lang-switcher">
+            <img src="https://flagcdn.com/w40/us.png" title="English" onclick="location.reload()">
+            <img src="https://flagcdn.com/w40/eg.png" title="Arabic" onclick="alert('اللغة العربية قريباً')">
+            <img src="https://flagcdn.com/w40/es.png" title="Spanish" onclick="alert('Próximamente en español')">
         </div>
     </nav>
 
@@ -124,15 +123,6 @@
         </div>
     </div>
 
-    <div class="project-item" style="flex-direction: row-reverse;">
-        <div class="p-img"><img src="sales.png1.png"></div>
-        <div class="p-text" style="text-align: right;">
-            <h3>Sales Performance</h3>
-            <p style="color:var(--text-gray); font-size: 18px;">Strategic revenue tracking and regional performance metrics.</p>
-            <div class="btn-view" onclick="showStudy('sales')">View Details</div>
-        </div>
-    </div>
-
     <footer>
         <div class="social-icons">
             <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
@@ -153,7 +143,6 @@
     function startExploring() {
         const overlay = document.getElementById('welcome-overlay');
         overlay.style.opacity = '0';
-        overlay.style.transform = 'scale(1.1)';
         setTimeout(() => { 
             overlay.style.display = 'none'; 
             const main = document.getElementById('main-site'); 
@@ -161,24 +150,8 @@
             setTimeout(() => main.style.opacity = '1', 50); 
         }, 1200);
     }
-
-    const projectDetails = {
-        'hr': { title: "HR Attrition Analysis", challenge: "High turnover rates affecting organizational stability.", solution: "Developed an end-to-end Power BI dashboard to track attrition by department and tenure.", impact: "Enabled HR to identify at-risk groups and reduce turnover by 15% through data-driven policies.", imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png'] },
-        'sales': { title: "Sales Performance Hub", challenge: "Disconnected sales data across multiple regional offices.", solution: "Unified disparate datasets into a single source of truth with automated ETL pipelines.", impact: "Provided real-time visibility into revenue growth, increasing forecasting accuracy by 25%.", imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png'] }
-    };
     
     function showStudy(id) {
-        const d = projectDetails[id];
-        document.getElementById('case-header-content').innerHTML = `
-            <div class="case-header">
-                <h2>${d.title}</h2>
-                <div class="case-info-grid">
-                    <div class="info-tag"><b>THE CHALLENGE</b>${d.challenge}</div>
-                    <div class="info-tag"><b>MY SOLUTION</b>${d.solution}</div>
-                    <div class="info-tag"><b>THE RESULT</b>${d.impact}</div>
-                </div>
-            </div>`;
-        document.getElementById('study-images').innerHTML = d.imgs.map(img => `<img src="${img}" style="width:100%; margin-bottom:50px; border-radius:35px; box-shadow: 0 30px 80px rgba(0,0,0,0.1);">`).join('');
         document.getElementById('main-site').style.display = 'none';
         document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
