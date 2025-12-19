@@ -10,62 +10,61 @@
     
     <style>
         :root { 
-            --neon-blue: #4ed9ff; 
-            --dark-bg: #0b111a; 
-            --card-bg: #151c26; 
+            --neon-blue: #007bff; /* أزرق احترافي ليناسب الخلفية الفاتحة */
+            --dark-bg: #f4f7f6; /* الرصاصي الفاتح المطلوب */
+            --card-bg: #ffffff; /* كروت بيضاء نظيفة */
             --pbi-yellow: #f2c811; 
             --excel-green: #21a366; 
-            --text-gray: #8892b0; 
+            --text-main: #1a1a1a;
+            --text-gray: #5a6670; 
         }
 
-        body { background-color: var(--dark-bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
+        body { background-color: var(--dark-bg); color: var(--text-main); font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
         
         /* شاشة ترحيب */
-        #welcome-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark-bg); display: flex; align-items: center; justify-content: center; z-index: 10000; transition: 1s; }
-        .welcome-box { text-align: center; }
-        .welcome-logo { width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--neon-blue); box-shadow: 0 0 40px rgba(78, 217, 255, 0.3); margin-bottom: 20px; }
+        #welcome-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; align-items: center; justify-content: center; z-index: 10000; transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        .welcome-box { text-align: center; animation: fadeIn 1.5s ease; }
+        .welcome-logo { width: 150px; height: 150px; margin-bottom: 25px; border-radius: 50%; border: 3px solid var(--neon-blue); box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+        .welcome-box h2 { font-size: 50px; font-weight: 900; color: var(--text-main); margin: 0; }
+        .welcome-box p { color: var(--text-gray); letter-spacing: 5px; text-transform: uppercase; margin-top: 10px; font-weight: bold; }
+        .start-btn { background: var(--text-main); color: white; padding: 18px 60px; border: none; border-radius: 50px; font-weight: 900; cursor: pointer; margin-top: 45px; text-transform: uppercase; transition: 0.4s; letter-spacing: 3px; }
+        .start-btn:hover { background: var(--neon-blue); transform: translateY(-5px); }
 
-        /* الهيدر الثابت */
-        nav { 
-            width: 100%; padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; 
-            background: rgba(11, 17, 26, 0.95); position: sticky; top: 0; z-index: 1000; box-sizing: border-box;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .nav-brand { display: flex; align-items: center; gap: 12px; }
-        .nav-logo-img { width: 40px; height: 40px; border-radius: 50%; }
-        .nav-text { font-weight: 900; letter-spacing: 2px; font-size: 18px; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
+        #main-site { opacity: 0; transition: 1s ease-in-out; display: none; perspective: 1500px; }
         
-        .lang-bar { display: flex; gap: 15px; }
-        .lang-bar img { width: 28px; cursor: pointer; border-radius: 4px; transition: 0.3s; opacity: 0.8; }
-        .lang-bar img:hover { opacity: 1; transform: scale(1.2); }
+        nav { width: 100%; padding: 30px 8%; display: flex; justify-content: flex-start; align-items: center; box-sizing: border-box; }
+        .nav-brand { display: flex; align-items: center; gap: 15px; }
+        .nav-logo-img { width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--neon-blue); }
+        .nav-text { font-weight: 900; color: var(--text-main); letter-spacing: 3px; font-size: 20px; }
 
-        #main-site { opacity: 0; transition: 1s; display: none; }
+        header { padding: 40px 20px 30px; }
+        h1 { color: var(--text-main); font-size: clamp(45px, 8vw, 85px); margin: 0; font-weight: 900; }
+        .job-tag { color: var(--neon-blue); font-size: 18px; letter-spacing: 5px; font-weight: 600; text-transform: uppercase; margin-top: 5px; display: block; }
+        .about-section { max-width: 800px; margin: 35px auto; color: var(--text-gray); font-size: 20px; line-height: 1.8; }
+        .highlight { color: var(--neon-blue); font-weight: bold; }
+
+        .section-title { text-align: left; margin: 80px 0 40px 10%; color: var(--text-main); border-left: 5px solid var(--neon-blue); padding-left: 20px; font-weight: bold; font-size: 26px; text-transform: uppercase; }
         
-        header { padding: 80px 20px; }
-        h1 { font-size: clamp(40px, 8vw, 70px); margin: 0; font-weight: 900; }
-        .job-tag { color: var(--neon-blue); letter-spacing: 5px; text-transform: uppercase; font-weight: bold; margin-top: 10px; display: block; }
-        .about-section { max-width: 800px; margin: 30px auto; color: var(--text-gray); font-size: 20px; line-height: 1.6; }
-        .highlight { color: white; font-weight: bold; border-bottom: 2px solid var(--neon-blue); }
-
-        .section-title { text-align: left; margin: 60px 0 30px 10%; color: var(--neon-blue); border-left: 5px solid var(--neon-blue); padding-left: 20px; font-weight: bold; font-size: 24px; text-transform: uppercase; }
+        .grid-container, .process-flow { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0 8%; margin-bottom: 60px; }
+        .card-3d, .process-step, .project-item { background: var(--card-bg); border: 1px solid rgba(0,0,0,0.05); border-radius: 30px; transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); transform-style: preserve-3d; cursor: pointer; }
         
-        /* الرحلة والخبرة التقنية */
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 0 10%; margin-bottom: 50px; }
-        .card-item { background: var(--card-bg); border-radius: 15px; padding: 40px 20px; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; }
-        .card-item:hover { transform: translateY(-10px); border-color: var(--neon-blue); }
-        .card-item i { font-size: 40px; color: var(--neon-blue); margin-bottom: 15px; display: block; }
+        .card-3d, .process-step { padding: 45px 25px; min-width: 170px; flex: 1; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .card-3d:hover, .process-step:hover, .project-item:hover { transform: translateY(-15px); border-color: var(--neon-blue); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        
+        .card-3d i, .process-step i { font-size: 50px; margin-bottom: 25px; display: block; color: var(--neon-blue); }
+        .card-3d span, .process-step h4 { font-size: 15px; font-weight: 800; color: var(--text-main); display: block; text-transform: uppercase; }
 
-        /* المشاريع */
-        .portfolio-container { padding: 0 10%; }
-        .project-card { display: flex; background: var(--card-bg); border-radius: 20px; margin-bottom: 30px; overflow: hidden; align-items: center; text-align: left; border: 1px solid rgba(255,255,255,0.05); }
-        .project-img { width: 50%; } .project-img img { width: 100%; display: block; }
-        .project-info { width: 50%; padding: 40px; }
-        .btn-view { border: 2px solid var(--neon-blue); color: var(--neon-blue); padding: 10px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 15px; transition: 0.3s; }
-        .btn-view:hover { background: var(--neon-blue); color: var(--dark-bg); }
+        .project-item { display: flex; align-items: center; margin: 50px 10%; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
+        .p-img { width: 55%; } .p-img img { width: 100%; display: block; }
+        .p-text { width: 45%; padding: 60px; text-align: left; }
+        .btn-view { border: 2px solid var(--neon-blue); color: var(--neon-blue); padding: 14px 35px; border-radius: 12px; cursor: pointer; display: inline-block; margin-top: 30px; font-weight: 900; text-decoration: none; transition: 0.3s; }
+        .btn-view:hover { background: var(--neon-blue); color: white; }
 
-        footer { padding: 60px 20px; background: #05080c; border-top: 1px solid rgba(255,255,255,0.05); }
-        .social-links a { color: var(--neon-blue); font-size: 25px; margin: 0 15px; transition: 0.3s; }
-        .social-links a:hover { color: white; }
+        footer { padding: 100px 20px; background: #ffffff; border-top: 1px solid #eee; }
+        .social-icons a { color: var(--text-main); font-size: 30px; margin: 0 25px; transition: 0.4s; display: inline-block; }
+        .social-icons a:hover { color: var(--neon-blue); transform: translateY(-10px); }
     </style>
 </head>
 <body>
@@ -74,7 +73,8 @@
     <div class="welcome-box">
         <img src="logo.png" class="welcome-logo">
         <h2>Ahmed Gharib</h2>
-        <button style="background:transparent; color:var(--neon-blue); border:1px solid var(--neon-blue); padding:12px 30px; cursor:pointer; font-weight:bold; border-radius:5px;" onclick="enterSite()">Open Experience</button>
+        <p>Strategic Data Universe</p>
+        <button class="start-btn" onclick="startExploring()">Open Portfolio</button>
     </div>
 </div>
 
@@ -83,11 +83,6 @@
         <div class="nav-brand">
             <img src="logo.png" class="nav-logo-img">
             <span class="nav-text">AGBINSIGHTS</span>
-        </div>
-        <div class="lang-bar">
-            <img src="https://flagcdn.com/w40/us.png" title="English">
-            <img src="https://flagcdn.com/w40/eg.png" title="Arabic">
-            <img src="https://flagcdn.com/w40/es.png" title="Spanish">
         </div>
     </nav>
 
@@ -100,61 +95,53 @@
     </header>
 
     <div class="section-title">01. The Analytics Journey</div>
-    <div class="grid-container">
-        <div class="card-item"><i class="fas fa-database"></i><h4>EXTRACT</h4></div>
-        <div class="card-item"><i class="fas fa-broom"></i><h4>CLEAN</h4></div>
-        <div class="card-item"><i class="fas fa-layer-group"></i><h4>MODEL</h4></div>
-        <div class="card-item"><i class="fas fa-chart-line"></i><h4>INSIGHT</h4></div>
+    <div class="process-flow">
+        <div class="process-step"><i class="fas fa-database"></i><h4>Extract</h4></div>
+        <div class="process-step"><i class="fas fa-broom"></i><h4>Clean</h4></div>
+        <div class="process-step"><i class="fas fa-layer-group"></i><h4>Model</h4></div>
+        <div class="process-step"><i class="fas fa-chart-line"></i><h4>Insight</h4></div>
     </div>
 
     <div class="section-title">02. Technical Expertise</div>
     <div class="grid-container">
-        <div class="card-item"><i class="fas fa-brain"></i><h4>Analysis</h4></div>
-        <div class="card-item"><i class="fas fa-project-diagram"></i><h4>Modeling</h4></div>
-        <div class="card-item"><i class="fas fa-calculator"></i><h4>DAX</h4></div>
-        <div class="card-item"><i class="fas fa-file-excel"></i><h4>Excel</h4></div>
-        <div class="card-item"><i class="fas fa-chart-bar"></i><h4>Power BI</h4></div>
+        <div class="card-3d"><i class="fas fa-chart-bar" style="color: var(--pbi-yellow);"></i><span>Power BI</span></div>
+        <div class="card-3d"><i class="fas fa-file-excel" style="color: var(--excel-green);"></i><span>Advanced Excel</span></div>
+        <div class="card-3d"><i class="fas fa-project-diagram"></i><span>Data Modeling</span></div>
+        <div class="card-3d"><i class="fas fa-calculator"></i><span>DAX Logic</span></div>
+        <div class="card-3d"><i class="fas fa-server"></i><span>ETL Processes</span></div>
+        <div class="card-3d"><i class="fas fa-eye"></i><span>Visualization</span></div>
     </div>
 
-    <div class="section-title">03. Portfolio</div>
-    <div class="portfolio-container">
-        <div class="project-card">
-            <div class="project-img"><img src="hr.png.png"></div>
-            <div class="project-info">
-                <h3>HR Analysis</h3>
-                <p style="color:var(--text-gray);">In-depth employee turnover study.</p>
-                <a href="#" class="btn-view">View Full Project</a>
-            </div>
-        </div>
-        <div class="project-card">
-            <div class="project-img"><img src="sales.png"></div>
-            <div class="project-info">
-                <h3>Sales Report</h3>
-                <p style="color:var(--text-gray);">Revenue growth and forecasting dashboard.</p>
-                <a href="#" class="btn-view">View Full Project</a>
-            </div>
+    <div class="section-title">03. Featured Projects</div>
+    <div class="project-item">
+        <div class="p-img"><img src="hr.png.png"></div>
+        <div class="p-text">
+            <h3>HR Attrition Analysis</h3>
+            <p style="color:var(--text-gray); font-size: 18px;">Deep dive into employee behavior and retention auditing.</p>
+            <div class="btn-view" onclick="showStudy('hr')">View Details</div>
         </div>
     </div>
 
     <footer>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="far fa-envelope"></i></a>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://wa.me/201020189281" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:info@agbinsights.com"><i class="far fa-envelope"></i></a>
         </div>
-        <p style="margin-top: 20px; font-size: 13px; color: var(--text-gray);">© 2025 AHMED GHARIB - AGBINSIGHTS</p>
+        <div style="margin-top: 50px; font-size: 14px; color: #495670; letter-spacing: 2px; font-weight: bold;">© AHMED GHARIB | AGBINSIGHTS</div>
     </footer>
 </div>
 
 <script>
-    function enterSite() {
-        document.getElementById('welcome-overlay').style.opacity = '0';
-        setTimeout(() => {
-            document.getElementById('welcome-overlay').style.display = 'none';
-            const main = document.getElementById('main-site');
-            main.style.display = 'block';
-            setTimeout(() => main.style.opacity = '1', 50);
-        }, 800);
+    function startExploring() {
+        const overlay = document.getElementById('welcome-overlay');
+        overlay.style.opacity = '0';
+        setTimeout(() => { 
+            overlay.style.display = 'none'; 
+            const main = document.getElementById('main-site'); 
+            main.style.display = 'block'; 
+            setTimeout(() => main.style.opacity = '1', 50); 
+        }, 1200);
     }
 </script>
 </body>
