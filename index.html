@@ -18,7 +18,7 @@
 
         body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
         
-        /* شاشة الترحيب: خلفية بيضاء، نص أسود، زرار أزرق */
+        /* شاشة الترحيب */
         #welcome-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: var(--bg-white);
@@ -28,6 +28,7 @@
         .welcome-box { text-align: center; }
         .welcome-logo { width: 150px; height: 150px; margin-bottom: 25px; border-radius: 50%; border: 3px solid var(--main-blue); }
         .welcome-box h2 { font-size: 50px; font-weight: 900; color: var(--deep-black); margin: 0; }
+        .welcome-box p { color: var(--text-gray); letter-spacing: 5px; text-transform: uppercase; margin-top: 10px; font-weight: bold; }
         .start-btn { 
             background: var(--main-blue); color: white; padding: 18px 60px; 
             border: none; border-radius: 50px; font-weight: 900; cursor: pointer; 
@@ -49,9 +50,11 @@
         
         .grid-container, .process-flow { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0 8%; margin-bottom: 50px; }
         .card-3d, .process-step { background: var(--bg-white); border: 1px solid #ddd; padding: 40px 20px; min-width: 170px; flex: 1; border-radius: 20px; }
+        
+        /* أيقونات ثابتة بدون تحريك */
         .card-3d i, .process-step i { font-size: 45px; margin-bottom: 20px; display: block; color: var(--main-blue); }
 
-        .project-item { display: flex; align-items: center; margin: 40px 10%; background: var(--bg-white); border: 1px solid #eee; border-radius: 25px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.02); }
+        .project-item { display: flex; align-items: center; margin: 40px 10%; background: var(--bg-white); border: 1px solid #eee; border-radius: 25px; overflow: hidden; }
         .p-img { width: 55%; } .p-img img { width: 100%; display: block; }
         .p-text { width: 45%; padding: 40px; text-align: left; }
         .btn-view { border: 2px solid var(--main-blue); color: var(--main-blue); padding: 12px 30px; border-radius: 10px; cursor: pointer; display: inline-block; margin-top: 20px; font-weight: 800; text-decoration: none; }
@@ -61,7 +64,7 @@
         .case-header { max-width: 1000px; margin: 0 auto 40px; text-align: left; background: #f9f9f9; padding: 40px; border-radius: 25px; border-left: 8px solid var(--main-blue); }
 
         footer { padding: 80px 20px; background: var(--deep-black); color: white; margin-top: 50px; }
-        .social-icons a { color: white; font-size: 30px; margin: 0 20px; transition: 0.3s; }
+        .social-icons a { color: white; font-size: 30px; margin: 0 20px; text-decoration: none; }
         .social-icons a:hover { color: var(--main-blue); }
     </style>
 </head>
@@ -71,7 +74,7 @@
     <div class="welcome-box">
         <img src="logo.png" class="welcome-logo">
         <h2>Ahmed Gharib</h2>
-        <button class="start-btn" onclick="startExploring()">Open Portfolio</button>
+        <p>Strategic Data Universe</p> <button class="start-btn" onclick="startExploring()">Open Portfolio</button>
     </div>
 </div>
 
@@ -147,8 +150,20 @@
     }
 
     const projectDetails = {
-        'hr': { title: "HR Attrition Analysis", challenge: "High turnover rates.", solution: "End-to-end Dashboard.", impact: "15% reduction in turnover.", imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png'] },
-        'sales': { title: "Sales Performance Hub", challenge: "Disconnected datasets.", solution: "Unified ETL Pipeline.", impact: "25% forecasting accuracy.", imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png'] }
+        'hr': { 
+            title: "HR Attrition Analysis", 
+            challenge: "High turnover rates.", 
+            solution: "End-to-end Dashboard.", 
+            impact: "15% reduction in turnover.", 
+            imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png'] 
+        },
+        'sales': { 
+            title: "Sales Performance Hub", 
+            challenge: "Disconnected datasets.", 
+            solution: "Unified ETL Pipeline.", 
+            impact: "25% forecasting accuracy.", 
+            imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png'] 
+        }
     };
 
     function showStudy(id) {
@@ -162,7 +177,7 @@
                     <div><b>IMPACT:</b><br>${d.impact}</div>
                 </div>
             </div>`;
-        document.getElementById('study-images').innerHTML = d.imgs.map(img => `<img src="${img}" style="width:100%; margin-bottom:30px; border-radius:20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">`).join('');
+        document.getElementById('study-images').innerHTML = d.imgs.map(img => `<img src="${img}" style="width:100%; margin-bottom:30px; border-radius:20px;">`).join('');
         document.getElementById('main-site').style.display = 'none';
         document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
