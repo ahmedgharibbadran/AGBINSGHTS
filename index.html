@@ -37,14 +37,15 @@
 
         #main-site { opacity: 0; transition: 1s ease-in-out; display: none; }
         
-        nav { width: 100%; padding: 25px 8%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; box-sizing: border-box; }
-        .nav-brand { display: flex; align-items: center; gap: 15px; }
+        /* تثبيت الهيدر لمنع انعكاس العناصر */
+        nav { width: 100%; padding: 25px 8%; display: flex; flex-direction: row !important; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; box-sizing: border-box; }
+        .nav-brand { display: flex; align-items: center; gap: 15px; flex-direction: row !important; }
         .nav-logo-img { width: 45px; height: 45px; border-radius: 50%; border: 1px solid var(--main-blue); }
         .nav-text { font-weight: 900; color: var(--main-blue); letter-spacing: 2px; font-size: 20px; }
 
-        /* زر اللغة */
-        .lang-switch { cursor: pointer; font-weight: 900; border: 2px solid var(--main-blue); padding: 5px 15px; border-radius: 20px; color: var(--main-blue); transition: 0.3s; }
-        .lang-switch:hover { background: var(--main-blue); color: white; }
+        .lang-switch { cursor: pointer; font-size: 24px; display: flex; gap: 10px; background: #f0f0f0; padding: 5px 15px; border-radius: 30px; border: 1px solid #ddd; }
+        .lang-switch span { opacity: 0.3; transition: 0.3s; }
+        .lang-switch span.active { opacity: 1; transform: scale(1.2); }
 
         header { padding: 50px 20px 30px; }
         h1 { color: var(--deep-black); font-size: clamp(40px, 8vw, 75px); margin: 0; font-weight: 900; }
@@ -89,48 +90,50 @@
 <div id="main-site">
     <nav>
         <div class="nav-brand"><img src="logo.png" class="nav-logo-img"><span class="nav-text">AGBINSIGHTS</span></div>
-        <div class="lang-switch" onclick="toggleLang()" id="lang-btn">AR</div>
+        <div class="lang-switch">
+            <span id="lang-en" onclick="setLang('en')">🇬🇧</span>
+            <span id="lang-ar" onclick="setLang('ar')">🇸🇦</span>
+            <span id="lang-es" onclick="setLang('es')">🇪🇸</span>
+        </div>
     </nav>
 
     <header>
-        <h1>Ahmed Gharib</h1>
+        <h1 id="main-name">Ahmed Gharib</h1>
         <span class="job-tag" id="job-title">Data Analyst</span>
-        <p class="about-text" id="about-me">
-            I turn raw data into <b>meaningful stories</b>. Specialized in Power BI and Excel to help businesses make smarter decisions.
-        </p>
+        <p class="about-text" id="about-me"></p>
     </header>
 
-    <div class="section-title" id="title-journey">01. Journey</div>
+    <div class="section-title" id="title-journey"></div>
     <div class="process-flow">
-        <div class="process-step"><i class="fas fa-database"></i><h4 id="step1">Extract</h4></div>
-        <div class="process-step"><i class="fas fa-broom"></i><h4 id="step2">Clean</h4></div>
-        <div class="process-step"><i class="fas fa-layer-group"></i><h4 id="step3">Model</h4></div>
-        <div class="process-step"><i class="fas fa-chart-line"></i><h4 id="step4">Insight</h4></div>
+        <div class="process-step"><i class="fas fa-database"></i><h4 id="step1"></h4></div>
+        <div class="process-step"><i class="fas fa-broom"></i><h4 id="step2"></h4></div>
+        <div class="process-step"><i class="fas fa-layer-group"></i><h4 id="step3"></h4></div>
+        <div class="process-step"><i class="fas fa-chart-line"></i><h4 id="step4"></h4></div>
     </div>
 
-    <div class="section-title" id="title-expertise">02. Expertise</div>
-    <div class="grid-container" id="expertise-list">
-        <div class="card-3d"><i class="fas fa-chart-bar"></i><span class="skill-n">Power BI</span></div>
-        <div class="card-3d"><i class="fas fa-file-excel"></i><span class="skill-n">Excel</span></div>
-        <div class="card-3d"><i class="fas fa-project-diagram"></i><span id="skill3">Modeling</span></div>
-        <div class="card-3d"><i class="fas fa-calculator"></i><span id="skill4">DAX Logic</span></div>
-        <div class="card-3d"><i class="fas fa-server"></i><span class="skill-n">ETL</span></div>
-        <div class="card-3d"><i class="fas fa-eye"></i><span id="skill6">Viz</span></div>
+    <div class="section-title" id="title-expertise"></div>
+    <div class="grid-container">
+        <div class="card-3d"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
+        <div class="card-3d"><i class="fas fa-file-excel"></i><span>Excel</span></div>
+        <div class="card-3d"><i class="fas fa-project-diagram"></i><span id="skill3"></span></div>
+        <div class="card-3d"><i class="fas fa-calculator"></i><span id="skill4"></span></div>
+        <div class="card-3d"><i class="fas fa-server"></i><span>ETL</span></div>
+        <div class="card-3d"><i class="fas fa-eye"></i><span id="skill6"></span></div>
     </div>
 
-    <div class="section-title" id="title-projects">03. Projects</div>
-    <div class="project-item" id="p1-row">
+    <div class="section-title" id="title-projects"></div>
+    <div class="project-item">
         <div class="p-img"><img src="hr.png.png"></div>
         <div class="p-text">
-            <h3 id="p1-title">HR Attrition Analysis</h3>
-            <div class="btn-view" onclick="showStudy('hr')" id="p1-btn">View Details</div>
+            <h3 id="p1-title"></h3>
+            <div class="btn-view" onclick="showStudy('hr')" id="p1-btn"></div>
         </div>
     </div>
-    <div class="project-item" style="flex-direction: row-reverse;" id="p2-row">
+    <div class="project-item" style="flex-direction: row-reverse;">
         <div class="p-img"><img src="sales.png1.png"></div>
         <div class="p-text">
-            <h3 id="p2-title">Sales Performance</h3>
-            <div class="btn-view" onclick="showStudy('sales')" id="p2-btn">View Details</div>
+            <h3 id="p2-title"></h3>
+            <div class="btn-view" onclick="showStudy('sales')" id="p2-btn"></div>
         </div>
     </div>
 
@@ -144,7 +147,7 @@
 </div>
 
 <div id="case-study-view">
-    <div onclick="hideStudy()" id="back-btn" style="color:var(--main-blue); cursor:pointer; margin-bottom:40px; font-weight:bold; text-align:inherit;">← BACK TO HOME</div>
+    <div onclick="hideStudy()" id="back-btn" style="color:var(--main-blue); cursor:pointer; margin-bottom:40px; font-weight:bold; text-align:inherit;"></div>
     <div id="case-header-content"></div>
     <div id="study-images"></div>
 </div>
@@ -154,6 +157,7 @@
 
     const translations = {
         en: {
+            name: "Ahmed Gharib",
             welcomeBtn: "Open Portfolio",
             job: "Data Analyst",
             about: "I turn raw data into <b>meaningful stories</b>. Specialized in Power BI and Excel to help businesses make smarter decisions.",
@@ -164,10 +168,10 @@
             skill3: "Modeling", skill4: "DAX Logic", skill6: "Viz",
             viewBtn: "View Details",
             back: "← BACK TO HOME",
-            langBtn: "AR",
             ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT"
         },
         ar: {
+            name: "أحمد غريب",
             welcomeBtn: "افتح المعرض",
             job: "محلل بيانات",
             about: "أقوم بتحويل البيانات الخام إلى <b>قصص ذات مغزى</b>. متخصص في Power BI و Excel لمساعدة الشركات على اتخاذ قرارات ذكية.",
@@ -178,8 +182,21 @@
             skill3: "النمذجة", skill4: "منطق DAX", skill6: "تصوير",
             viewBtn: "عرض التفاصيل",
             back: "→ العودة للرئيسية",
-            langBtn: "EN",
             ch: "التحدي", sol: "الحل", imp: "الأثر"
+        },
+        es: {
+            name: "Ahmed Gharib",
+            welcomeBtn: "Abrir Portafolio",
+            job: "Analista de Datos",
+            about: "Convierto datos sin procesar en <b>historias significativas</b>. Especializado en Power BI y Excel para ayudar a las empresas.",
+            journey: "01. Trayectoria",
+            expertise: "02. Experiencia",
+            projects: "03. Proyectos",
+            step1: "Extraer", step2: "Limpiar", step3: "Modelar", step4: "Perspectiva",
+            skill3: "Modelado", skill4: "Lógica DAX", skill6: "Visualización",
+            viewBtn: "Ver Detalles",
+            back: "← VOLVER AL INICIO",
+            ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO"
         }
     };
 
@@ -187,11 +204,13 @@
         hr: { 
             en: { title: "HR Attrition Analysis", c: "High turnover rates.", s: "End-to-end Dashboard.", i: "15% reduction." },
             ar: { title: "تحليل استقالات الموظفين", c: "معدلات دوران وظيفي عالية.", s: "لوحة بيانات متكاملة.", i: "خفض الاستقالات بنسبة 15%." },
+            es: { title: "Análisis de Rotación de RRHH", c: "Altas tasas de rotación.", s: "Dashboard completo.", i: "Reducción del 15%." },
             imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
         },
         sales: {
             en: { title: "Sales Performance Hub", c: "Disconnected datasets.", s: "Unified ETL Pipeline.", i: "25% accuracy boost." },
             ar: { title: "مركز أداء المبيعات", c: "مجموعات بيانات غير مترابطة.", s: "بناء مسار بيانات موحد.", i: "زيادة دقة التوقعات بنسبة 25%." },
+            es: { title: "Hub de Rendimiento de Ventas", c: "Datos desconectados.", s: "Pipeline de ETL unificado.", i: "Mejora del 25% en precisión." },
             imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
         }
     };
@@ -199,6 +218,13 @@
     function updateUI() {
         const t = translations[currentLang];
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
+        
+        // تحديث الأعلام النشطة
+        document.querySelectorAll('.lang-switch span').forEach(s => s.classList.remove('active'));
+        document.getElementById(`lang-${currentLang}`).classList.add('active');
+
+        document.getElementById('welcome-name').innerText = t.name;
+        document.getElementById('main-name').innerText = t.name;
         document.getElementById('welcome-btn').innerText = t.welcomeBtn;
         document.getElementById('job-title').innerText = t.job;
         document.getElementById('about-me').innerHTML = t.about;
@@ -212,17 +238,16 @@
         document.getElementById('skill3').innerText = t.skill3;
         document.getElementById('skill4').innerText = t.skill4;
         document.getElementById('skill6').innerText = t.skill6;
-        document.getElementById('p1-title').innerText = currentLang === 'ar' ? projectData.hr.ar.title : projectData.hr.en.title;
-        document.getElementById('p2-title').innerText = currentLang === 'ar' ? projectData.sales.ar.title : projectData.sales.en.title;
+        document.getElementById('p1-title').innerText = projectData.hr[currentLang].title;
+        document.getElementById('p2-title').innerText = projectData.sales[currentLang].title;
         document.getElementById('p1-btn').innerText = t.viewBtn;
         document.getElementById('p2-btn').innerText = t.viewBtn;
-        document.getElementById('lang-btn').innerText = t.langBtn;
         document.getElementById('back-btn').innerText = t.back;
     }
 
-    function toggleLang() {
-        currentLang = currentLang === 'en' ? 'ar' : 'en';
-        localStorage.setItem('ahmedLang', currentLang);
+    function setLang(lang) {
+        currentLang = lang;
+        localStorage.setItem('ahmedLang', lang);
         updateUI();
     }
 
@@ -260,7 +285,6 @@
         document.getElementById('case-study-view').style.display = 'none'; 
     }
 
-    // تشغيل اللغة عند التحميل
     updateUI();
 </script>
 </body>
