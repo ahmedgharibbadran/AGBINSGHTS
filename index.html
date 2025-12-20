@@ -48,10 +48,28 @@
 
         .section-title { text-align: left; margin: 60px 0 30px 10%; color: var(--deep-black); border-left: 6px solid var(--main-blue); padding-left: 20px; font-weight: bold; font-size: 24px; text-transform: uppercase; }
         
-        .grid-container, .process-flow { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0 8%; margin-bottom: 50px; }
-        .card-3d, .process-step { background: var(--bg-white); border: 1px solid #ddd; padding: 40px 20px; min-width: 170px; flex: 1; border-radius: 20px; }
+        /* تفعيل البعد الثالث للكونتينر */
+        .grid-container, .process-flow { 
+            display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; 
+            padding: 0 8%; margin-bottom: 50px; 
+            perspective: 1000px; 
+        }
+
+        /* تنسيق الكروت مع خاصية التحويل */
+        .card-3d, .process-step { 
+            background: var(--bg-white); border: 1px solid #ddd; padding: 40px 20px; 
+            min-width: 170px; flex: 1; border-radius: 20px; 
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        /* تأثير الـ 3D عند الـ Hover */
+        .card-3d:hover, .process-step:hover {
+            transform: translateY(-10px) rotateX(10deg) rotateY(7deg);
+            border-color: var(--main-blue);
+            box-shadow: 0 20px 40px rgba(0, 70, 173, 0.15);
+        }
         
-        /* أيقونات ثابتة بدون تحريك */
         .card-3d i, .process-step i { font-size: 45px; margin-bottom: 20px; display: block; color: var(--main-blue); }
 
         .project-item { display: flex; align-items: center; margin: 40px 10%; background: var(--bg-white); border: 1px solid #eee; border-radius: 25px; overflow: hidden; }
@@ -74,7 +92,8 @@
     <div class="welcome-box">
         <img src="logo.png" class="welcome-logo">
         <h2>Ahmed Gharib</h2>
-        <p>Strategic Data Universe</p> <button class="start-btn" onclick="startExploring()">Open Portfolio</button>
+        <p>Strategic Data Universe</p> 
+        <button class="start-btn" onclick="startExploring()">Open Portfolio</button>
     </div>
 </div>
 
