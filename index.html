@@ -45,8 +45,8 @@
         .nav-logo-img { width: 35px; height: 35px; border-radius: 50%; }
         .nav-text { font-weight: 900; color: var(--main-blue); font-size: 18px; }
 
-        .lang-switch { display: flex; gap: 8px; }
-        .flag-btn { width: 28px; height: 28px; cursor: pointer; border-radius: 50%; opacity: 0.4; transition: 0.3s; }
+        .lang-switch { display: flex; gap: 8px; align-items: center; }
+        .flag-btn { width: 28px; height: 28px; cursor: pointer; border-radius: 50%; opacity: 0.4; transition: 0.3s; object-fit: cover; border: 1px solid #ddd; }
         .flag-btn.active { opacity: 1; border: 2px solid var(--main-blue); transform: scale(1.1); }
 
         header { padding: 50px 20px; }
@@ -181,6 +181,7 @@
 
 <script>
     let currentLang = localStorage.getItem('ahmedLang') || 'en';
+    let lastScrollPos = 0; // متغير لحفظ موقع التمرير
 
     const translations = {
         en: {
@@ -214,45 +215,15 @@
 
     const projectData = {
         hr: { 
-            en: { 
-                title: "HR Attrition Analysis", o: "Identify key factors behind employee turnover and improve retention.",
-                c: "The company faced high turnover rates in specific departments with no clear reason.", 
-                s: "Developed an interactive Power BI dashboard with advanced DAX to track attrition by age, department, and salary.", 
-                i: "Identified a 15% turnover reduction opportunity by addressing salary bands.", t: "Power BI, Power Query, DAX"
-            },
-            ar: { 
-                title: "تحليل استقالات الموظفين", o: "تحديد الأسباب الرئيسية لترك الموظفين للعمل وتحسين معدلات الاستبقاء.",
-                c: "واجهت الشركة معدلات دوران وظيفي عالية في أقسام معينة دون معرفة الأسباب الحقيقية.", 
-                s: "تطوير لوحة بيانات تفاعلية باستخدام Power BI وDAX لتتبع الاستقالات حسب العمر والقسم والراتب.", 
-                i: "تحديد فرصة لتقليل الدوران الوظيفي بنسبة 15% من خلال معالجة هيكل الرواتب.", t: "Power BI, Power Query, DAX"
-            },
-            es: { 
-                title: "Análisis de Rotación de RRHH", o: "Identificar factores clave detrás de la rotación de empleados.",
-                c: "La empresa enfrentaba altas tasas de rotación en departamentos específicos sin razón clara.", 
-                s: "Dashboard interactivo en Power BI con DAX avanzado para rastrear la rotación por edad, departamento y salario.", 
-                i: "Se identificó una oportunidad de reducción del 15% al abordar los rangos salariales.", t: "Power BI, Power Query, DAX"
-            },
+            en: { title: "HR Attrition Analysis", o: "Identify key factors behind employee turnover and improve retention.", c: "The company faced high turnover rates in specific departments with no clear reason.", s: "Developed an interactive Power BI dashboard with advanced DAX to track attrition by age, department, and salary.", i: "Identified a 15% turnover reduction opportunity by addressing salary bands.", t: "Power BI, Power Query, DAX" },
+            ar: { title: "تحليل استقالات الموظفين", o: "تحديد الأسباب الرئيسية لترك الموظفين للعمل وتحسين معدلات الاستبقاء.", c: "واجهت الشركة معدلات دوران وظيفي عالية في أقسام معينة دون معرفة الأسباب الحقيقية.", s: "تطوير لوحة بيانات تفاعلية باستخدام Power BI وDAX لتتبع الاستقالات حسب العمر والقسم والراتب.", i: "تحديد فرصة لتقليل الدوران الوظيفي بنسبة 15% من خلال معالجة هيكل الرواتب.", t: "Power BI, Power Query, DAX" },
+            es: { title: "Análisis de Rotación de RRHH", o: "Identificar factores clave detrás de la rotación de empleados.", c: "La empresa enfrentaba altas tasas de rotación en departamentos específicos sin razón clara.", s: "Dashboard interactivo en Power BI con DAX avanzado para rastrear la rotación por edad, departamento y salario.", i: "Se identificó una oportunidad de reducción del 15% al abordar los rangos salariales.", t: "Power BI, Power Query, DAX" },
             imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
         },
         sales: {
-            en: { 
-                title: "Sales Performance Hub", o: "Centralize sales data from multiple sources to track global growth.",
-                c: "Fragmented data across different regions made it hard to track real-time profit.", 
-                s: "Built a unified ETL pipeline to clean and merge data, featuring year-over-year growth metrics.", 
-                i: "Improved reporting speed by 40% and identified top-performing stock items.", t: "Excel, Power BI, ETL Processes"
-            },
-            ar: { 
-                title: "مركز أداء المبيعات", o: "مركزية بيانات المبيعات من مصادر متعددة لتتبع النمو العالمي.",
-                c: "بيانات مشتتة عبر مناطق مختلفة جعلت من الصعب تتبع الأرباح بشكل لحظي.", 
-                s: "بناء مسار ETL موحد لتنظيف ودمج البيانات، مع عرض مقاييس النمو السنوي.", 
-                i: "تحسين سرعة التقارير بنسبة 40% وتحديد السلع الأكثر ربحية.", t: "Excel, Power BI, ETL Processes"
-            },
-            es: { 
-                title: "Hub de Rendimiento de Ventas", o: "Centralizar datos de ventas de múltiples fuentes.",
-                c: "Datos fragmentados en diferentes regiones dificultaban el seguimiento de ganancias en tiempo real.", 
-                s: "Pipeline de ETL unificado para limpiar y fusionar datos, con métricas de crecimiento anual.", 
-                i: "Mejora del 40% en velocidad de informes e identificación de artículos más rentables.", t: "Excel, Power BI, Procesos ETL"
-            },
+            en: { title: "Sales Performance Hub", o: "Centralize sales data from multiple sources to track global growth.", c: "Fragmented data across different regions made it hard to track real-time profit.", s: "Built a unified ETL pipeline to clean and merge data, featuring year-over-year growth metrics.", i: "Improved reporting speed by 40% and identified top-performing stock items.", t: "Excel, Power BI, ETL Processes" },
+            ar: { title: "مركز أداء المبيعات", o: "مركزية بيانات المبيعات من مصادر متعددة لتتبع النمو العالمي.", c: "بيانات مشتتة عبر مناطق مختلفة جعلت من الصعب تتبع الأرباح بشكل لحظي.", s: "بناء مسار ETL موحد لتنظيف ودمج البيانات، مع عرض مقاييس النمو السنوي.", i: "تحسين سرعة التقارير بنسبة 40% وتحديد السلع الأكثر ربحية.", t: "Excel, Power BI, ETL Processes" },
+            es: { title: "Hub de Rendimiento de Ventas", o: "Centralizar datos de ventas de múltiples fuentes.", c: "Datos fragmentados en diferentes regiones dificultaban el seguimiento de ganancias en tiempo real.", s: "Pipeline de ETL unificado para limpiar y fusionar datos, con métricas de crecimiento anual.", i: "Mejora del 40% en velocidad de informes e identificación de artículos más rentables.", t: "Excel, Power BI, Procesos ETL" },
             imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
         }
     };
@@ -262,7 +233,6 @@
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
         document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('active'));
         document.getElementById('lang-' + currentLang).classList.add('active');
-
         document.getElementById('welcome-name').innerText = t.name;
         document.getElementById('main-name').innerText = t.name;
         document.getElementById('welcome-btn').innerText = t.welcomeBtn;
@@ -303,6 +273,7 @@
     }
 
     function showStudy(id) {
+        lastScrollPos = window.scrollY; // حفظ مكان التمرير الحالي
         const d = projectData[id][currentLang];
         const t = translations[currentLang];
         document.getElementById('case-header-content').innerHTML = `
@@ -325,6 +296,11 @@
     function hideStudy() { 
         document.getElementById('main-site').style.display = 'block'; 
         document.getElementById('case-study-view').style.display = 'none'; 
+        // العودة لنفس الموقع المحفوظ
+        window.scrollTo({
+            top: lastScrollPos,
+            behavior: 'instant' 
+        });
     }
 
     updateUI();
