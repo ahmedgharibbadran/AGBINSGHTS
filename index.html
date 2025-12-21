@@ -56,15 +56,24 @@
         .nav-logo-img:hover { transform: scale(1.1); filter: drop-shadow(0 0 10px rgba(0, 86, 179, 0.2)); }
         .lang-switch { display: flex; gap: 12px; align-items: center; }
         }
+       /* شكل الأعلام الأساسي (دائري وملون) */
         .flag-btn { 
-            width: 30px; height: 30px; cursor: pointer; border-radius: 50%; 
-            opacity: 0.8; transition: 0.3s; object-fit: cover; 
-            border: 2px solid transparent; 
+            width: 30px; 
+            height: 30px; 
+            cursor: pointer; 
+            border-radius: 50%; 
+            opacity: 0.8; 
+            transition: 0.3s; 
+            object-fit: cover; 
+            border: 2px solid transparent; /* إطار شفاف لمنع الاهتزاز */
         }
 
-        .flag-btn:hover { opacity: 1; transform: scale(1.1); }
+        .flag-btn:hover { 
+            opacity: 1; 
+            transform: scale(1.1); 
+        }
 
-        /* هذا الجزء هو المسؤول عن تمييز العلم النشط بالبرواز الأزرق */
+        /* تمييز العلم المختار بالبرواز الأزرق */
         .flag-btn.active { 
             opacity: 1 !important; 
             border: 2px solid var(--main-blue) !important; 
@@ -343,6 +352,7 @@
 </script>
 </body>
 </html>
+
 
 
 
