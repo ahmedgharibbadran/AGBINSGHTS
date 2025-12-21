@@ -116,19 +116,43 @@ body.rtl .section-title { text-align: right; border-left: none; border-right: 5p
         min-width: 120px;
     }
 }
-.card-3d i, .process-step i { font-size: 35px; margin-bottom: 15px; display: block; color: var(--main-blue); }
-        /* إعادة تأثير اللون الأزرق عند الوقوف على الأيقونات */
-        .card-3d:hover, .process-step:hover {
-            transform: translateY(-10px);
-            border-color: var(--main-blue);
-            box-shadow: var(--glow-effect);
-        }
+/* تنسيق العناصر الأساسي لضمان وجود الأيقونة بجانب النص */
+.card-3d {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 25px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    justify-content: flex-start;
+}
 
-        .card-3d:hover i, .process-step:hover i {
-            color: var(--main-blue);
-            transform: scale(1.1);
-            transition: 0.3s;
-        }
+/* تنسيق الأيقونات */
+.card-3d i, .process-step i {
+    font-size: 30px;
+    color: var(--main-blue);
+    transition: all 0.3s ease;
+    margin-bottom: 0; /* لإلغاء الفجوة القديمة */
+}
+
+/* تأثير النور والحركة عند الوقوف (Hover) */
+.card-3d:hover, .process-step:hover {
+    transform: translateY(-5px);
+    border-color: var(--main-blue);
+    box-shadow: 0 0 20px rgba(0, 122, 255, 0.4); /* هذا هو تأثير النور */
+}
+
+/* زيادة توهج الأيقونة نفسها عند الوقوف */
+.card-3d:hover i, .process-step:hover i {
+    text-shadow: 0 0 10px rgba(0, 122, 255, 0.6);
+    transform: scale(1.1);
+}
+
+/* ضبط الاتجاه للعربي (يمين لليسار) */
+body.rtl .card-3d {
+    flex-direction: row-reverse;
+    text-align: right;
+}
 
 /* 03. تنسيق المشاريع - إصلاح شامل ونهائي */
         .projects-wrapper { 
@@ -269,7 +293,6 @@ body.rtl .section-title { text-align: right; border-left: none; border-right: 5p
 <script>
     let currentLang = localStorage.getItem('ahmedLang') || 'en';
     let lastScrollPos = 0; 
-
 const translations = {
     en: {
         name: "Ahmed Gharib",
@@ -451,6 +474,7 @@ function showJourney(id) {
 </script>
 </body>
 </html>
+
 
 
 
