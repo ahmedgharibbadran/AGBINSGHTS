@@ -245,18 +245,20 @@
     };
 
    function updateUI() {
-        const t = translations[currentLang];
-        document.body.className = currentLang === 'ar' ? 'rtl' : '';
-        
-        // أضف هذا السطر هنا (مهم جداً لربط الجملة الترحيبية)
-        const taglineElem = document.getElementById('welcome-tagline');
-        if(taglineElem) taglineElem.innerText = t.tagline;
+    const t = translations[currentLang];
+    document.body.className = currentLang === 'ar' ? 'rtl' : '';
 
-        document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('active'));
-        document.getElementById('lang-' + currentLang).classList.add('active');
-        document.getElementById('welcome-name').innerText = t.name;
-        document.getElementById('main-name').innerText = t.name;
-        document.getElementById('job-title').innerText = t.job;
+    const taglineElem = document.getElementById('welcome-tagline');
+    if(taglineElem) taglineElem.innerText = t.tagline;
+
+    // ترجمة الزرار الأساسي
+    document.getElementById('welcome-btn').innerText = t.welcomeBtn; 
+
+    // ترجمة الأسماء والوظيفة
+    document.getElementById('welcome-name').innerText = t.name;
+    document.getElementById('main-name').innerText = t.name;
+    document.getElementById('job-title').innerText = t.job;
+    document.getElementById('about-me').innerHTML = t.about;
         document.getElementById('about-me').innerHTML = t.about;
         document.getElementById('title-journey').innerText = t.journey;
         document.getElementById('title-expertise').innerText = t.expertise;
@@ -326,6 +328,7 @@
 </script>
 </body>
 </html>
+
 
 
 
