@@ -218,11 +218,11 @@ body.rtl .section-title { text-align: right; border-left: none; border-right: 5p
 
     <div class="section-title" id="title-journey"></div>
     <div class="process-flow">
-        <div class="process-step"><i class="fas fa-database"></i><h4 id="step1"></h4></div>
-        <div class="process-step"><i class="fas fa-broom"></i><h4 id="step2"></h4></div>
-        <div class="process-step"><i class="fas fa-layer-group"></i><h4 id="step3"></h4></div>
-        <div class="process-step"><i class="fas fa-chart-line"></i><h4 id="step4"></h4></div>
-    </div>
+      <div class="process-step" onclick="showJourney('understand')" style="cursor: pointer;"><i class="fas fa-bullseye"></i><h4 id="step1"></h4></div>
+        <div class="process-step" onclick="showJourney('extract')" style="cursor: pointer;"><i class="fas fa-database"></i><h4 id="step2"></h4></div>
+        <div class="process-step" onclick="showJourney('clean')" style="cursor: pointer;"><i class="fas fa-broom"></i><h4 id="step3"></h4></div>
+        <div class="process-step" onclick="showJourney('model')" style="cursor: pointer;"><i class="fas fa-layer-group"></i><h4 id="step4"></h4></div>
+        <div class="process-step" onclick="showJourney('insight')" style="cursor: pointer;"><i class="fas fa-chart-line"></i><h4 id="step5"></h4></div>
 
     <div class="section-title" id="title-expertise"></div>
     <div class="grid-container">
@@ -323,7 +323,33 @@ body.rtl .section-title { text-align: right; border-left: none; border-right: 5p
             imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
         }
     };
-
+const journeyData = {
+    understand: {
+        en: { title: "Understand", desc: "Defining business goals, decisions, and KPIs to ensure data alignment." },
+        ar: { title: "مرحلة الفهم", desc: "تحديد أهداف العمل والقرارات ومؤشرات الأداء لضمان توافق البيانات مع الرؤية المطلوبة." },
+        es: { title: "Entender", desc: "Definición de objetivos comerciales y KPIs." }
+    },
+    extract: {
+        en: { title: "Extract", desc: "Connecting to relevant and reliable data sources for analysis." },
+        ar: { title: "مرحلة الاستخراج", desc: "الاتصال بمصادر البيانات ذات الصلة والموثوقة لبدء عملية التحليل." },
+        es: { title: "Extraer", desc: "Conexión a fuentes de datos confiables." }
+    },
+    clean: {
+        en: { title: "Clean", desc: "Ensuring accuracy, consistency, and overall data quality." },
+        ar: { title: "مرحلة التنظيف", desc: "ضمان دقة البيانات واتساقها وتنقيتها من الأخطاء لضمان جودة النتائج." },
+        es: { title: "Limpiar", desc: "Asegurar la calidad y consistencia de los datos." }
+    },
+    model: {
+        en: { title: "Model", desc: "Building data modeling architectures and complex analytical logic." },
+        ar: { title: "مرحلة النمذجة", desc: "بناء هياكل نمذجة البيانات والمنطق التحليلي المعقد باستخدام DAX." },
+        es: { title: "Modelar", desc: "Construcción de arquitecturas de datos." }
+    },
+    insight: {
+        en: { title: "Insight", desc: "Providing actionable insights and strategic recommendations." },
+        ar: { title: "مرحلة الرؤية", desc: "تحويل البيانات إلى توصيات استراتيجية ورؤى قابلة للتنفيذ مباشرة." },
+        es: { title: "Perspectiva", desc: "Proporcionar recomendaciones estratégicas." }
+    }
+};
    function updateUI() {
     const t = translations[currentLang];
     document.body.className = currentLang === 'ar' ? 'rtl' : '';
@@ -347,6 +373,7 @@ body.rtl .section-title { text-align: right; border-left: none; border-right: 5p
         document.getElementById('step2').innerText = t.step2;
         document.getElementById('step3').innerText = t.step3;
         document.getElementById('step4').innerText = t.step4;
+       document.getElementById('step5').innerText = t.step5;
         document.getElementById('skill3').innerText = t.skill3;
         document.getElementById('skill4').innerText = t.skill4;
         document.getElementById('skill6').innerText = t.skill6;
@@ -405,11 +432,27 @@ body.rtl .section-title { text-align: right; border-left: none; border-right: 5p
             behavior: 'instant' 
         });
     }
-
+function showJourney(id) {
+    lastScrollPos = window.scrollY; // حفظ موقع الصفحة للعودة له لاحقاً
+    const d = journeyData[id][currentLang]; // جلب النصوص من كائن journeyData الذي أضفته في السطر 326
+    
+    // تغيير محتوى الهيدر لعرض تفاصيل المرحلة
+    document.getElementById('case-header-content').innerHTML = `
+        <div class="case-header" style="text-align:center; border:none; background:none;">
+            <h2 style="color:var(--main-blue); font-size:40px; margin-bottom:20px;">${d.title}</h2>
+            <p style="font-size: 22px; color:var(--text-gray); line-height:1.6; max-width:800px; margin:0 auto;">${d.desc}</p>
+        </div>`;
+        
+    document.getElementById('study-images').innerHTML = ""; // تفريغ مساحة الصور لأننا نعرض نصاً فقط
+    document.getElementById('main-site').style.display = 'none'; // إخفاء الموقع الرئيسي
+    document.getElementById('case-study-view').style.display = 'block'; // إظهار واجهة التفاصيل
+    window.scrollTo(0,0); // الصعود لأعلى الصفحة
+}
     updateUI();
 </script>
 </body>
 </html>
+
 
 
 
