@@ -51,13 +51,13 @@
             box-sizing: border-box; /* يمنع الهيدر من الخروج عن حدود الشاشة */
             direction: ltr !important; /* يحافظ على اللوجو يسار واللغات يمين */
         }
-        .nav-brand { display: flex; align-items: center; gap: 10px; }
-        .nav-logo-img { height: 100px; width: auto; } /* المقاس المثالي للوجو */
-        .nav-text { font-weight: 900; color: var(--main-blue); font-size: 17px; }
-
-        .lang-switch { display: flex; gap: 8px; align-items: center; }
-        .flag-btn { width: 28px; height: 28px; cursor: pointer; border-radius: 50%; opacity: 0.4; transition: 0.3s; object-fit: cover; border: 1px solid #ddd; }
-        .flag-btn.active { opacity: 1; border: 2px solid var(--main-blue); transform: scale(1.1); }
+     .nav-brand { display: flex; align-items: center; gap: 10px; }
+        .nav-logo-img { height: 100px; width: auto; transition: 0.4s ease; cursor: pointer; } 
+        .nav-logo-img:hover { transform: scale(1.1); filter: drop-shadow(0 0 10px rgba(0, 86, 179, 0.2)); }
+        .lang-switch { display: flex; gap: 12px; align-items: center; }
+        .flag-btn { width: 30px; height: 30px; cursor: pointer; border-radius: 50%; opacity: 0.5; transition: 0.3s; object-fit: cover; border: 1px solid #ddd; }
+        .flag-btn:hover { opacity: 1; transform: translateY(-3px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .flag-btn.active { opacity: 1; border: 2px solid var(--main-blue); transform: scale(1.2); }
         header { padding: 50px 20px; }
         h1 { font-size: clamp(35px, 8vw, 75px); margin: 0; font-weight: 900; }
         .job-tag { color: var(--main-blue); font-size: 14px; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; }
@@ -320,6 +320,7 @@
 </script>
 </body>
 </html>
+
 
 
 
