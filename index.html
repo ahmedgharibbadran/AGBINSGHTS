@@ -113,7 +113,7 @@
     <div class="welcome-box">
        <img src="agb-logo.png.jpg" class="welcome-logo">
         <h2 id="welcome-name">Ahmed Gharib</h2>
-        <p>Turning Complex Data into Strategic Assets</p> 
+       <p id="welcome-tagline">Turning Complex Data into Strategic Assets</p>
         <button class="start-btn" onclick="startExploring()" id="welcome-btn">Explore Insights</button>
     </div>
 </div>
@@ -242,14 +242,18 @@
         }
     };
 
-    function updateUI() {
+   function updateUI() {
         const t = translations[currentLang];
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
+        
+        // أضف هذا السطر هنا (مهم جداً لربط الجملة الترحيبية)
+        const taglineElem = document.getElementById('welcome-tagline');
+        if(taglineElem) taglineElem.innerText = t.tagline;
+
         document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('active'));
         document.getElementById('lang-' + currentLang).classList.add('active');
         document.getElementById('welcome-name').innerText = t.name;
         document.getElementById('main-name').innerText = t.name;
-        document.getElementById('welcome-btn').innerText = t.welcomeBtn;
         document.getElementById('job-title').innerText = t.job;
         document.getElementById('about-me').innerHTML = t.about;
         document.getElementById('title-journey').innerText = t.journey;
@@ -320,6 +324,7 @@
 </script>
 </body>
 </html>
+
 
 
 
