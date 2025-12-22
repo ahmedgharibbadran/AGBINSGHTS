@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahmed Gharib | AGBINSIGHTS</title>
     
-    <link rel="icon" type="image/png" href="agb-logo.png.jpg">
+    <link rel="icon" type="image/png" href="agb-logo-png.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -112,24 +112,34 @@ body.rtl .section-title { text-align: right; border-left: none; border-right: 5p
 /* التعديل المظبوط للموبايل */
 @media (max-width: 480px) {
     .grid-container, .process-flow {
-        padding: 0 3% !important; 
-        gap: 8px !important;
+        padding: 0 15px !important; 
+        gap: 12px !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* عنصرين في كل صف */
         justify-content: center !important;
     }
 
     .card-3d, .process-step {
-        flex: 0 0 calc(50% - 10px) !important;
-        min-width: 140px !important;
-        padding: 15px 5px !important;
+        flex: unset !important;
+        max-width: 100% !important;
+        min-width: unset !important;
+        padding: 20px 10px !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         text-align: center !important;
+        box-sizing: border-box !important;
     }
 
     .card-3d i, .process-step i {
-        font-size: 30px !important;
-        margin-bottom: 8px !important;
+        font-size: 32px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .card-3d span, .process-step h4 {
+        font-size: 14px !important;
+        white-space: normal !important; /* السماح للنص بالنزول لسطر جديد إذا كان طويلاً */
+        margin: 0 !important;
     }
 
     .card-3d span, .process-step h4 {
@@ -492,6 +502,7 @@ function showJourney(id) {
 </script>
 </body>
 </html>
+
 
 
 
