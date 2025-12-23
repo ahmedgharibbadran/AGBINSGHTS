@@ -199,7 +199,6 @@
         .social-icons a { color: white; font-size: 25px; margin: 0 15px; transition: 0.3s; }
         .social-icons a:hover { color: var(--main-blue); }
 
-        /* التعديل هنا: جعل الخلفية سوداء تماماً لتطابق اللوجو */
         body.dark-theme { --bg-white: #000000; --deep-black: #ffffff; --text-gray: #bbbbbb; }
         body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section { background: #111111; border-color: #222; }
         body.dark-theme nav { background: #000000; }
@@ -451,12 +450,20 @@
         document.getElementById('p1-btn').innerText = t.viewBtn;
         document.getElementById('p2-btn').innerText = t.viewBtn;
         document.getElementById('back-btn').innerText = t.back;
+
+        // --- تحديث قسم التقييمات ---
         document.getElementById('rate-1').innerText = t.rate1;
         document.getElementById('rate-2').innerText = t.rate2;
         document.getElementById('rate-prompt').innerText = t.ratePrompt;
         document.getElementById('user-name').placeholder = t.namePlace;
         document.getElementById('user-comment').placeholder = t.ratePlace;
         document.getElementById('submit-rate').innerText = t.rateBtn;
+
+        // ضبط اتجاه نصوص كروت التقييم بناءً على اللغة
+        document.querySelectorAll('#ratings-display .card-3d').forEach(card => {
+            card.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+            card.style.textAlign = currentLang === 'ar' ? 'right' : 'left';
+        });
 
         document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('active'));
         if(document.getElementById('lang-' + currentLang)) document.getElementById('lang-' + currentLang).classList.add('active');
@@ -514,8 +521,10 @@
         const container = document.getElementById('ratings-display');
         const newRate = document.createElement('div');
         newRate.className = "card-3d reveal active";
-        newRate.setAttribute('dir', 'auto');
-        newRate.style.textAlign = 'start';
+        
+        // ضبط اتجاه التقييم الجديد فور إضافته
+        newRate.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+        newRate.style.textAlign = currentLang === 'ar' ? 'right' : 'left';
 
         let starsHtml = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
         
