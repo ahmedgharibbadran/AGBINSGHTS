@@ -196,7 +196,6 @@
         .rating-input { width: 80%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 10px; font-family: inherit; }
         .submit-rate-btn { background: var(--main-blue); color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
-        /* تعديل الفوتر - إزالة المربع الأسود واستخدام تصميم 3D */
         footer { 
             padding: 40px 10%; 
             background: transparent; 
@@ -237,7 +236,6 @@
             transform: scale(1.1);
         }
 
-        /* تعديلات الوضع الليلي للفوتر الجديد */
         body.dark-theme footer { background: transparent !important; }
         body.dark-theme .footer-card { background: #000000; border-color: #222; color: #fff; }
         body.dark-theme .footer-copy { color: #fff !important; opacity: 0.6; }
@@ -467,8 +465,8 @@
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
         if (isDarkMode) {
             document.body.classList.add('dark-theme');
-            document.getElementById('nav-logo-img').src = "agb-logo.png.1.jpeg";
-            document.getElementById('welcome-logo-img').src = "agb-logo.png.1.jpeg";
+            document.getElementById('nav-logo-img').src = "agb-logo.png.0.jpg";
+            document.getElementById('welcome-logo-img').src = "agb-logo.png.0.jpg";
         } else {
             document.getElementById('nav-logo-img').src = "agb-logo-png.png";
             document.getElementById('welcome-logo-img').src = "agb-logo-png.png";
@@ -588,7 +586,7 @@
                     <div><b style="color:var(--main-blue)">${t.tool}</b><br>${d.t}</div>
                 </div>
             </div>`;
-        document.getElementById('study-images').innerHTML = projectData[id].imgs.map(img => <img src="${img}" style="width:100%; margin-bottom:20px; border-radius:15px; box-shadow:0 10px 30px rgba(0,0,0,0.1);">).join('');
+        document.getElementById('study-images').innerHTML = projectData[id].imgs.map(img => `<img src="${img}" style="width:100%; margin-bottom:20px; border-radius:15px; box-shadow:0 10px 30px rgba(0,0,0,0.1);">`).join('');
         document.getElementById('main-site').style.display = 'none';
         document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
@@ -599,34 +597,6 @@
         document.getElementById('case-study-view').style.display = 'none'; 
         window.scrollTo({ top: lastScrollPos, behavior: 'instant' });
     }
-
-    function showJourney(id) {
-        lastScrollPos = window.scrollY;
-        const d = journeyData[id][currentLang];
-        document.getElementById('case-header-content').innerHTML = `
-            <div class="case-header" style="text-align:center; border:none; background:none;">
-                <h2 style="color:var(--main-blue); font-size:40px; margin-bottom:20px;">${d.title}</h2>
-                <p style="font-size: 22px; color:var(--text-gray); line-height:1.6; max-width:800px; margin:0 auto;">${d.desc}</p>
-            </div>`;
-        document.getElementById('study-images').innerHTML = ""; 
-        document.getElementById('main-site').style.display = 'none';
-        document.getElementById('case-study-view').style.display = 'block';
-        window.scrollTo(0,0);
-    }
-
-    window.addEventListener("scroll", reveal);
-    function reveal() {
-        var reveals = document.querySelectorAll(".reveal");
-        for (var i = 0; i < reveals.length; i++) {
-            var windowHeight = window.innerHeight;
-            var elementTop = reveals[i].getBoundingClientRect().top;
-            if (elementTop < windowHeight - 50) {
-                reveals[i].classList.add("active");
-            }
-        }
-    }
-    updateUI();
 </script>
-
 </body>
 </html>
