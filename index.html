@@ -19,7 +19,7 @@
 
        body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
        body.rtl { direction: rtl; font-family: 'Cairo', sans-serif; }
-        
+       
         #welcome-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: var(--bg-white);
@@ -36,8 +36,6 @@
 
         #main-site { opacity: 0; display: none; }
         
-        /* التعديل هنا: تثبيت مكان اللوجو واللغات */
-/* التعديل النهائي: تثبيت مكان اللوجو واللغات وضبط المساحات */
         nav { 
             width: 100%; 
             padding: 10px 5%; 
@@ -54,7 +52,7 @@
         }
 
         .nav-brand { display: flex; align-items: center; gap: 10px; }
-      .nav-logo-img { height: 80px; width: auto; transition: 0.4s ease; cursor: pointer; mix-blend-mode: multiply; filter: contrast(1.1); }
+        .nav-logo-img { height: 80px; width: auto; transition: 0.4s ease; cursor: pointer; mix-blend-mode: multiply; filter: contrast(1.1); }
         .nav-logo-img:hover { transform: scale(1.1); }
         .lang-switch { display: flex; gap: 12px; align-items: center; }
         .flag-btn { 
@@ -73,20 +71,19 @@
             border: 2px solid var(--main-blue) !important; 
             transform: scale(1.15);
         }
-    /* التنسيق العام للأقسام والعناصر */
-header { padding: 60px 20px; text-align: center; }
-h1 { font-size: clamp(35px, 8vw, 75px); margin: 0; font-weight: 900; }
-.job-tag { color: var(--main-blue); font-size: 14px; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; display: block; margin-top: 10px; }
-.about-text { max-width: 800px; margin: 25px auto; color: var(--text-gray); font-size: 17px; line-height: 1.6; }
 
-.section-title { 
-    text-align: left; margin: 40px 0 20px 10%; color: var(--deep-black); 
-    border-left: 5px solid var(--main-blue); padding-left: 15px; 
-    font-weight: bold; font-size: 24px;
-}
-body.rtl .section-title { text-align: right; border-left: none; border-right: 5px solid var(--main-blue); padding-left: 0; padding-right: 15px; margin: 40px 10% 20px 0; }
+        header { padding: 60px 20px; text-align: center; }
+        h1 { font-size: clamp(35px, 8vw, 75px); margin: 0; font-weight: 900; }
+        .job-tag { color: var(--main-blue); font-size: 14px; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; display: block; margin-top: 10px; }
+        .about-text { max-width: 800px; margin: 25px auto; color: var(--text-gray); font-size: 17px; line-height: 1.6; }
 
-/* إصلاح شبكة المهارات والرحلة مع الحفاظ على وضع الموبايل */
+        .section-title { 
+            text-align: left; margin: 40px 0 20px 10%; color: var(--deep-black); 
+            border-left: 5px solid var(--main-blue); padding-left: 15px; 
+            font-weight: bold; font-size: 24px;
+        }
+        body.rtl .section-title { text-align: right; border-left: none; border-right: 5px solid var(--main-blue); padding-left: 0; padding-right: 15px; margin: 40px 10% 20px 0; }
+
         .grid-container, .process-flow { 
             display: flex; 
             justify-content: center; 
@@ -106,82 +103,38 @@ body.rtl .section-title { text-align: right; border-left: none; border-right: 5p
             transition: all 0.3s ease; 
             cursor: default; 
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-/* التعديل المظبوط للموبايل */
-@media (max-width: 480px) {
-    .grid-container, .process-flow {
-        padding: 0 15px !important; 
-        gap: 12px !important;
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important; /* عنصرين في كل صف */
-        justify-content: center !important;
-    }
 
-    .card-3d, .process-step {
-        flex: unset !important;
-        max-width: 100% !important;
-        min-width: unset !important;
-        padding: 20px 10px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center !important;
-        box-sizing: border-box !important;
-    }
+        @media (max-width: 480px) {
+            .grid-container, .process-flow {
+                padding: 0 15px !important; 
+                gap: 12px !important;
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            .card-3d, .process-step {
+                max-width: 100% !important;
+                padding: 20px 10px !important;
+            }
+        }
 
-    .card-3d i, .process-step i {
-        font-size: 32px !important;
-        margin-bottom: 10px !important;
-    }
+        .card-3d i, .process-step i {
+            font-size: 32px; 
+            color: var(--main-blue);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
 
-    .card-3d span, .process-step h4 {
-        font-size: 14px !important;
-        white-space: normal !important; /* السماح للنص بالنزول لسطر جديد إذا كان طويلاً */
-        margin: 0 !important;
-    }
+        .card-3d:hover i, .process-step:hover i {
+            opacity: 1;
+            transform: scale(1.1);
+            text-shadow: 0 0 10px rgba(0, 122, 255, 0.4);
+        }
 
-    .card-3d span, .process-step h4 {
-        font-size: 12px !important;
-        white-space: nowrap !important;
-    }
-}
-/* تنسيق العناصر الأساسي لضمان وجود الأيقونة بجانب النص */
-.card-3d {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 15px 25px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    justify-content: flex-start;
-}
-
-/* تنسيق الأيقونات */
-.card-3d i, .process-step i {
-    font-size: 32px;    /* الحجم الحالي ممتاز جداً */
-    color: var(--main-blue);
-    opacity: 0.7;       /* أضف هذا السطر لجعل اللون الأزرق خفيفاً وغير ضخم */
-    transition: all 0.3s ease;
-    margin-bottom: 0; 
-}
-/* تأثير النور والحركة عند الوقوف (Hover) */
-.card-3d:hover i, .process-step:hover i {
-    text-shadow: none !important; /* إلغاء التوهج يحافظ على نحافة الأيقونة */
-    opacity: 1;                  /* اللون يرجع قوياً فقط عند الإشارة بالماوس */
-    transform: scale(1.1);
-}
-/* زيادة توهج الأيقونة نفسها عند الوقوف */
-.card-3d:hover i, .process-step:hover i {
-    text-shadow: 0 0 10px rgba(0, 122, 255, 0.6);
-    transform: scale(1.1);
-}
-/* ضبط الاتجاه للعربي (يمين لليسار) */
-body.rtl .card-3d {
-    flex-direction: row-reverse;
-    text-align: right;
-}
-
-/* 03. تنسيق المشاريع - إصلاح شامل ونهائي */
         .projects-wrapper { 
             display: flex; 
             flex-direction: column; 
@@ -199,32 +152,18 @@ body.rtl .card-3d {
         }
         .p-img { width: 100%; line-height: 0; }
         .p-img img { width: 100%; height: auto; display: block; object-fit: cover; }
-        
-        .p-text { 
-            width: 100%; 
-            padding: 30px; 
-            box-sizing: border-box; 
-            text-align: center; 
-        }
+        .p-text { width: 100%; padding: 30px; box-sizing: border-box; text-align: center; }
 
-        /* تعديل المظهر للشاشات الكبيرة (كمبيوتر) */
         @media (min-width: 768px) {
             .project-item { flex-direction: row; align-items: stretch; }
-            .p-img { width: 60%; } /* الصورة تاخد مساحة أكبر للوضوح */
-            .p-text { 
-                width: 40%; 
-                padding: 40px; 
-                display: flex; 
-                flex-direction: column; 
-                justify-content: center; 
-                text-align: left; 
-            }
+            .p-img { width: 60%; } 
+            .p-text { width: 40%; padding: 40px; display: flex; flex-direction: column; justify-content: center; text-align: left; }
             body.rtl .p-text { text-align: right; }
         }
 
         .btn-view { border: 2px solid var(--main-blue); color: var(--main-blue); padding: 12px 30px; border-radius: 10px; cursor: pointer; display: inline-block; margin-top: 20px; font-weight: 800; transition: 0.3s; }
         .btn-view:hover { background: var(--main-blue); color: #fff; }
-
+        
         #case-study-view { display:none; background: var(--bg-white); padding: 40px 10%; text-align: left; }
         body.rtl #case-study-view { text-align: right; }
         .case-header { background: #f9f9f9; padding: 30px; border-radius: 20px; border-left: 6px solid var(--main-blue); margin-bottom: 30px; }
@@ -234,6 +173,13 @@ body.rtl .card-3d {
         footer { padding: 60px 20px; background: var(--deep-black); color: white; margin-top: 50px; }
         .social-icons a { color: white; font-size: 25px; margin: 0 15px; transition: 0.3s; }
         .social-icons a:hover { color: var(--main-blue); }
+
+        body.dark-theme { --bg-white: #121212; --deep-black: #ffffff; --text-gray: #bbbbbb; }
+        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item { background: #1e1e1e; border-color: #333; }
+        body.dark-theme nav { background: #121212; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
@@ -251,11 +197,12 @@ body.rtl .card-3d {
     <nav>
         <div class="nav-brand">
             <img src="agb-logo-png.png" class="nav-logo-img">
-                </div>
+        </div>
         <div class="lang-switch">
             <img src="https://flagcdn.com/w40/gb.png" class="flag-btn" id="lang-en" onclick="setLang('en')" title="English">
             <img src="https://flagcdn.com/w40/eg.png" class="flag-btn" id="lang-ar" onclick="setLang('ar')" title="العربية">
             <img src="https://flagcdn.com/w40/es.png" class="flag-btn" id="lang-es" onclick="setLang('es')" title="Español">
+            <i class="fas fa-moon" id="dark-mode-toggle" onclick="toggleDarkMode()" style="cursor:pointer; font-size: 20px; margin-left: 10px; color: var(--main-blue);"></i>
         </div>
     </nav>
 
@@ -265,37 +212,55 @@ body.rtl .card-3d {
         <p class="about-text" id="about-me"></p>
     </header>
 
-  <div class="section-title" id="title-journey"></div>
- <div class="process-flow">
-    <div class="process-step" onclick="showJourney('understand')"><i class="far fa-circle-dot"></i><h4 id="step1"></h4></div>
-<div class="process-step" onclick="showJourney('extract')"><i class="far fa-copy"></i><h4 id="step2"></h4></div>
-<div class="process-step" onclick="showJourney('clean')"><i class="fas fa-wand-magic-sparkles" style="font-size: 0.8em;"></i><h4 id="step3"></h4></div>
-<div class="process-step" onclick="showJourney('model')"><i class="far fa-square-plus"></i><h4 id="step4"></h4></div>
-<div class="process-step" onclick="showJourney('insight')"><i class="far fa-lightbulb"></i><h4 id="step5"></h4></div>
-</div>
-<div class="section-title" id="title-expertise"></div>
-<div class="grid-container"> <div class="card-3d"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
-    <div class="card-3d"><i class="fas fa-file-excel"></i><span>Excel</span></div>
-    <div class="card-3d"><i class="fas fa-project-diagram"></i><span id="skill3"></span></div>
-    <div class="card-3d"><i class="fas fa-calculator"></i><span id="skill4"></span></div>
-    <div class="card-3d"><i class="fas fa-server"></i><span>ETL</span></div>
-    <div class="card-3d"><i class="fas fa-eye"></i><span id="skill6"></span></div>
-</div>
+    <div class="section-title" id="title-journey"></div>
+    <div class="process-flow">
+        <div class="process-step reveal" onclick="showJourney('understand')" style="cursor: pointer;"><i class="far fa-circle-dot"></i><h4 id="step1"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('extract')" style="cursor: pointer;"><i class="far fa-copy"></i><h4 id="step2"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('clean')" style="cursor: pointer;"><i class="fas fa-wand-magic-sparkles"></i><h4 id="step3"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('model')" style="cursor: pointer;"><i class="far fa-square-plus"></i><h4 id="step4"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('insight')" style="cursor: pointer;"><i class="far fa-lightbulb"></i><h4 id="step5"></h4></div>
+    </div>
+
+    <div class="section-title" id="title-expertise"></div>
+    <div class="grid-container"> 
+        <div class="card-3d reveal"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
+        <div class="card-3d reveal"><i class="fas fa-file-excel"></i><span>Excel</span></div>
+        <div class="card-3d reveal"><i class="fas fa-project-diagram"></i><span id="skill3"></span></div>
+        <div class="card-3d reveal"><i class="fas fa-calculator"></i><span id="skill4"></span></div>
+        <div class="card-3d reveal"><i class="fas fa-server"></i><span>ETL</span></div>
+        <div class="card-3d reveal"><i class="fas fa-eye"></i><span id="skill6"></span></div>
+    </div>
+
     <div class="section-title" id="title-projects"></div>
     <div class="projects-wrapper">
-        <div class="project-item">
+        <div class="project-item reveal"> 
             <div class="p-img"><img src="hr.png.png"></div>
             <div class="p-text">
                 <h3 id="p1-title"></h3>
-                <div class="btn-view" onclick="showStudy('hr')" id="p1-btn"></div>
+                <div class="btn-view" onclick="showStudy('hr')" id="p1-btn" style="cursor: pointer;"></div>
             </div>
         </div>
-        <div class="project-item">
+
+        <div class="project-item reveal">
             <div class="p-img"><img src="sales.png1.png"></div>
             <div class="p-text">
                 <h3 id="p2-title"></h3>
-                <div class="btn-view" onclick="showStudy('sales')" id="p2-btn"></div>
+                <div class="btn-view" onclick="showStudy('sales')" id="p2-btn" style="cursor: pointer;"></div>
             </div>
+        </div>
+    </div>
+
+    <div class="section-title" id="title-ratings"></div>
+    <div class="grid-container">
+        <div class="card-3d reveal">
+            <i class="fas fa-quote-left" style="font-size: 20px; opacity: 0.5;"></i>
+            <p style="font-style: italic; font-size: 14px; margin: 10px 0;" id="rate-1"></p>
+            <div style="color: #ffce00;">★★★★★</div>
+        </div>
+        <div class="card-3d reveal">
+            <i class="fas fa-quote-left" style="font-size: 20px; opacity: 0.5;"></i>
+            <p style="font-style: italic; font-size: 14px; margin: 10px 0;" id="rate-2"></p>
+            <div style="color: #ffce00;">★★★★★</div>
         </div>
     </div>
 
@@ -317,44 +282,52 @@ body.rtl .card-3d {
 <script>
     let currentLang = localStorage.getItem('ahmedLang') || 'en';
     let lastScrollPos = 0; 
-const translations = {
-    en: {
-        name: "Ahmed Gharib",
-        welcomeBtn: "Explore Insights",
-        job: "Data Analyst",
-        tagline: "Turning Complex Data into Actionable Insights",
-        about: "I transform complex data into <b>actionable insights</b> that drive business growth. Specialized in Power BI & Excel.",
-        journey: "01. Journey", expertise: "02. Expertise", projects: "03. Projects",
-        step1: "Understand", step2: "Extract", step3: "Clean", step4: "Model", step5: "Insight",
-        skill3: "Modeling", skill4: "DAX Logic", skill6: "Viz",
-        viewBtn: "View Details", back: "← BACK TO HOME",
-        obj: "OBJECTIVE", ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT", tool: "TOOLS"
-    },
-    ar: {
-        name: "أحمد غريب",
-        welcomeBtn: "استكشاف التفاصيل",
-        job: "محلل بيانات",
-        tagline: "تحويل البيانات المعقدة إلى رؤى استراتيجية",
-        about: "أقوم بتحويل البيانات المعقدة إلى <b>رؤى قابلة للتنفيذ</b> تدفع نمو الأعمال. متخصص في Power BI و Excel.",
-        journey: "01. الرحلة", expertise: "02. الخبرات", projects: "03. المشاريع",
-        step1: "الفهم", step2: "استخراج", step3: "تنظيف", step4: "نمذجة", step5: "رؤية",
-        skill3: "نمذجة", skill4: "منطق DAX", skill6: "تصوير",
-        viewBtn: "عرض التفاصيل", back: "← العودة للرئيسية",
-        obj: "الهدف", ch: "التحدي", sol: "الحل", imp: "الأثر", tool: "الأدوات"
-    },
-    es: {
-        name: "Ahmed Gharib",
-        welcomeBtn: "Explorar Detalles",
-        job: "Analista de Datos",
-        tagline: "Convirtiendo Datos Complejos en Perspectivas Accionables",
-        about: "Convierto datos complejos en <b>perspectivas accionables</b> que impulsan el crecimiento. Especialista en Power BI y Excel.",
-        journey: "01. Trayectoria", expertise: "02. Experiencia", projects: "03. Proyectos",
-        step1: "Entender", step2: "Extraer", step3: "Limpiar", step4: "Modelar", step5: "Perspectiva",
-        skill3: "Modelado", skill4: "Lógica DAX", skill6: "Viz",
-        viewBtn: "Ver Detalles", back: "← VOLVER AL INICIO",
-        obj: "OBJETIVO", ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO", tool: "HERRAMIENTAS"
-    }
-};
+    
+    const translations = {
+        en: {
+            name: "Ahmed Gharib",
+            welcomeBtn: "Explore Insights",
+            job: "Data Analyst",
+            tagline: "Turning Complex Data into Actionable Insights",
+            about: "I transform complex data into <b>actionable insights</b> that drive business growth. Specialized in Power BI & Excel.",
+            journey: "01. Journey", expertise: "02. Expertise", projects: "03. Projects", ratings: "04. Ratings",
+            step1: "Understand", step2: "Extract", step3: "Clean", step4: "Model", step5: "Insight",
+            skill3: "Modeling", skill4: "DAX Logic", skill6: "Viz",
+            viewBtn: "View Details", back: "← BACK TO HOME",
+            obj: "OBJECTIVE", ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT", tool: "TOOLS",
+            rate1: "Exceptional dashboards and attention to detail!",
+            rate2: "Highly recommended for strategic data insights."
+        },
+        ar: {
+            name: "أحمد غريب",
+            welcomeBtn: "استكشاف التفاصيل",
+            job: "محلل بيانات",
+            tagline: "تحويل البيانات المعقدة إلى رؤى استراتيجية",
+            about: "أقوم بتحويل البيانات المعقدة إلى <b>رؤى قابلة للتنفيذ</b> تدفع نمو الأعمال. متخصص في Power BI و Excel.",
+            journey: "01. الرحلة", expertise: "02. الخبرات", projects: "03. المشاريع", ratings: "04. التقييمات",
+            step1: "الفهم", step2: "استخراج", step3: "تنظيف", step4: "نمذجة", step5: "رؤية",
+            skill3: "نمذجة", skill4: "منطق DAX", skill6: "تصوير",
+            viewBtn: "عرض التفاصيل", back: "← العودة للرئيسية",
+            obj: "الهدف", ch: "التحدي", sol: "الحل", imp: "الأثر", tool: "الأدوات",
+            rate1: "لوحات بيانات استثنائية واهتمام دقيق بالتفاصيل!",
+            rate2: "أنصح به بشدة لتحويل البيانات لرؤى استراتيجية."
+        },
+        es: {
+            name: "Ahmed Gharib",
+            welcomeBtn: "Explorar Detalles",
+            job: "Analista de Datos",
+            tagline: "Convirtiendo Datos Complejos en Perspectivas Accionables",
+            about: "Convierto datos complejos en <b>perspectivas accionables</b> que impulsan el crecimiento. Especialista en Power BI y Excel.",
+            journey: "01. Trayectoria", expertise: "02. Experiencia", projects: "03. Proyectos", ratings: "04. Valoraciones",
+            step1: "Entender", step2: "Extraer", step3: "Limpiar", step4: "Modelar", step5: "Perspectiva",
+            skill3: "Modelado", skill4: "Lógica DAX", skill6: "Viz",
+            viewBtn: "Ver Detalles", back: "← VOLVER AL INICIO",
+            obj: "OBJETIVO", ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO", tool: "HERRAMIENTAS",
+            rate1: "¡Tableros excepcionales y atención al detalle!",
+            rate2: "Muy recomendable para obtener información estratégica."
+        }
+    };
+
     const projectData = {
         hr: { 
             en: { title: "HR Attrition Analysis", o: "Identify key factors behind employee turnover and improve retention.", c: "The company faced high turnover rates in specific departments with no clear reason.", s: "Developed an interactive Power BI dashboard with advanced DAX to track attrition by age, department, and salary.", i: "Identified a 15% turnover reduction opportunity by addressing salary bands.", t: "Power BI, Power Query, DAX" },
@@ -369,67 +342,79 @@ const translations = {
             imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
         }
     };
-const journeyData = {
-    understand: {
-        en: { title: "Understand", desc: "Defining business goals, decisions, and KPIs to ensure data alignment." },
-        ar: { title: "مرحلة الفهم", desc: "تحديد أهداف العمل والقرارات ومؤشرات الأداء لضمان توافق البيانات مع الرؤية المطلوبة." },
-        es: { title: "Entender", desc: "Definición de objetivos comerciales y KPIs." }
-    },
-    extract: {
-        en: { title: "Extract", desc: "Connecting to relevant and reliable data sources for analysis." },
-        ar: { title: "مرحلة الاستخراج", desc: "الاتصال بمصادر البيانات ذات الصلة والموثوقة لبدء عملية التحليل." },
-        es: { title: "Extraer", desc: "Conexión a fuentes de datos confiables." }
-    },
-    clean: {
-        en: { title: "Clean", desc: "Ensuring accuracy, consistency, and overall data quality." },
-        ar: { title: "مرحلة التنظيف", desc: "ضمان دقة البيانات واتساقها وتنقيتها من الأخطاء لضمان جودة النتائج." },
-        es: { title: "Limpiar", desc: "Asegurar la calidad y consistencia de los datos." }
-    },
-    model: {
-        en: { title: "Model", desc: "Building data modeling architectures and complex analytical logic." },
-        ar: { title: "مرحلة النمذجة", desc: "بناء هياكل نمذجة البيانات والمنطق التحليلي المعقد باستخدام DAX." },
-        es: { title: "Modelar", desc: "Construcción de arquitecturas de datos." }
-    },
-    insight: {
-        en: { title: "Insight", desc: "Providing actionable insights and strategic recommendations." },
-        ar: { title: "مرحلة الرؤية", desc: "تحويل البيانات إلى توصيات استراتيجية ورؤى قابلة للتنفيذ مباشرة." },
-        es: { title: "Perspectiva", desc: "Proporcionar recomendaciones estratégicas." }
-    }
-};
-   function updateUI() {
-    const t = translations[currentLang];
-    document.body.className = currentLang === 'ar' ? 'rtl' : '';
 
-    const taglineElem = document.getElementById('welcome-tagline');
-    if(taglineElem) taglineElem.innerText = t.tagline;
+    const journeyData = {
+        understand: {
+            en: { title: "Understand", desc: "Defining business goals, decisions, and KPIs to ensure data alignment." },
+            ar: { title: "مرحلة الفهم", desc: "تحديد أهداف العمل والقرارات ومؤشرات الأداء لضمان توافق البيانات مع الرؤية المطلوبة." },
+            es: { title: "Entender", desc: "Definición de objetivos comerciales y KPIs." }
+        },
+        extract: {
+            en: { title: "Extract", desc: "Connecting to relevant and reliable data sources for analysis." },
+            ar: { title: "مرحلة الاستخراج", desc: "الاتصال بمصادر البيانات ذات الصلة والموثوقة لبدء عملية التحليل." },
+            es: { title: "Extraer", desc: "Conexión a fuentes de datos confiables." }
+        },
+        clean: {
+            en: { title: "Clean", desc: "Ensuring accuracy, consistency, and overall data quality." },
+            ar: { title: "مرحلة التنظيف", desc: "ضمان دقة البيانات واتساقها وتنقيتها من الأخطاء لضمان جودة النتائج." },
+            es: { title: "Limpiar", desc: "Asegurar la calidad y consistencia de los datos." }
+        },
+        model: {
+            en: { title: "Model", desc: "Building data modeling architectures and complex analytical logic." },
+            ar: { title: "مرحلة النمذجة", desc: "بناء هياكل نمذجة البيانات والمنطق التحليلي المعقد باستخدام DAX." },
+            es: { title: "Modelar", desc: "Construcción de arquitecturas de datos." }
+        },
+        insight: {
+            en: { title: "Insight", desc: "Providing actionable insights and strategic recommendations." },
+            ar: { title: "مرحلة الرؤية", desc: "تحويل البيانات إلى توصيات استراتيجية ورؤى قابلة للتنفيذ مباشرة." },
+            es: { title: "Perspectiva", desc: "Proporcionar recomendaciones estratégicas." }
+        }
+    };
 
-    // ترجمة الزرار الأساسي
-    document.getElementById('welcome-btn').innerText = t.welcomeBtn; 
+    function updateUI() {
+        const t = translations[currentLang];
+        document.body.className = currentLang === 'ar' ? 'rtl' : '';
 
-    // ترجمة الأسماء والوظيفة
-    document.getElementById('welcome-name').innerText = t.name;
-    document.getElementById('main-name').innerText = t.name;
-    document.getElementById('job-title').innerText = t.job;
-    document.getElementById('about-me').innerHTML = t.about;
+        // Header & About
+        document.getElementById('welcome-name').innerText = t.name;
+        document.getElementById('welcome-tagline').innerText = t.tagline;
+        document.getElementById('welcome-btn').innerText = t.welcomeBtn; 
+        document.getElementById('main-name').innerText = t.name;
+        document.getElementById('job-title').innerText = t.job;
         document.getElementById('about-me').innerHTML = t.about;
+
+        // Section Titles
         document.getElementById('title-journey').innerText = t.journey;
         document.getElementById('title-expertise').innerText = t.expertise;
         document.getElementById('title-projects').innerText = t.projects;
+        document.getElementById('title-ratings').innerText = t.ratings;
+
+        // Journey Steps
         document.getElementById('step1').innerText = t.step1;
         document.getElementById('step2').innerText = t.step2;
         document.getElementById('step3').innerText = t.step3;
         document.getElementById('step4').innerText = t.step4;
-       document.getElementById('step5').innerText = t.step5;
+        document.getElementById('step5').innerText = t.step5;
+
+        // Expertise Skills
         document.getElementById('skill3').innerText = t.skill3;
         document.getElementById('skill4').innerText = t.skill4;
         document.getElementById('skill6').innerText = t.skill6;
+
+        // Projects
         document.getElementById('p1-title').innerText = projectData.hr[currentLang].title;
         document.getElementById('p2-title').innerText = projectData.sales[currentLang].title;
         document.getElementById('p1-btn').innerText = t.viewBtn;
         document.getElementById('p2-btn').innerText = t.viewBtn;
         document.getElementById('back-btn').innerText = t.back;
-       document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('active'));
-    if(document.getElementById('lang-' + currentLang)) document.getElementById('lang-' + currentLang).classList.add('active');
+
+        // Ratings
+        document.getElementById('rate-1').innerText = t.rate1;
+        document.getElementById('rate-2').innerText = t.rate2;
+
+        // Active Flag
+        document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('active'));
+        if(document.getElementById('lang-' + currentLang)) document.getElementById('lang-' + currentLang).classList.add('active');
     }
 
     function setLang(lang) {
@@ -473,73 +458,47 @@ const journeyData = {
     function hideStudy() { 
         document.getElementById('main-site').style.display = 'block'; 
         document.getElementById('case-study-view').style.display = 'none'; 
-        window.scrollTo({
-            top: lastScrollPos,
-            behavior: 'instant' 
-        });
+        window.scrollTo({ top: lastScrollPos, behavior: 'instant' });
     }
-function showJourney(id) {
-    lastScrollPos = window.scrollY; // حفظ موقع الصفحة للعودة له لاحقاً
-    const d = journeyData[id][currentLang]; // جلب النصوص من كائن journeyData الذي أضفته في السطر 326
-    
-    // تغيير محتوى الهيدر لعرض تفاصيل المرحلة
-    document.getElementById('case-header-content').innerHTML = `
-        <div class="case-header" style="text-align:center; border:none; background:none;">
-            <h2 style="color:var(--main-blue); font-size:40px; margin-bottom:20px;">${d.title}</h2>
-            <p style="font-size: 22px; color:var(--text-gray); line-height:1.6; max-width:800px; margin:0 auto;">${d.desc}</p>
-        </div>`;
-        
-    document.getElementById('study-images').innerHTML = ""; // تفريغ مساحة الصور لأننا نعرض نصاً فقط
-    document.getElementById('main-site').style.display = 'none'; // إخفاء الموقع الرئيسي
-    document.getElementById('case-study-view').style.display = 'block'; // إظهار واجهة التفاصيل
-    window.scrollTo(0,0); // الصعود لأعلى الصفحة
-}
+
+    function showJourney(id) {
+        lastScrollPos = window.scrollY;
+        const d = journeyData[id][currentLang];
+        document.getElementById('case-header-content').innerHTML = `
+            <div class="case-header" style="text-align:center; border:none; background:none;">
+                <h2 style="color:var(--main-blue); font-size:40px; margin-bottom:20px;">${d.title}</h2>
+                <p style="font-size: 22px; color:var(--text-gray); line-height:1.6; max-width:800px; margin:0 auto;">${d.desc}</p>
+            </div>`;
+        document.getElementById('study-images').innerHTML = ""; 
+        document.getElementById('main-site').style.display = 'none';
+        document.getElementById('case-study-view').style.display = 'block';
+        window.scrollTo(0,0);
+    }
+
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-theme');
+        const icon = document.getElementById('dark-mode-toggle');
+        if (document.body.classList.contains('dark-theme')) {
+            icon.classList.replace('fa-moon', 'fa-sun');
+        } else {
+            icon.classList.replace('fa-sun', 'fa-moon');
+        }
+    }
+
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            if (elementTop < windowHeight - 100) {
+                reveals[i].classList.add("active");
+            }
+        }
+    }
+
+    window.addEventListener("scroll", reveal);
+    window.addEventListener("load", reveal);
     updateUI();
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
