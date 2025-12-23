@@ -15,7 +15,7 @@
             --deep-black: #000000;
             --text-gray: #555555; 
             --glow-effect: 0 4px 15px rgba(0, 86, 179, 0.2);
-            --footer-black: #111111; /* الدرجة المطلوبة للخلفية السوداء */
+            --footer-black: #111111; 
         }
 
        body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
@@ -57,6 +57,7 @@
         .nav-logo-img { height: 80px; width: auto; transition: 0.4s ease; cursor: pointer; mix-blend-mode: multiply; filter: contrast(1.1); }
         .nav-logo-img:hover { transform: scale(1.1); }
         
+        /* إعدادات اللوجو في الوضع الداكن */
         body.dark-theme .nav-logo-img, body.dark-theme .welcome-logo { 
             filter: none; 
             mix-blend-mode: normal; 
@@ -198,7 +199,7 @@
 
         footer { 
             padding: 60px 20px; 
-            background: var(--footer-black); /* تم تعديلها لتطابق الدرجة المطلوبة */
+            background: var(--footer-black); 
             color: #ffffff; 
             margin-top: 50px; 
             transition: 0.3s;
@@ -210,9 +211,10 @@
         body.dark-theme footer .social-icons a { color: #000000 !important; }
         body.dark-theme footer p { color: #000000 !important; opacity: 0.8; }
 
-        body.dark-theme { --bg-white: #000000; --deep-black: #ffffff; --text-gray: #bbbbbb; }
-        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section { background: #111111; border-color: #222; }
-        body.dark-theme nav { background: #000000; }
+        /* تعديل الخلفية للوضع الداكن لتطابق طلبك */
+        body.dark-theme { --bg-white: #111111; --deep-black: #ffffff; --text-gray: #bbbbbb; }
+        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section { background: #000000; border-color: #222; }
+        body.dark-theme nav { background: #111111; }
         body.dark-theme .rating-input { background: #252525; color: white; border-color: #444; }
 
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
@@ -223,7 +225,7 @@
 
 <div id="welcome-overlay">
     <div class="welcome-box">
-       <img src="agb-logo.png.1.jpeg" class="welcome-logo">
+       <img src="agb-logo-png.png" class="welcome-logo" id="welcome-logo-img">
        <h2 id="welcome-name">Ahmed Gharib</h2>
        <p id="welcome-tagline">Turning Complex Data into Strategic Assets</p>
        <button class="start-btn" onclick="startExploring()" id="welcome-btn">Explore Insights</button>
@@ -233,7 +235,7 @@
 <div id="main-site">
     <nav>
         <div class="nav-brand">
-            <img src="agb-logo.png.1.jpeg" class="nav-logo-img" onclick="location.reload()">
+            <img src="agb-logo-png.png" class="nav-logo-img" id="nav-logo-img" onclick="location.reload()">
         </div>
         <div class="lang-switch">
             <img src="https://flagcdn.com/w40/gb.png" class="flag-btn" id="lang-en" onclick="setLang('en')" title="English">
@@ -416,7 +418,7 @@
         insight: {
             en: { title: "Insight", desc: "Providing actionable insights and strategic recommendations." },
             ar: { title: "مرحلة الرؤية", desc: "تحويل البيانات إلى توصيات استراتيجية ورؤى قابلة للتنفيذ مباشرة." },
-            es: { title: "Perspectiva", desc: "Proporcionar recomendaciones estratégicas." }
+            es: { title: "Perspectiva", desc: "Proporcionar рекомендации estratégicas." }
         }
     };
 
@@ -424,7 +426,16 @@
         const t = translations[currentLang];
         
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
-        if (isDarkMode) document.body.classList.add('dark-theme');
+        if (isDarkMode) {
+            document.body.classList.add('dark-theme');
+            // تغيير اللوجو للوضع الداكن
+            document.getElementById('nav-logo-img').src = "agb-logo.png.1.jpeg";
+            document.getElementById('welcome-logo-img').src = "agb-logo.png.1.jpeg";
+        } else {
+            // تغيير اللوجو للوضع الفاتح
+            document.getElementById('nav-logo-img').src = "agb-logo-png.png";
+            document.getElementById('welcome-logo-img').src = "agb-logo-png.png";
+        }
 
         document.getElementById('welcome-name').innerText = t.name;
         document.getElementById('welcome-tagline').innerText = t.tagline;
@@ -485,7 +496,6 @@
         }, 800);
     }
 
-    // Star Logic
     document.querySelectorAll('#star-rating i').forEach(star => {
         star.addEventListener('click', function() {
             selectedRating = this.getAttribute('data-value');
@@ -584,6 +594,8 @@
             }
         }
     }
+    // تنفيذ التحديث الأولي عند التحميل
+    updateUI();
 </script>
 
 </body>
