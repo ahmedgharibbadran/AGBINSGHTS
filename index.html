@@ -27,7 +27,8 @@
             z-index: 10000; transition: 0.8s ease-in-out; 
         }
         .welcome-box { text-align: center; padding: 20px; }
-        .welcome-logo { width: 120px; height: 120px; margin-bottom: 25px; border-radius: 50%; border: 3px solid var(--main-blue); transition: 0.3s; }
+        .welcome-logo { width: 120px; height: 120px; margin-bottom: 25px; border-radius: 50%; border: 3px solid var(--main-blue); transition: 0.3s; object-fit: contain; }
+        
         .start-btn { 
             background: var(--main-blue); color: white; padding: 15px 40px; 
             border: none; border-radius: 50px; font-weight: 900; cursor: pointer; 
@@ -55,10 +56,10 @@
         .nav-logo-img { height: 80px; width: auto; transition: 0.4s ease; cursor: pointer; mix-blend-mode: multiply; filter: contrast(1.1); }
         .nav-logo-img:hover { transform: scale(1.1); }
         
-        /* تعديل اللوجو في الدارك مود */
+        /* إصلاح المربع الأبيض في الدارك مود وتحسين اللوجو */
         body.dark-theme .nav-logo-img, body.dark-theme .welcome-logo { 
             filter: brightness(0) invert(1); 
-            mix-blend-mode: normal;
+            mix-blend-mode: normal; 
         }
 
         .lang-switch { display: flex; gap: 12px; align-items: center; }
@@ -71,6 +72,19 @@
             transition: 0.3s; 
             object-fit: cover !important; 
             border: 2px solid transparent !important;
+        }
+
+        /* توحيد مقاس أيقونة الدارك مود مع الأعلام */
+        #dark-mode-toggle {
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px; /* حجم الأيقونة الداخلي */
+            color: var(--main-blue);
+            transition: 0.3s;
         }
 
         .flag-btn.active { 
@@ -210,13 +224,13 @@
 <div id="main-site">
     <nav>
         <div class="nav-brand">
-            <img src="agb-logo-png.png" class="nav-logo-img">
+            <img src="agb-logo-png.png" class="nav-logo-img" onclick="location.reload()">
         </div>
         <div class="lang-switch">
             <img src="https://flagcdn.com/w40/gb.png" class="flag-btn" id="lang-en" onclick="setLang('en')" title="English">
             <img src="https://flagcdn.com/w40/eg.png" class="flag-btn" id="lang-ar" onclick="setLang('ar')" title="العربية">
             <img src="https://flagcdn.com/w40/es.png" class="flag-btn" id="lang-es" onclick="setLang('es')" title="Español">
-            <i class="fas fa-moon" id="dark-mode-toggle" onclick="toggleDarkMode()" style="cursor:pointer; font-size: 20px; margin-left: 10px; color: var(--main-blue);"></i>
+            <div id="dark-mode-toggle" onclick="toggleDarkMode()"><i class="fas fa-moon"></i></div>
         </div>
     </nav>
 
@@ -441,8 +455,8 @@
         document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('active'));
         if(document.getElementById('lang-' + currentLang)) document.getElementById('lang-' + currentLang).classList.add('active');
         
-        const icon = document.getElementById('dark-mode-toggle');
-        icon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
+        const iconContainer = document.getElementById('dark-mode-toggle');
+        iconContainer.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
     }
 
     function setLang(lang) {
@@ -494,8 +508,6 @@
         const container = document.getElementById('ratings-display');
         const newRate = document.createElement('div');
         newRate.className = "card-3d reveal active";
-        
-        // دعم اللغات (إسباني/عربي) تلقائياً
         newRate.setAttribute('dir', 'auto');
         newRate.style.textAlign = 'start';
 
