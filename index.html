@@ -57,7 +57,6 @@
         .nav-logo-img { height: 80px; width: auto; transition: 0.4s ease; cursor: pointer; mix-blend-mode: multiply; filter: contrast(1.1); }
         .nav-logo-img:hover { transform: scale(1.1); }
         
-        /* إعدادات اللوجو في الوضع الداكن */
         body.dark-theme .nav-logo-img, body.dark-theme .welcome-logo { 
             filter: none; 
             mix-blend-mode: normal; 
@@ -197,19 +196,51 @@
         .rating-input { width: 80%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 10px; font-family: inherit; }
         .submit-rate-btn { background: var(--main-blue); color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
+        /* تعديل الفوتر - إزالة المربع الأسود واستخدام تصميم 3D */
         footer { 
-            padding: 60px 20px; 
-            background: var(--footer-black); 
-            color: #ffffff; 
+            padding: 40px 10%; 
+            background: transparent; 
             margin-top: 50px; 
             transition: 0.3s;
         }
-        .social-icons a { color: #ffffff; font-size: 25px; margin: 0 15px; transition: 0.3s; }
-        .social-icons a:hover { color: var(--main-blue); }
+        .footer-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .footer-card {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 15px;
+            transition: 0.3s ease;
+            text-decoration: none;
+            color: var(--deep-black);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 120px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+        .footer-card i {
+            font-size: 28px;
+            color: var(--main-blue);
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+        .footer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--glow-effect);
+        }
+        .footer-card:hover i {
+            transform: scale(1.1);
+        }
 
-        body.dark-theme footer { background: #ffffff !important; color: #000000 !important; }
-        body.dark-theme footer .social-icons a { color: #000000 !important; }
-        body.dark-theme footer p { color: #000000 !important; opacity: 0.8; }
+        /* تعديلات الوضع الليلي للفوتر الجديد */
+        body.dark-theme footer { background: transparent !important; }
+        body.dark-theme .footer-card { background: #000000; border-color: #222; color: #fff; }
+        body.dark-theme .footer-copy { color: #fff !important; opacity: 0.6; }
 
         body.dark-theme { --bg-white: #111111; --deep-black: #ffffff; --text-gray: #bbbbbb; }
         body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section { background: #000000; border-color: #222; }
@@ -322,11 +353,17 @@
     </div>
 
     <footer>
-        <div class="social-icons">
-            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:info@agbinsights.com"><i class="fas fa-envelope"></i></a>
+        <div class="footer-grid">
+            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank" class="footer-card">
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+            </a>
+            <a href="mailto:info@agbinsights.com" class="footer-card">
+                <i class="fas fa-envelope"></i>
+                <span>Email</span>
+            </a>
         </div>
-        <p style="margin-top: 20px; opacity: 0.6; font-size: 12px;">© AHMED GHARIB | AGBINSIGHTS</p>
+        <p class="footer-copy" style="margin-top: 20px; opacity: 0.6; font-size: 12px; font-weight: bold;">© AHMED GHARIB | AGBINSIGHTS</p>
     </footer>
 </div>
 
@@ -385,7 +422,7 @@
         hr: { 
             en: { title: "HR Attrition Analysis", o: "Identify key factors behind employee turnover and improve retention.", c: "The company faced high turnover rates in specific departments with no clear reason.", s: "Developed an interactive Power BI dashboard with advanced DAX to track attrition by age, department, and salary.", i: "Identified a 15% turnover reduction opportunity by addressing salary bands.", t: "Power BI, Power Query, DAX" },
             ar: { title: "تحليل استقالات الموظفين", o: "تحديد الأسباب الرئيسية لترك الموظفين للعمل وتحسين معدلات الاستبقاء.", c: "واجهت الشركة معدلات دوران وظيفي عالية في أقسام معينة دون معرفة الأسباب الحقيقية.", s: "تطوير لوحة بيانات تفاعلية باستخدام Power BI وDAX لتتبع الاستقالات حسب العمر والقسم والراتب.", i: "تحديد فرصة لتقليل الدوران الوظيفي بنسبة 15% من خلال معالجة هيكل الرواتب.", t: "Power BI, Power Query, DAX" },
-            es: { title: "Análisis de Rotación de RRHH", o: "Identificar factores clave detrás de la rotación de empleados.", c: "La empresa enfrentaba altas tasas de rotación en departamentos específicos sin razón clara.", s: "Dashboard interactivo en Power BI con DAX avanzado para rastrear la rotación por edad, departamento y salario.", i: "Se identificó una oportunidad de reducción del 15% al abordar los rangos salariales.", t: "Power BI, Power Query, DAX" },
+            es: { title: "Análisis de Rotación de RRHH", o: "Identificar factores clave detrás de la rotación de empleados.", c: "La empresa enfrentaba altas tasas de rotación en departamentos específicos sin razón clara.", s: "Dashboard interactivo en Power BI con DAX avanzado para rastrear la rotación por edad, departmento y salario.", i: "Se identificó una oportunidad de reducción del 15% al abordar los rangos salariales.", t: "Power BI, Power Query, DAX" },
             imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
         },
         sales: {
@@ -496,11 +533,10 @@
         }, 800);
     }
 
-    // إدارة اختيار النجوم
     document.querySelectorAll('#star-rating i').forEach(star => {
         star.addEventListener('click', function() {
-            selectedRating = this.getAttribute('data-value');
-            document.getElementById('stars-count').value = selectedRating; // تحديث القيمة المخفية للفورم
+            selectedRating = star.getAttribute('data-value');
+            document.getElementById('stars-count').value = selectedRating;
             updateStars();
         });
     });
@@ -511,10 +547,7 @@
         });
     }
 
-    // إدارة إرسال الفورم (Formspree + العرض المؤقت)
     document.getElementById('ratingForm').addEventListener('submit', function(e) {
-        // لا نمنع الإرسال الافتراضي لكي يتمكن Formspree من استلام البيانات
-        // لكن سنقوم بإضافة التقييم للشاشة يدوياً قبل الإرسال ليعرف الزائر أنه تم
         const name = document.getElementById('user-name').value;
         const comment = document.getElementById('user-comment').value;
         const t = translations[currentLang];
@@ -538,7 +571,6 @@
         
         container.prepend(newRate);
         alert(t.thanks);
-        // الفورم سيقوم بالإرسال لـ Formspree تلقائياً بعد هذا الكود
     });
 
     function showStudy(id) {
