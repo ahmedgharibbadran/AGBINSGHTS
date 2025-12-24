@@ -262,7 +262,6 @@
         <div class="card-3d reveal"><i class="fas fa-calculator"></i><span id="skill4"></span></div>
         <div class="card-3d reveal"><i class="fas fa-server"></i><span>ETL</span></div>
         <div class="card-3d reveal"><i class="fas fa-eye"></i><span id="skill6"></span></div>
-        <div class="card-3d reveal" onclick="showRatings()" style="cursor: pointer; border: 2px solid var(--main-blue);"><i class="fas fa-star" style="opacity: 1;"></i><span id="title-ratings-icon">Ratings</span></div>
     </div>
 
     <div class="section-title" id="title-projects"></div>
@@ -280,6 +279,14 @@
                 <h3 id="p2-title"></h3>
                 <div class="btn-view" onclick="showStudy('sales')" id="p2-btn" style="cursor: pointer;"></div>
             </div>
+        </div>
+    </div>
+
+    <div class="section-title" id="title-ratings"></div>
+    <div class="grid-container" style="margin-bottom: 20px;">
+        <div class="card-3d reveal" onclick="showRatings()" style="cursor: pointer; max-width: 250px; border: 2px solid var(--main-blue);">
+            <i class="fas fa-star" style="opacity: 1;"></i>
+            <span id="ratings-btn-text" style="font-weight: bold;">View All Ratings</span>
         </div>
     </div>
 
@@ -357,7 +364,8 @@
             viewBtn: "View Details", back: "← BACK TO HOME",
             obj: "OBJECTIVE", ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT", tool: "TOOLS",
             ratePrompt: "Leave a Review", namePlace: "Name", ratePlace: "Write your feedback...", rateBtn: "Submit",
-            alert: "Please enter both name and comment", thanks: "Thank you for your feedback!"
+            alert: "Please enter both name and comment", thanks: "Thank you for your feedback!",
+            rateView: "View All Ratings"
         },
         ar: {
             name: "أحمد غريب", welcomeBtn: "استكشاف التفاصيل", job: "محلل بيانات",
@@ -369,7 +377,8 @@
             viewBtn: "عرض التفاصيل", back: "← العودة للرئيسية",
             obj: "الهدف", ch: "التحدي", sol: "الحل", imp: "الأثر", tool: "الأدوات",
             ratePrompt: "أضف تقييمك", namePlace: "الاسم", ratePlace: "اكتب رأيك هنا...", rateBtn: "إرسال",
-            alert: "يرجى إدخال الاسم والتعليق", thanks: "شكراً لتقييمك!"
+            alert: "يرجى إدخال الاسم والتعليق", thanks: "شكراً لتقييمك!",
+            rateView: "عرض جميع التقييمات"
         },
         es: {
             name: "Ahmed Gharib", welcomeBtn: "Explorar Detalles", job: "Analista de Datos",
@@ -381,7 +390,8 @@
             viewBtn: "Ver Detalles", back: "← VOLVER AL INICIO",
             obj: "OBJETIVO", ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO", tool: "HERRAMIENTAS",
             ratePrompt: "Deja una reseña", namePlace: "Nombre", ratePlace: "Escribe tu opinión...", rateBtn: "Enviar",
-            alert: "Por favor, introduzca su nombre y comentario", thanks: "¡Gracias por tu comentario!"
+            alert: "Por favor, introduzca su nombre y comentario", thanks: "¡Gracias por tu comentario!",
+            rateView: "Ver todas las valoraciones"
         }
     };
 
@@ -401,31 +411,11 @@
     };
 
     const journeyData = {
-        understand: {
-            en: { title: "Understand", desc: "Defining business goals, decisions, and KPIs to ensure data alignment." },
-            ar: { title: "مرحلة الفهم", desc: "تحديد أهداف العمل والقرارات ومؤشرات الأداء لضمان توافق البيانات مع الرؤية المطلوبة." },
-            es: { title: "Entender", desc: "Definición de objetivos comerciales y KPIs." }
-        },
-        extract: {
-            en: { title: "Extract", desc: "Connecting to relevant and reliable data sources for analysis." },
-            ar: { title: "مرحلة الاستخراج", desc: "الاتصال بمصادر البيانات ذات الصلة والموثوقة لبدء عملية التحليل." },
-            es: { title: "Extraer", desc: "Conexión a fuentes de datos confiables." }
-        },
-        clean: {
-            en: { title: "Clean", desc: "Ensuring accuracy, consistency, and overall data quality." },
-            ar: { title: "مرحلة التنظيف", desc: "ضمان دقة البيانات واتساقها وتنقيتها من الأخطاء لضمان جودة النتائج." },
-            es: { title: "Limpiar", desc: "Asegurar la calidad y consistencia de los datos." }
-        },
-        model: {
-            en: { title: "Model", desc: "Building data modeling architectures and complex analytical logic." },
-            ar: { title: "مرحلة النمذجة", desc: "بناء هياكل نمذجة البيانات والمنطق التحليلي المعقد باستخدام DAX." },
-            es: { title: "Modelar", desc: "Construcción de arquitecturas de datos." }
-        },
-        insight: {
-            en: { title: "Insight", desc: "Providing actionable insights and strategic recommendations." },
-            ar: { title: "مرحلة الرؤية", desc: "تحويل البيانات إلى توصيات استراتيجية ورؤى قابلة للتنفيذ مباشرة." },
-            es: { title: "Perspectiva", desc: "Proporcionar recomendaciones estratégicas." }
-        }
+        understand: { en: { title: "Understand", desc: "Defining business goals, decisions, and KPIs to ensure data alignment." }, ar: { title: "مرحلة الفهم", desc: "تحديد أهداف العمل والقرارات ومؤشرات الأداء لضمان توافق البيانات مع الرؤية المطلوبة." }, es: { title: "Entender", desc: "Definición de objetivos comerciales y KPIs." } },
+        extract: { en: { title: "Extract", desc: "Connecting to relevant and reliable data sources for analysis." }, ar: { title: "مرحلة الاستخراج", desc: "الاتصال بمصادر البيانات ذات الصلة والموثوقة لبدء عملية التحليل." }, es: { title: "Extraer", desc: "Conexión a fuentes de datos confiables." } },
+        clean: { en: { title: "Clean", desc: "Ensuring accuracy, consistency, and overall data quality." }, ar: { title: "مرحلة التنظيف", desc: "ضمان دقة البيانات واتساقها وتنقيتها من الأخطاء لضمان جودة النتائج." }, es: { title: "Limpiar", desc: "Asegurar la calidad y consistencia de los datos." } },
+        model: { en: { title: "Model", desc: "Building data modeling architectures and complex analytical logic." }, ar: { title: "مرحلة النمذجة", desc: "بناء هياكل نمذجة البيانات والمنطق التحليلي المعقد باستخدام DAX." }, es: { title: "Modelar", desc: "Construcción de arquitecturas de datos." } },
+        insight: { en: { title: "Insight", desc: "Providing actionable insights and strategic recommendations." }, ar: { title: "مرحلة الرؤية", desc: "تحويل البيانات إلى توصيات استراتيجية ورؤى قابلة للتنفيذ مباشرة." }, es: { title: "Perspectiva", desc: "Proporcionar recomendaciones estratégicas." } }
     };
 
     function updateUI() {
@@ -450,7 +440,8 @@
         document.getElementById('title-journey').innerText = t.journey;
         document.getElementById('title-expertise').innerText = t.expertise;
         document.getElementById('title-projects').innerText = t.projects;
-        document.getElementById('title-ratings-icon').innerText = t.ratings;
+        document.getElementById('title-ratings').innerText = t.ratings;
+        document.getElementById('ratings-btn-text').innerText = t.rateView;
         document.getElementById('step1').innerText = t.step1;
         document.getElementById('step2').innerText = t.step2;
         document.getElementById('step3').innerText = t.step3;
@@ -477,17 +468,8 @@
         iconContainer.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
     }
 
-    function setLang(lang) {
-        currentLang = lang;
-        localStorage.setItem('ahmedLang', lang);
-        updateUI();
-    }
-
-    function toggleDarkMode() {
-        isDarkMode = !isDarkMode;
-        localStorage.setItem('ahmedDarkMode', isDarkMode);
-        updateUI();
-    }
+    function setLang(lang) { currentLang = lang; localStorage.setItem('ahmedLang', lang); updateUI(); }
+    function toggleDarkMode() { isDarkMode = !isDarkMode; localStorage.setItem('ahmedDarkMode', isDarkMode); updateUI(); }
 
     function startExploring() {
         document.getElementById('welcome-overlay').style.opacity = '0';
@@ -500,6 +482,21 @@
         }, 800);
     }
 
+    // وظائف التقييمات
+    function showRatings() {
+        lastScrollPos = window.scrollY;
+        document.getElementById('main-site').style.display = 'none';
+        document.getElementById('ratings-view').style.display = 'block';
+        window.scrollTo(0,0);
+    }
+
+    function hideRatings() {
+        document.getElementById('main-site').style.display = 'block';
+        document.getElementById('ratings-view').style.display = 'none';
+        window.scrollTo({ top: lastScrollPos, behavior: 'instant' });
+    }
+
+    // نجوم التقييم
     document.querySelectorAll('#star-rating i').forEach(star => {
         star.addEventListener('click', function() {
             selectedRating = this.getAttribute('data-value');
@@ -518,7 +515,6 @@
         const name = document.getElementById('user-name').value;
         const comment = document.getElementById('user-comment').value;
         const t = translations[currentLang];
-        
         if (!name || !comment) { alert(t.alert); return; }
 
         const form = document.getElementById('rating-form');
@@ -540,15 +536,10 @@
                 let starsHtml = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
                 newRate.innerHTML = `<i class="fas fa-quote-left" style="font-size: 15px; opacity: 0.5;"></i><strong style="display:block; margin-top:5px; color:var(--main-blue);">${name}</strong><p style="font-style: italic; font-size: 14px; margin: 5px 0;">${comment}</p><div style="color: #ffce00;">${starsHtml}</div>`;
                 container.prepend(newRate);
-                
                 document.getElementById('user-name').value = "";
                 document.getElementById('user-comment').value = "";
                 alert(t.thanks);
-            } else {
-                alert("Oops! There was a problem submitting your feedback.");
             }
-        }).catch(error => {
-            alert("Error connecting to the server.");
         });
     }
 
@@ -579,19 +570,6 @@
         window.scrollTo({ top: lastScrollPos, behavior: 'instant' });
     }
 
-    function showRatings() {
-        lastScrollPos = window.scrollY;
-        document.getElementById('main-site').style.display = 'none';
-        document.getElementById('ratings-view').style.display = 'block';
-        window.scrollTo(0,0);
-    }
-
-    function hideRatings() {
-        document.getElementById('main-site').style.display = 'block';
-        document.getElementById('ratings-view').style.display = 'none';
-        window.scrollTo({ top: lastScrollPos, behavior: 'instant' });
-    }
-
     function showJourney(id) {
         const d = journeyData[id][currentLang];
         alert(d.title + ": " + d.desc);
@@ -603,9 +581,7 @@
         });
     });
 
-    window.onload = () => {
-        if(localStorage.getItem('ahmedLang')) updateUI();
-    };
+    window.onload = () => { if(localStorage.getItem('ahmedLang')) updateUI(); };
 </script>
 
 </body>
