@@ -196,6 +196,7 @@
         .rating-input { width: 80%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 10px; font-family: inherit; }
         .submit-rate-btn { background: var(--main-blue); color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
+        /* تعديلات الـ Footer المطلوبة */
         footer { 
             padding: 60px 20px; 
             background: var(--footer-black); 
@@ -203,7 +204,6 @@
             margin-top: 50px; 
             transition: 0.3s;
         }
-        /* تعديل أيقونات التواصل الاجتماعي لتصبح مطابقة للأيقونات العلوية */
         .social-icons {
             display: flex;
             justify-content: center;
@@ -221,7 +221,6 @@
             color: #ffffff; 
             font-size: 22px; 
             transition: 0.3s; 
-            border: 1px solid transparent;
         }
         .social-icons a:hover { 
             background: var(--main-blue);
@@ -424,7 +423,7 @@
         sales: {
             en: { title: "Sales Performance Hub", o: "Centralize sales data from multiple sources to track global growth.", c: "Fragmented data across different regions made it hard to track real-time profit.", s: "Built a unified ETL pipeline to clean and merge data, featuring year-over-year growth metrics.", i: "Improved reporting speed by 40% and identified top-performing stock items.", t: "Excel, Power BI, ETL Processes" },
             ar: { title: "مركز أداء المبيعات", o: "مركزية بيانات المبيعات من مصادر متعددة لتتبع النمو العالمي.", c: "بيانات مشتتة عبر مناطق مختلفة جعلت من الصعب تتبع الأرباح بشكل لحظي.", s: "بناء مسار ETL موحد لتنظيف ودمج البيانات، مع عرض مقاييس النمو السنوي.", i: "تحسين سرعة التقارير بنسبة 40% وتحديد السلع الأكثر ربحية.", t: "Excel, Power BI, ETL Processes" },
-            es: { title: "Hub de Rendimiento de Ventas", o: "Centralizar datos de ventas de múltiples fuentes.", c: "Datos fragmentados en differentes regiones dificultaban el seguimiento de ganancias en tiempo real.", s: "Pipeline de ETL unificado para limpiar y fusionar datos, con métricas de crecimiento anual.", i: "Mejora del 40% en velocidad de informes e identificación de artículos más rentables.", t: "Excel, Power BI, Procesos ETL" },
+            es: { title: "Hub de Rendimiento de Ventas", o: "Centralizar datos de ventas de múltiples fuentes.", c: "Datos fragmentados en differentes regiones dificultaban el seguimiento de ganancias en tiempo real.", s: "Pipeline de ETL unificado para limpiar y fusionar datos, con métricas de crecimiento anual.", i: "Meجora del 40% en velocidad de informes e identificación de artículos más rentables.", t: "Excel, Power BI, Procesos ETL" },
             imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
         },
         finance: {
@@ -437,8 +436,8 @@
 
     function updateUI() {
         const t = translations[currentLang];
-        
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
+        
         if (isDarkMode) {
             document.body.classList.add('dark-theme');
             document.getElementById('nav-logo-img').src = "agb-logo.png.1.jpeg";
@@ -473,7 +472,6 @@
         document.getElementById('p2-btn').innerText = t.viewBtn;
         document.getElementById('p3-btn').innerText = t.viewBtn;
         document.getElementById('back-btn').innerText = t.back;
-
         document.getElementById('rate-prompt').innerText = t.ratePrompt;
         document.getElementById('user-name').placeholder = t.namePlace;
         document.getElementById('user-comment').placeholder = t.ratePlace;
@@ -526,20 +524,14 @@
         const name = document.getElementById('user-name').value;
         const comment = document.getElementById('user-comment').value;
         const t = translations[currentLang];
-        
-        if (!name || !comment) {
-            alert(t.alert);
-            return;
-        }
+        if (!name || !comment) { alert(t.alert); return; }
         
         const container = document.getElementById('ratings-display');
         const newRate = document.createElement('div');
         newRate.className = "card-3d reveal active";
-        
         const isArabic = /[\u0600-\u06FF]/.test(comment);
         newRate.setAttribute('dir', isArabic ? 'rtl' : 'ltr');
         newRate.style.textAlign = isArabic ? 'right' : 'left';
-
         let starsHtml = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
         
         newRate.innerHTML = `
@@ -548,7 +540,6 @@
             <p style="font-style: italic; font-size: 14px; margin: 5px 0;">${comment}</p>
             <div style="color: #ffce00;">${starsHtml}</div>
         `;
-        
         container.prepend(newRate);
         document.getElementById('user-name').value = "";
         document.getElementById('user-comment').value = "";
