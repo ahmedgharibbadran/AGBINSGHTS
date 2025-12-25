@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root { 
-            /* تم تعديل اللون للدرجة المطلوبة */
             --main-blue: #4a90e2; 
             --bg-white: #ffffff; 
             --deep-black: #000000;
@@ -141,13 +140,13 @@
             margin-bottom: 40px;
         }
 
-        .expertise-box { 
+        .expertise-box, .process-step { 
             background: var(--bg-white); 
             border: 1px solid #eee; 
             padding: 25px 15px; 
             border-radius: 15px; 
             transition: all 0.3s ease; 
-            cursor: default; 
+            cursor: pointer; 
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -155,15 +154,15 @@
             justify-content: center;
         }
 
-        .expertise-box:hover {
+        .expertise-box:hover, .process-step:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 20px rgba(74, 144, 226, 0.15);
             background: #fcfcfc;
             border-color: var(--main-blue);
         }
 
-        /* توحيد لون أيقونات الـ SVG */
-        .expertise-box svg {
+        /* توحيد تصميم الأيقونات (SVG) للقسمين */
+        .expertise-box svg, .process-step svg {
             width: 45px;
             height: 45px;
             margin-bottom: 15px;
@@ -171,7 +170,7 @@
             transition: 0.3s;
         }
 
-        .expertise-box p {
+        .expertise-box p, .process-step h4 {
             margin: 0;
             font-weight: bold;
             font-size: 15px;
@@ -186,23 +185,6 @@
             padding: 0 10%; 
             margin-bottom: 40px; 
         }
-        .process-step { 
-            background: var(--bg-white); 
-            border: 1px solid #eee; 
-            padding: 25px 15px; 
-            flex: 1 1 130px; 
-            max-width: 200px;
-            border-radius: 15px; 
-            transition: all 0.3s ease; 
-            cursor: pointer; 
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        /* توحيد لون أيقونات الـ Journey */
-        .process-step i { font-size: 32px; color: var(--main-blue); margin-bottom: 15px; opacity: 1; }
-        .process-step:hover { transform: translateY(-5px); border-color: var(--main-blue); box-shadow: 0 10px 20px rgba(74, 144, 226, 0.1); }
 
         @media (max-width: 480px) {
             .grid-container, .process-flow {
@@ -309,11 +291,26 @@
 
     <div class="section-title" id="title-journey"></div>
     <div class="process-flow">
-        <div class="process-step reveal" onclick="showJourney('understand')"><i class="far fa-circle-dot"></i><h4 id="step1"></h4></div>
-        <div class="process-step reveal" onclick="showJourney('extract')"><i class="far fa-copy"></i><h4 id="step2"></h4></div>
-        <div class="process-step reveal" onclick="showJourney('clean')"><i class="fas fa-wand-magic-sparkles"></i><h4 id="step3"></h4></div>
-        <div class="process-step reveal" onclick="showJourney('model')"><i class="far fa-square-plus"></i><h4 id="step4"></h4></div>
-        <div class="process-step reveal" onclick="showJourney('insight')"><i class="far fa-lightbulb"></i><h4 id="step5"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('understand')">
+            <svg viewBox="0 0 512 512"><path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192zm64 0c0 141.4-114.6 256-256 256S0 397.4 0 256 114.6 0 256 0s256 114.6 256 256zM256 336c44.2 0 80-35.8 80-80s-35.8-80-80-80-80 35.8-80 80 35.8 80 80 80zm0-112c17.7 0 32 14.3 32 32s-14.3 32-32 32-32-14.3-32-32 14.3-32 32-32z"/></svg>
+            <h4 id="step1"></h4>
+        </div>
+        <div class="process-step reveal" onclick="showJourney('extract')">
+            <svg viewBox="0 0 448 512"><path d="M448 80v48c0 44.2-100.3 80-224 80S0 172.2 0 128V80C0 35.8 100.3 0 224 0S448 35.8 448 80zM393.2 214.7c20.8-7.4 39.9-16.9 54.8-28.7V288c0 44.2-100.3 80-224 80S0 332.2 0 288V186c14.9 11.8 34 21.2 54.8 28.7C99.7 230.5 159.3 240 224 240s124.3-9.5 169.2-25.3zM0 346c14.9 11.8 34 21.2 54.8 28.7C99.7 390.5 159.3 400 224 400s124.3-9.5 169.2-25.3c20.8-7.4 39.9-16.9 54.8-28.7V432c0 44.2-100.3 80-224 80S0 476.2 0 432V346z"/></svg>
+            <h4 id="step2"></h4>
+        </div>
+        <div class="process-step reveal" onclick="showJourney('clean')">
+            <svg viewBox="0 0 512 512"><path d="M350.7 7.1c-6.2-9.4-19-12.3-28.7-6.3l-128 80c-7.9 4.9-11.4 14.8-8.4 23.4l24.4 70.2L9.2 381.1c-12.3 12.3-12.3 32.2 0 44.5l77.2 77.2c12.3 12.3 32.2 12.3 44.5 0l206.7-206.7 70.2 24.4c8.6 3 18.5-.5 23.4-8.4l80-128c6-9.7 3.1-22.5-6.3-28.7l-154.2-104.3zM304 224l-32-32 128-85.3 37.3 37.3L304 224z"/></svg>
+            <h4 id="step3"></h4>
+        </div>
+        <div class="process-step reveal" onclick="showJourney('model')">
+            <svg viewBox="0 0 640 512"><path d="M576 64h-64V32c0-17.7-14.3-32-32-32H160c-17.7 0-32 14.3-32 32v32H64C28.7 64 0 92.7 0 128v256c0 35.3 28.7 64 64 64h64v32c0 17.7 14.3 32 32 32h320c17.7 0 32-14.3 32-32v-32h64c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64zM352 448H288v-64h64v64zm160-64H128V128h384v256z"/></svg>
+            <h4 id="step4"></h4>
+        </div>
+        <div class="process-step reveal" onclick="showJourney('insight')">
+            <svg viewBox="0 0 352 512"><path d="M176 0c-83.7 0-152 64.3-152 144 0 44.1 20.3 83.1 52.1 109.8C103 277.6 128 322.2 128 368v32c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32v-32c0-45.8 25-90.4 51.9-114.2 31.8-26.7 52.1-65.7 52.1-109.8C328 64.3 259.7 0 176 0zM120 480c0 17.7 14.3 32 32 32h48c17.7 0 32-14.3 32-32s-14.3-32-32-32h-48c-17.7 0-32 14.3-32 32z"/></svg>
+            <h4 id="step5"></h4>
+        </div>
     </div>
 
     <div class="section-title" id="title-expertise"></div>
@@ -491,7 +488,7 @@
         hr: { 
             en: { title: "HR Attrition Analysis", o: "Identify factors behind turnover.", c: "High turnover rates.", s: "Power BI dashboard with DAX.", i: "15% reduction opportunity.", t: "Power BI, DAX" },
             ar: { title: "تحليل استقالات الموظفين", o: "تحديد أسباب ترك العمل.", c: "معدلات دوران عالية.", s: "لوحة بيانات Power BI.", i: "فرصة تقليل 15%.", t: "Power BI, DAX" },
-            es: { title: "Análisis de Rotación", o: "Identificar factores.", c: "Alta rotación.", s: "Dashboard Power BI.", i: "Mejora del 15%.", t: "Power BI, DAX" },
+            es: { title: "Análisis de Rotación", o: "Identificar factores.", c: "Alta rotación.", s: "Dashboard Power BI.", i: "Meجورة del 15%.", t: "Power BI, DAX" },
             imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
         },
         sales: {
