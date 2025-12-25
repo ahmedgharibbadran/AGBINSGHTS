@@ -282,13 +282,13 @@
         </div>
     </div>
 
-   <div class="section-title" id="title-ratings"></div>
-<div style="display: flex; justify-content: center; width: 100%; margin: 20px 0;">
-    <div class="card-3d reveal active" onclick="openRatingsPage()" 
-         style="cursor: pointer; width: 65px; height: 65px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 2px solid var(--main-blue); background: var(--bg-white); box-shadow: var(--glow-effect); padding: 0;">
-        <i class="fas fa-edit" style="color: var(--main-blue); font-size: 24px; margin: 0; opacity: 1;"></i>
+    <div class="section-title" id="title-ratings"></div>
+    <div class="grid-container">
+        <div class="card-3d reveal" onclick="openRatingsPage()" style="cursor: pointer; max-width: 250px;">
+            <i class="fas fa-star" style="color: #ffce00; opacity: 1;"></i>
+            <h4 id="view-ratings-text">View & Add Reviews</h4>
+        </div>
     </div>
-</div>
 
     <footer>
         <div class="social-icons">
@@ -544,7 +544,7 @@
                 newRate.setAttribute('dir', isArabic ? 'rtl' : 'ltr');
                 newRate.style.textAlign = isArabic ? 'right' : 'left';
                 let starsHtml = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
-                newRate.innerHTML = `<i class="fas fa-quote-left" style="font-size: 15px; opacity: 0.5;"></i><strong style="display:block; margin-top:5px; color:var(--main-blue);">${name}</strong><p style="font-style: italic; font-size: 14px; margin: 5px 0;">${comment}</p><div style="color: #ffce00;">${starsHtml}</div>`;
+                newRate.innerHTML = <i class="fas fa-quote-left" style="font-size: 15px; opacity: 0.5;"></i><strong style="display:block; margin-top:5px; color:var(--main-blue);">${name}</strong><p style="font-style: italic; font-size: 14px; margin: 5px 0;">${comment}</p><div style="color: #ffce00;">${starsHtml}</div>;
                 container.prepend(newRate);
                 document.getElementById('user-name').value = "";
                 document.getElementById('user-comment').value = "";
@@ -568,7 +568,7 @@
                     <div><b style="color:var(--main-blue)">${t.tool}</b><br>${d.t}</div>
                 </div>
             </div>`;
-        document.getElementById('study-images').innerHTML = projectData[id].imgs.map(img => `<img src="${img}" style="width:100%; margin-bottom:20px; border-radius:15px; box-shadow:0 10px 30px rgba(0,0,0,0.1);">`).join('');
+        document.getElementById('study-images').innerHTML = projectData[id].imgs.map(img => <img src="${img}" style="width:100%; margin-bottom:20px; border-radius:15px; box-shadow:0 10px 30px rgba(0,0,0,0.1);">).join('');
         document.getElementById('main-site').style.display = 'none';
         document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
@@ -604,6 +604,3 @@
 </script>
 </body>
 </html>
-
-
-
