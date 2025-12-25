@@ -10,11 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --main-blue: #0056b3; 
+            /* تم تعديل اللون للدرجة المطلوبة */
+            --main-blue: #4a90e2; 
             --bg-white: #ffffff; 
             --deep-black: #000000;
             --text-gray: #555555; 
-            --glow-effect: 0 4px 15px rgba(0, 86, 179, 0.2);
+            --glow-effect: 0 4px 15px rgba(74, 144, 226, 0.2);
             --footer-black: transparent; 
         }
 
@@ -39,6 +40,7 @@
             background: var(--main-blue); color: white; padding: 15px 40px; 
             border: none; border-radius: 50px; font-weight: 900; cursor: pointer; 
             margin-top: 30px; text-transform: uppercase; letter-spacing: 2px;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
         }
 
         #main-site { opacity: 0; display: none; }
@@ -131,7 +133,6 @@
         }
         body.rtl .section-title { text-align: right; border-left: none; border-right: 5px solid var(--main-blue); padding-left: 0; padding-right: 15px; margin: 40px 10% 20px 0; }
 
-        /* تعديل شبكة الخبرات لتكون مطورة */
         .grid-container { 
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -156,11 +157,12 @@
 
         .expertise-box:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 20px rgba(74, 144, 226, 0.15);
             background: #fcfcfc;
             border-color: var(--main-blue);
         }
 
+        /* توحيد لون أيقونات الـ SVG */
         .expertise-box svg {
             width: 45px;
             height: 45px;
@@ -176,7 +178,6 @@
             color: var(--deep-black);
         }
 
-        /* تنسيق خطوات الرحلة */
         .process-flow { 
             display: flex; 
             justify-content: center; 
@@ -199,8 +200,9 @@
             flex-direction: column;
             align-items: center;
         }
-        .process-step i { font-size: 32px; color: var(--main-blue); margin-bottom: 15px; opacity: 0.7; }
-        .process-step:hover { transform: translateY(-5px); border-color: var(--main-blue); }
+        /* توحيد لون أيقونات الـ Journey */
+        .process-step i { font-size: 32px; color: var(--main-blue); margin-bottom: 15px; opacity: 1; }
+        .process-step:hover { transform: translateY(-5px); border-color: var(--main-blue); box-shadow: 0 10px 20px rgba(74, 144, 226, 0.1); }
 
         @media (max-width: 480px) {
             .grid-container, .process-flow {
