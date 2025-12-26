@@ -6,7 +6,6 @@
     <title>Ahmed Gharib | AGBINSIGHTS</title>
     
     <link rel="icon" type="image/png" href="agb-logo.png.1.jpeg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root { 
@@ -86,10 +85,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px; 
-            color: var(--main-blue);
             transition: 0.3s;
         }
+
+        /* تنسيق الأيقونات الجديد لضمان الحجم واللون */
+        #dark-mode-toggle svg, .card-3d svg, .process-step svg, .social-icons svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--main-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons svg { width: 35px; height: 35px; fill: var(--deep-black); }
+        .social-icons a:hover svg { fill: var(--main-blue); transform: translateY(-3px); }
 
         .flag-btn.active { 
             opacity: 1 !important; 
@@ -168,18 +176,14 @@
             }
         }
 
-        .card-3d i, .process-step i {
-            font-size: 32px; 
-            color: var(--main-blue);
-            opacity: 0.7;
-            transition: all 0.3s ease;
+        .card-3d svg, .process-step svg {
             margin-bottom: 15px;
+            opacity: 0.7;
         }
 
-        .card-3d:hover i, .process-step:hover i {
+        .card-3d:hover svg, .process-step:hover svg {
             opacity: 1;
             transform: scale(1.1);
-            text-shadow: 0 0 10px rgba(0, 122, 255, 0.4);
         }
 
         .projects-wrapper { 
@@ -219,7 +223,7 @@
 
         .rating-input-section { margin-bottom: 30px; padding: 30px; background: #f9f9f9; border-radius: 20px; text-align: center; }
         .stars { font-size: 24px; margin-bottom: 10px; cursor: pointer; color: #ccc; }
-        .stars .fa-star.active { color: #ffce00; }
+        .stars .active { color: #ffce00; }
         .rating-input { width: 100%; max-width: 400px; padding: 12px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 10px; font-family: inherit; }
         .submit-rate-btn { background: var(--main-blue); color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
@@ -230,8 +234,7 @@
             margin-top: 50px; 
             transition: 0.3s;
         }
-        .social-icons a { color: var(--deep-black); font-size: 30px; margin: 0 15px; transition: 0.3s; text-decoration: none; }
-        .social-icons a:hover { color: var(--main-blue); transform: translateY(-3px); }
+        .social-icons a { color: inherit; margin: 0 15px; display: inline-block; transition: 0.3s; text-decoration: none; }
 
         body.dark-theme { --bg-white: #111111; --deep-black: #ffffff; --text-gray: #bbbbbb; }
         body.dark-theme nav { background: #000000; } 
@@ -264,7 +267,7 @@
             <img src="https://flagcdn.com/w40/gb.png" class="flag-btn" id="lang-en" onclick="setLang('en')" title="English">
             <img src="https://flagcdn.com/w40/eg.png" class="flag-btn" id="lang-ar" onclick="setLang('ar')" title="العربية">
             <img src="https://flagcdn.com/w40/es.png" class="flag-btn" id="lang-es" onclick="setLang('es')" title="Español">
-            <div id="dark-mode-toggle" onclick="toggleDarkMode()"><i class="fas fa-moon"></i></div>
+            <div id="dark-mode-toggle" onclick="toggleDarkMode()"></div>
         </div>
     </nav>
 
@@ -276,21 +279,36 @@
 
     <div class="section-title" id="title-journey"></div>
     <div class="process-flow">
-        <div class="process-step reveal" onclick="showJourney('understand')" style="cursor: pointer;"><i class="fas fa-compass"></i><h4 id="step1"></h4></div>
-        <div class="process-step reveal" onclick="showJourney('extract')" style="cursor: pointer;"><i class="fas fa-database"></i><h4 id="step2"></h4></div>
-        <div class="process-step reveal" onclick="showJourney('clean')" style="cursor: pointer;"><i class="fas fa-broom"></i><h4 id="step3"></h4></div>
-        <div class="process-step reveal" onclick="showJourney('model')" style="cursor: pointer;"><i class="fas fa-microchip"></i><h4 id="step4"></h4></div>
-        <div class="process-step reveal" onclick="showJourney('insight')" style="cursor: pointer;"><i class="fas fa-lightbulb"></i><h4 id="step5"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('understand')" style="cursor: pointer;">
+            <svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
+            <h4 id="step1"></h4>
+        </div>
+        <div class="process-step reveal" onclick="showJourney('extract')" style="cursor: pointer;">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+            <h4 id="step2"></h4>
+        </div>
+        <div class="process-step reveal" onclick="showJourney('clean')" style="cursor: pointer;">
+            <svg viewBox="0 0 24 24"><path d="M14.79 10.62L3.5 21.91 2.09 20.5 13.38 9.21l1.41 1.41zm4.45-3.13l-1.41-1.41c-.78-.78-2.05-.78-2.83 0l-1.41 1.41 4.24 4.24 1.41-1.41c.78-.78.78-2.05 0-2.83z"/></svg>
+            <h4 id="step3"></h4>
+        </div>
+        <div class="process-step reveal" onclick="showJourney('model')" style="cursor: pointer;">
+            <svg viewBox="0 0 24 24"><path d="M15 9H9v6h6V9zm-2 4h-2v-2h2v2zm8-2V9h-2V7c0-1.1-.9-2-2-2h-2V3h-2v2h-2V3H9v2H7c-1.1 0-2 .9-2 2v2H3v2h2v2H3v2h2v2c0 1.1.9 2 2 2h2v2h2v-2h2v2h2v-2h2c1.1 0 2-.9 2-2v-2h2v-2h-2v-2h2zm-4 6H7V7h10v10z"/></svg>
+            <h4 id="step4"></h4>
+        </div>
+        <div class="process-step reveal" onclick="showJourney('insight')" style="cursor: pointer;">
+            <svg viewBox="0 0 24 24"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-1.3l-.85-.6C7.8 13.15 7 11.18 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.18-.8 4.15-2.15 5.1z"/></svg>
+            <h4 id="step5"></h4>
+        </div>
     </div>
 
     <div class="section-title" id="title-expertise"></div>
     <div class="grid-container"> 
-        <div class="card-3d reveal"><i class="fas fa-chart-pie"></i><span>Power BI</span></div>
-        <div class="card-3d reveal"><i class="fas fa-file-csv"></i><span>Excel</span></div>
-        <div class="card-3d reveal"><i class="fas fa-network-wired"></i><span id="skill3"></span></div>
-        <div class="card-3d reveal"><i class="fas fa-square-root-variable"></i><span id="skill4"></span></div>
-        <div class="card-3d reveal"><i class="fas fa-server"></i><span>ETL</span></div>
-        <div class="card-3d reveal"><i class="fas fa-magnifying-glass-chart"></i><span id="skill6"></span></div>
+        <div class="card-3d reveal"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg><span>Power BI</span></div>
+        <div class="card-3d reveal"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg><span>Excel</span></div>
+        <div class="card-3d reveal"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg><span id="skill3"></span></div>
+        <div class="card-3d reveal"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg><span id="skill4"></span></div>
+        <div class="card-3d reveal"><svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 10H6v-2h8v2zm4-4H6v-2h12v2z"/></svg><span>ETL</span></div>
+        <div class="card-3d reveal"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span id="skill6"></span></div>
     </div>
 
     <div class="section-title" id="title-projects"></div>
@@ -314,15 +332,19 @@
     <div class="section-title" id="title-ratings"></div>
     <div class="grid-container">
         <div class="card-3d reveal" onclick="openRatingsPage()" style="cursor: pointer; max-width: 250px;">
-            <i class="fas fa-star" style="color: #ffce00; opacity: 1;"></i>
+            <svg viewBox="0 0 24 24" style="fill: #ffce00; opacity: 1;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
             <h4 id="view-ratings-text">View & Add Reviews</h4>
         </div>
     </div>
 
     <footer>
         <div class="social-icons">
-            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="mailto:info@agbinsights.com"><i class="fa-regular fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+            </a>
+            <a href="mailto:info@agbinsights.com">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </a>
         </div>
         <p style="margin-top: 20px; opacity: 0.6; font-size: 12px;">©️ AHMED GHARIB | AGBINSIGHTS</p>
     </footer>
@@ -505,8 +527,11 @@
         document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('active'));
         if(document.getElementById('lang-' + currentLang)) document.getElementById('lang-' + currentLang).classList.add('active');
         
+        // تبديل أيقونة الثيم (SVG المدمج)
         const iconContainer = document.getElementById('dark-mode-toggle');
-        iconContainer.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        iconContainer.innerHTML = isDarkMode ? 
+            `<svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>` : 
+            `<svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 5.06 5.406 5.406 0 0 1-5.6-5.6c.33-2.36 2.06-4.24 4.4-4.89C14.15 3.09 13.09 3 12 3z"/></svg>`;
     }
 
     function setLang(lang) {
@@ -559,11 +584,11 @@
             <div class="rating-input-section">
                 <h4>${t.ratePrompt}</h4>
                 <div class="stars" id="star-rating">
-                    <i class="fas fa-star active" data-value="1" onclick="setRating(1)"></i>
-                    <i class="fas fa-star active" data-value="2" onclick="setRating(2)"></i>
-                    <i class="fas fa-star active" data-value="3" onclick="setRating(3)"></i>
-                    <i class="fas fa-star active" data-value="4" onclick="setRating(4)"></i>
-                    <i class="fas fa-star active" data-value="5" onclick="setRating(5)"></i>
+                    <span data-value="1" onclick="setRating(1)">★</span>
+                    <span data-value="2" onclick="setRating(2)">★</span>
+                    <span data-value="3" onclick="setRating(3)">★</span>
+                    <span data-value="4" onclick="setRating(4)">★</span>
+                    <span data-value="5" onclick="setRating(5)">★</span>
                 </div>
                 <div id="rating-form">
                     <input type="text" id="user-name" class="rating-input" placeholder="${t.namePlace}"><br>
@@ -581,12 +606,13 @@
         document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
         fetchReviews();
+        setRating(5);
     }
 
     function setRating(val) {
         selectedRating = val;
-        document.querySelectorAll('#star-rating i').forEach(star => {
-            star.classList.toggle('active', star.getAttribute('data-value') <= val);
+        document.querySelectorAll('#star-rating span').forEach((star, idx) => {
+            star.classList.toggle('active', idx < val);
         });
     }
 
@@ -606,7 +632,6 @@
                 card.style.textAlign = isAr ? 'right' : 'left';
                 let stars = '★'.repeat(rev.Rating || 5) + '☆'.repeat(5 - (rev.Rating || 5));
                 card.innerHTML = `
-                    <i class="fas fa-quote-left" style="font-size: 15px; opacity: 0.5;"></i>
                     <strong style="display:block; margin-top:5px; color:var(--main-blue);">${rev.Name}</strong>
                     <p style="font-style: italic; font-size: 14px; margin: 5px 0;">${rev.Feedback}</p>
                     <div style="color: #ffce00;">${stars}</div>`;
