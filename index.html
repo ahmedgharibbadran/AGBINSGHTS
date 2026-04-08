@@ -2,31 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="theme-color" content="#ffffff">
-    <meta name="description" content="Ahmed Gharib - Data Analyst Portfolio. Helping businesses turn complex data into strategic insights using Power BI, Excel, and SQL.">
-    <meta name="keywords" content="Data Analyst, Power BI, Ahmed Gharib, AGBINSIGHTS, Data Visualization, SQL, Portfolio, Business Intelligence">
+    <meta name="description" content="Ahmed Tarek - Data Analyst Portfolio. Helping businesses turn complex data into strategic insights using Power BI, Excel, and SQL.">
+    <meta name="keywords" content="Data Analyst, Power BI, Ahmed Tarek, AGBINSIGHTS, Data Visualization, SQL, Portfolio, Business Intelligence">
     
-    <title>Ahmed Gharib | AGBINSIGHTS</title>
+    <title>Ahmed Tarek | AGBINSIGHTS</title>
    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="75" font-size="70" fill="%230056b3" font-family="Arial Black">A</text><path d="M5 85 L40 45 L95 10" stroke="%230056b3" stroke-width="12" fill="none" stroke-linecap="round"/></svg>'>
    <link rel="apple-touch-icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="white"/><text y="75" font-size="70" fill="%230056b3" font-family="Arial Black">A</text><path d="M5 85 L40 45 L95 10" stroke="%230056b3" stroke-width="12" fill="none" stroke-linecap="round"/></svg>'>
     <style>
         :root { 
             --main-blue: #0056b3; 
-            --bg-white: #ffffff; /* الموقع هيفضل أبيض سادة */
-            --nav-bg: #f9f9f9;  /* لون خلفية اللوجو المخصوص للهيدر */
+            --bg-white: #ffffff; 
+            --nav-bg: #f9f9f9;  
             --deep-black: #000000;
             --text-gray: #555555; 
             --glow-effect: 0 4px 15px rgba(0, 86, 179, 0.2);
             --footer-black: transparent; 
             --status-green: #2ecc71;
         }
-        /* تحسين الأداء: استخدام content-visibility لتسريع رندر الصفحة */
+
         .reveal { content-visibility: auto; contain-intrinsic-size: 1px 300px; }
 
-        body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; -webkit-tap-highlight-color: transparent; text-rendering: optimizeLegibility; }
+        body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; -webkit-tap-highlight-color: transparent; text-rendering: optimizeLegibility; width: 100%; position: relative; }
         body.rtl { direction: rtl; font-family: 'Cairo', sans-serif; }
         
         #welcome-overlay { 
@@ -62,7 +62,7 @@
             border: none; border-radius: 50px; font-weight: 900; cursor: pointer; 
             margin-top: 30px; text-transform: uppercase; letter-spacing: 2px;
         }
-        #main-site { opacity: 0; display: none; }        
+        #main-site { opacity: 0; display: none; width: 100%; overflow-x: hidden; }        
         nav { 
             width: 100%; 
             padding: 10px 5%; 
@@ -228,6 +228,7 @@
             align-items: center;
         }
 
+        /* تحسين استقرار الموبايل عند الدوران */
         @media (max-width: 768px) {
             .grid-container, .process-flow { 
                 display: grid !important;
@@ -235,10 +236,17 @@
                 gap: 12px !important;
                 padding: 0 15px !important;
             }
+            /* Landscape mode fix for mobile */
+            @media (orientation: landscape) {
+                .grid-container, .process-flow {
+                    grid-template-columns: repeat(4, 1fr) !important;
+                }
+            }
             .why-container-main { display: flex !important; }
             .card-3d, .process-step, .why-hero-card { 
                 max-width: 100% !important; 
                 padding: 20px 10px !important;
+                height: auto;
             }
             .section-title { 
                 margin: 30px 15px 15px 15px !important; 
@@ -284,7 +292,7 @@
         }
         .btn-view { border: 2px solid var(--main-blue); color: var(--main-blue); padding: 12px 30px; border-radius: 10px; cursor: pointer; display: inline-block; margin-top: 20px; font-weight: 800; transition: 0.3s; }
         .btn-view:hover { background: var(--main-blue); color: #fff; }        
-        #case-study-view { display:none; background: var(--bg-white); padding: 40px 10%; text-align: left; }
+        #case-study-view { display:none; background: var(--bg-white); padding: 40px 10%; text-align: left; width: 100%; box-sizing: border-box; }
         body.rtl #case-study-view { text-align: right; }
         .case-header { background: #f9f9f9; padding: 30px; border-radius: 20px; border-left: 6px solid var(--main-blue); margin-bottom: 30px; }
         body.rtl .case-header { border-left: none; border-right: 6px solid var(--main-blue); }
@@ -428,7 +436,7 @@
             </g>
         </svg>
 
-        <h2 id="welcome-name">Ahmed Gharib</h2>
+        <h2 id="welcome-name">Ahmed Tarek</h2>
         <p id="welcome-tagline">Turning Complex Data into Strategic Assets</p>
         <button class="start-btn" onclick="startExploring()" id="welcome-btn">Explore Insights</button>
     </div>
@@ -475,7 +483,7 @@
         </div>
     </nav>
     <header>
-        <h1 id="main-name">Ahmed Gharib</h1>
+        <h1 id="main-name">Ahmed Tarek</h1>
         <span class="job-tag" id="job-title"></span>
         <p class="about-text" id="about-me"></p>
     </header>
@@ -566,7 +574,7 @@
                 <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             </a>
         </div>
-        <p style="margin-top: 10px; opacity: 0.6; font-size: 12px;">©️ AHMED GHARIB | AGBINSIGHTS</p>
+        <p style="margin-top: 10px; opacity: 0.6; font-size: 12px;">©️ AHMED TAREK | AGBINSIGHTS</p>
     </footer>
 </div>
 
@@ -580,10 +588,11 @@
     let isDarkMode = localStorage.getItem('ahmedDarkMode') === 'true';
     let lastScrollPos = 0;
     let selectedRating = 5;
+    let typingTimeout; // لتتبع التايم آوت الخاص بالكتابة
     const SHEETDB_URL = 'https://sheetdb.io/api/v1/jv44e0ygedwit';
     const translations = {
         en: {
-            name: "Ahmed Gharib", 
+            name: "Ahmed Tarek", 
             welcomeBtn: "Explore Insights", 
             tagline: "Data Analyst | Business Intelligence & Insights",
             about: "I help organizations make sense of their data by converting complex datasets into simple, clear insights. Through data analysis and visualization, I support better decisions, performance improvement, and measurable business results.",
@@ -610,7 +619,7 @@
             dashDesc: "Dive into my analytics process with this live dashboard. Feel free to interact with filters!"
         },
         ar: {
-            name: "أحمد غريب", 
+            name: "أحمد طارق", 
             welcomeBtn: "استكشاف التفاصيل", 
             tagline: "تحويل البيانات المعقدة إلى رؤى استراتيجية",
             about: "أساعد المؤسسات على فهم بياناتها من خلال تحويل مجموعات البيانات المعقدة إلى رؤى بسيطة وواضحة. ومن خلال تحليل البيانات وتمثيلها بصرياً، أدعم اتخاذ قرارات أفضل، وتحسين الأداء، وتحقيق نتائج أعمال ملموسة.",
@@ -637,7 +646,7 @@
             dashDesc: "انغمس في عملية التحليل الخاصة بي عبر لوحة البيانات الحية هذه. لا تتردد في استخدام الفلاتر!"
         },
         es: {
-            name: "Ahmed Gharib", 
+            name: "Ahmed Tarek", 
             welcomeBtn: "Explorar Detalles", 
             tagline: "Convirtiendo Datos Complejos en Perspectivas Accionables",
             about: "Ayudo a las organizaciones a dar sentido a sus data convirtiendo conjuntos de data complejos en conocimientos sencillos y claros.",
@@ -676,6 +685,7 @@
     let isDeleting = false;
 
     function startTypingEffect() {
+        if(typingTimeout) clearTimeout(typingTimeout);
         const currentJobs = typingJobs[currentLang];
         const target = document.getElementById('job-title');
         if(!target) return;
@@ -697,7 +707,7 @@
             jobIdx = (jobIdx + 1) % currentJobs.length;
             speed = 500;
         }
-        setTimeout(startTypingEffect, speed);
+        typingTimeout = setTimeout(startTypingEffect, speed);
     }
 
     function openWhyMeDetailed() {
@@ -900,6 +910,7 @@ function updateUI() {
         if(dropdown) dropdown.classList.remove('active');
         jobIdx = 0; charIdx = 0;
         updateUI();
+        startTypingEffect();
     }
     function toggleDarkMode() {
         isDarkMode = !isDarkMode;
@@ -1066,7 +1077,6 @@ function updateUI() {
             furniture: "https://app.powerbi.com/view?r=eyJrIjoiYzU4Yjg3OGMtYTQwZC00MzRiLTk5YzctZjdiMzMzNGU5NzVkIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9"
         };
         
-        // تحسين: التحميل المسبق لـ iFrame عند الطلب فقط
         let interactiveContent = `
             <div class="case-iframe-wrapper">
                 <iframe loading="lazy" title="${d.title}" src="${iframeUrls[id]}" allowFullScreen="true"></iframe>
@@ -1096,6 +1106,18 @@ function updateUI() {
         window.scrollTo(0, lastScrollPos);
     }
 
+    // تحسين مستكشف التمرير وإضافة معالجة الدوران
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            // إعادة تفعيل الأنيميشن عند الحاجة بعد الدوران
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
+            });
+        }, 250);
+    });
+
     window.addEventListener('scroll', () => {
         const btn = document.getElementById('back-to-top');
         if(btn) btn.style.display = window.scrollY > 500 ? "flex" : "none";
@@ -1104,7 +1126,9 @@ function updateUI() {
         });
     });
 
-    window.onload = updateUI;
+    window.onload = () => {
+        updateUI();
+    };
 </script>
 </body>
 </html>
