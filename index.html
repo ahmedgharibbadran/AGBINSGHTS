@@ -120,17 +120,23 @@
         .cv-header-btn { 
             display: inline-flex !important; 
             align-items: center;
-            gap: 6px;
-            padding: 7px 16px; 
+            gap: 5px;
+            padding: 6px 14px; 
             background: var(--main-blue); 
             color: white !important; 
-            border-radius: 8px; 
-            font-size: 13px; 
-            font-weight: 700; 
+            border-radius: 6px; 
+            font-size: 12px; 
+            font-weight: 600; 
             text-decoration: none;
             transition: 0.3s;
+            white-space: nowrap;
         }
         .cv-header-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+        .cv-header-btn svg { width:12px; height:12px; }
+        @media (max-width: 480px) {
+            .cv-header-btn svg { display: none; }
+            .cv-header-btn { padding: 5px 10px; font-size: 11px; }
+        }
 
         #dark-mode-toggle {
             cursor: pointer;
@@ -601,7 +607,7 @@
         </div>
         <div class="lang-switch">
             <a href="cv.html" target="_blank" rel="noopener noreferrer" class="cv-header-btn" id="cv-btn">
-                <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:white;flex-shrink:0"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                <svg viewBox="0 0 24 24" fill="white"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5z"/></svg>
                 <span id="cv-label">CV</span>
             </a>
             <div class="lang-dropdown" id="lang-dropdown">
