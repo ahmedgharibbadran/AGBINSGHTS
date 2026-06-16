@@ -552,7 +552,86 @@
         }
         .nav-brand:hover .agb-header-txt {
             fill: var(--main-blue) !important;
-        }                                           
+        }
+
+        /* CV Modal */
+        #cv-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0,0,0,0.6);
+            overflow-y: auto;
+            padding: 20px;
+            box-sizing: border-box;
+            backdrop-filter: blur(4px);
+        }
+        #cv-modal-box {
+            background: var(--bg-white);
+            max-width: 780px;
+            margin: auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            font-family: 'Inter', sans-serif;
+        }
+        #cv-modal-header {
+            background: var(--main-blue);
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #cv-modal-header span { color: white; font-weight: 700; font-size: 15px; }
+        #cv-modal-close {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            line-height: 1;
+            transition: 0.2s;
+        }
+        #cv-modal-close:hover { background: rgba(255,255,255,0.35); }
+        #cv-modal-body {
+            padding: 36px 44px;
+            color: var(--deep-black);
+            line-height: 1.75;
+            direction: ltr;
+        }
+        @media (max-width: 600px) {
+            #cv-modal-body { padding: 24px 20px; }
+        }
+        .cv-name { margin: 0 0 4px; font-size: 26px; font-weight: 900; color: var(--deep-black); }
+        .cv-role { margin: 0 0 10px; color: var(--main-blue); font-weight: 700; font-size: 14px; }
+        .cv-contact { margin: 0 0 20px; font-size: 13px; color: var(--text-gray); }
+        .cv-contact a { color: var(--main-blue); }
+        .cv-divider { border: none; border-top: 2px solid var(--main-blue); margin-bottom: 22px; }
+        .cv-section-title {
+            color: var(--main-blue);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin: 0 0 10px;
+        }
+        .cv-summary { font-size: 14px; color: var(--text-gray); margin: 0 0 26px; }
+        .cv-job { margin-bottom: 22px; }
+        .cv-job-title { font-weight: 800; font-size: 15px; margin: 0 0 2px; color: var(--deep-black); }
+        .cv-job-company { color: var(--main-blue); font-size: 13px; font-weight: 600; margin: 0 0 8px; }
+        .cv-job ul { margin: 0; padding-left: 18px; }
+        .cv-job ul li { font-size: 13.5px; color: var(--text-gray); margin-bottom: 5px; }
+        .cv-skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; margin: 0 0 26px; }
+        .cv-skill-row { font-size: 13px; color: var(--text-gray); }
+        .cv-skill-row b { color: var(--deep-black); }
+        body.dark-theme #cv-modal-box { background: #111; }
+        body.dark-theme #cv-modal-body { color: #eee; }
+        body.dark-theme .cv-job ul li, body.dark-theme .cv-summary, body.dark-theme .cv-skill-row { color: #bbb; }
+        body.dark-theme .cv-skill-row b, body.dark-theme .cv-job-title { color: #fff; }
+        @media (max-width: 500px) { .cv-skills-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -578,6 +657,67 @@
         <p id="welcome-tagline">Turning Complex Data into Strategic Assets</p>
         <button class="start-btn" onclick="startExploring()" id="welcome-btn">Explore Insights</button>
     </div>
+</div>
+
+<!-- CV Modal -->
+<div id="cv-modal" onclick="if(event.target===this)closeCVModal()">
+  <div id="cv-modal-box">
+    <div id="cv-modal-header">
+      <span>📄 Ahmed Gharib — CV</span>
+      <button id="cv-modal-close" onclick="closeCVModal()">✕</button>
+    </div>
+    <div id="cv-modal-body">
+      <h1 class="cv-name">Ahmed Gharib</h1>
+      <p class="cv-role">Data Analyst &amp; BI Specialist | AI-Powered Analytics</p>
+      <p class="cv-contact">
+        +20 102 018 9281 &nbsp;|&nbsp; ahmedgharibbadran@outlook.com &nbsp;|&nbsp;
+        <a href="https://linkedin.com/in/ahmed-gharib-20989a272" target="_blank">LinkedIn</a> &nbsp;|&nbsp; Ismailia, Egypt
+      </p>
+      <hr class="cv-divider">
+
+      <p class="cv-section-title">Professional Summary</p>
+      <p class="cv-summary">Results-driven Data Analyst with 2+ years of experience in data reporting, Excel automation, and business intelligence within large-scale projects. Proven record of reducing reporting time by 30% and improving data retrieval efficiency by 40%. Proficient in Power BI, Advanced Excel, SQL, and DAX. Built and deployed AGB Analytics — a live AI-powered web analytics platform — demonstrating ability to translate data expertise into real-world product solutions.</p>
+
+      <p class="cv-section-title">Work Experience</p>
+      <div class="cv-job">
+        <p class="cv-job-title">Data Reporting Analyst &amp; BI Analyst <span style="float:right;font-weight:400;font-size:12px;color:var(--text-gray)">02/2020 – Present</span></p>
+        <p class="cv-job-company">Orascom Construction — Egypt</p>
+        <ul>
+          <li>Automated workforce reports using Advanced Excel (Pivot Tables, VLOOKUP, Macros), reducing reporting time by 30%</li>
+          <li>Built Power BI dashboards for project performance monitoring, KPI tracking, and executive reporting</li>
+          <li>Improved data retrieval efficiency by 40% through structured digital archiving and tracking systems</li>
+          <li>Collaborated with HR, engineering, and project teams to ensure 99% data accuracy across multiple sites</li>
+        </ul>
+      </div>
+      <div class="cv-job">
+        <p class="cv-job-title">Data Analyst &amp; Analytics Product Builder <span style="float:right;font-weight:400;font-size:12px;color:var(--text-gray)">2023 – Present</span></p>
+        <p class="cv-job-company">AGB Analytics — Independent · agbinsights.com</p>
+        <ul>
+          <li>Built and deployed a live AI-powered web analytics platform that auto-detects data domains and generates KPIs, charts, and pivot tables from any uploaded dataset</li>
+          <li>Integrated AI assistant for natural-language data insights and automated pattern detection</li>
+          <li>Delivered Power BI projects: HR Attrition Analysis, Global Superstore Sales Strategy, and Project Milestone Tracker — each with custom DAX measures and stakeholder-ready dashboards</li>
+        </ul>
+      </div>
+
+      <p class="cv-section-title">Technical Skills</p>
+      <div class="cv-skills-grid">
+        <div class="cv-skill-row"><b>BI &amp; Visualization:</b> Power BI, DAX, DAX Studio</div>
+        <div class="cv-skill-row"><b>Spreadsheets:</b> Advanced Excel, Pivot Tables, Macros, VLOOKUP</div>
+        <div class="cv-skill-row"><b>Database:</b> SQL, MySQL, SQL Server</div>
+        <div class="cv-skill-row"><b>Data Processing:</b> Power Query (M), ETL Pipelines</div>
+        <div class="cv-skill-row"><b>Data Modeling:</b> Star Schema, Snowflake Schema</div>
+        <div class="cv-skill-row"><b>AI &amp; Analytics:</b> AI Insight Generation, AGB Analytics Platform</div>
+        <div class="cv-skill-row"><b>Other:</b> Report Automation, Digital Archiving, SharePoint</div>
+      </div>
+
+      <p class="cv-section-title">Education</p>
+      <p style="font-size:14px;margin:0 0 4px;font-weight:700;color:var(--deep-black)">Bachelor's Degree — Information Systems</p>
+      <p style="font-size:13px;color:var(--text-gray);margin:0 0 24px">Arish University, Egypt · 2020 – 2024</p>
+
+      <p class="cv-section-title">Languages</p>
+      <p style="font-size:13px;color:var(--text-gray);margin:0"><b style="color:var(--deep-black)">Arabic:</b> Native &nbsp;&nbsp; <b style="color:var(--deep-black)">English:</b> Intermediate</p>
+    </div>
+  </div>
 </div>
 
 <button id="back-to-top" onclick="window.scrollTo(0,0)">
@@ -606,10 +746,10 @@
             </div>
         </div>
         <div class="lang-switch">
-            <a href="cv.pdf" target="_blank" rel="noopener noreferrer" class="cv-header-btn" id="cv-btn">
+            <button onclick="openCVModal()" class="cv-header-btn" id="cv-btn" style="border:none; cursor:pointer;">
                 <svg viewBox="0 0 24 24" fill="white"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5z"/></svg>
                 <span id="cv-label">CV</span>
-            </a>
+            </button>
             <div class="lang-dropdown" id="lang-dropdown">
                 <div class="lang-trigger" onclick="toggleLangDropdown(event)">
                     <span id="lang-label">Languages</span>
@@ -1359,6 +1499,18 @@ function updateUI() {
     window.onload = () => {
         updateUI();
     };
+
+    function openCVModal() {
+        document.getElementById('cv-modal').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+    function closeCVModal() {
+        document.getElementById('cv-modal').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeCVModal();
+    });
 </script>
 </body>
 </html>
