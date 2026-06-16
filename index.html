@@ -9,6 +9,24 @@
     <meta name="description" content="Ahmed Tarek - Data Analyst Portfolio. Helping businesses turn complex data into strategic insights using Power BI, Excel, and SQL.">
     <meta name="keywords" content="Data Analyst, Power BI, Ahmed Tarek, AGBINSIGHTS, Data Visualization, SQL, Portfolio, Business Intelligence">
     
+    <!-- Open Graph (LinkedIn, Facebook, WhatsApp) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://agbinsights.com">
+    <meta property="og:title" content="Ahmed Tarek | Data Analyst & BI Specialist">
+    <meta property="og:description" content="Helping businesses turn complex data into strategic insights using Power BI, Excel, and SQL.">
+    <meta property="og:image" content="https://agbinsights.com/agb-logo-png.png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="AGBINSIGHTS">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ahmed Tarek | Data Analyst & BI Specialist">
+    <meta name="twitter:description" content="Helping businesses turn complex data into strategic insights using Power BI, Excel, and SQL.">
+    <meta name="twitter:image" content="https://agbinsights.com/agb-logo-png.png">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://agbinsights.com">
+    
     <title>Ahmed Tarek | AGBINSIGHTS</title>
    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="75" font-size="70" fill="%230056b3" font-family="Arial Black">A</text><path d="M5 85 L40 45 L95 10" stroke="%230056b3" stroke-width="12" fill="none" stroke-linecap="round"/></svg>'>
    <link rel="apple-touch-icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="white"/><text y="75" font-size="70" fill="%230056b3" font-family="Arial Black">A</text><path d="M5 85 L40 45 L95 10" stroke="%230056b3" stroke-width="12" fill="none" stroke-linecap="round"/></svg>'>
@@ -99,7 +117,20 @@
         .lang-item:hover { background: var(--nav-bg); color: var(--main-blue); }
         .lang-item img { width: 20px; border-radius: 2px; }
 
-        .cv-header-btn { display: none !important; }
+        .cv-header-btn { 
+            display: inline-flex !important; 
+            align-items: center;
+            gap: 6px;
+            padding: 7px 16px; 
+            background: var(--main-blue); 
+            color: white !important; 
+            border-radius: 8px; 
+            font-size: 13px; 
+            font-weight: 700; 
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .cv-header-btn:hover { opacity: 0.85; transform: translateY(-1px); }
 
         #dark-mode-toggle {
             cursor: pointer;
@@ -382,6 +413,107 @@
         }
         .loading-text { color: var(--text-gray); font-weight: bold; }
 
+        /* ── AGB Analytics Section ── */
+        .agb-tool-section {
+            padding: 0 10%;
+            margin-bottom: 60px;
+        }
+        .agb-tool-card {
+            background: var(--bg-white);
+            border: 1px solid #eee;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s;
+        }
+        .agb-tool-card:hover {
+            box-shadow: var(--glow-effect);
+            border-color: var(--main-blue);
+            transform: translateY(-3px);
+        }
+        .agb-tool-header {
+            background: linear-gradient(135deg, #0056b3 0%, #003d82 100%);
+            padding: 30px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .agb-tool-badge {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .agb-tool-body {
+            padding: 35px 40px;
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+        .agb-tool-desc { flex: 1; min-width: 250px; }
+        .agb-tool-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        .agb-feat-tag {
+            background: rgba(0,86,179,0.07);
+            color: var(--main-blue);
+            padding: 5px 13px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .agb-tool-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-width: 160px;
+        }
+        .btn-agb-primary {
+            background: var(--main-blue);
+            color: white;
+            padding: 13px 24px;
+            border-radius: 10px;
+            font-weight: 800;
+            text-decoration: none;
+            text-align: center;
+            transition: 0.3s;
+            font-size: 14px;
+            display: block;
+        }
+        .btn-agb-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+        .btn-agb-secondary {
+            border: 2px solid var(--main-blue);
+            color: var(--main-blue);
+            padding: 11px 24px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            transition: 0.3s;
+            font-size: 14px;
+            display: block;
+        }
+        .btn-agb-secondary:hover { background: var(--main-blue); color: white; }
+        body.dark-theme .agb-tool-card { background: #000; border-color: #222; }
+        body.dark-theme .agb-feat-tag { background: rgba(0,86,179,0.2); }
+        @media (max-width: 768px) {
+            .agb-tool-section { padding: 0 15px; }
+            .agb-tool-header, .agb-tool-body { padding: 20px; }
+            .agb-tool-actions { flex-direction: row; }
+            .btn-agb-primary, .btn-agb-secondary { flex: 1; }
+        }
+
         footer { 
             padding: 60px 20px; 
             background: transparent; 
@@ -468,15 +600,19 @@
             </div>
         </div>
         <div class="lang-switch">
+            <a href="cv.html" target="_blank" rel="noopener noreferrer" class="cv-header-btn" id="cv-btn">
+                <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:white;flex-shrink:0"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                <span id="cv-label">CV</span>
+            </a>
             <div class="lang-dropdown" id="lang-dropdown">
                 <div class="lang-trigger" onclick="toggleLangDropdown(event)">
                     <span id="lang-label">Languages</span>
                     <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
                 </div>
                 <div class="lang-menu">
-                    <a href="javascript:void(0)" class="lang-item" onclick="setLang('en', event)"><img src="https://flagcdn.com/w40/gb.png"> English</a>
-                    <a href="javascript:void(0)" class="lang-item" onclick="setLang('ar', event)"><img src="https://flagcdn.com/w40/eg.png"> العربية</a>
-                    <a href="javascript:void(0)" class="lang-item" onclick="setLang('es', event)"><img src="https://flagcdn.com/w40/es.png"> Español</a>
+                    <a href="javascript:void(0)" class="lang-item" onclick="setLang('en', event)"><img src="https://flagcdn.com/w40/gb.png" alt="English"> English</a>
+                    <a href="javascript:void(0)" class="lang-item" onclick="setLang('ar', event)"><img src="https://flagcdn.com/w40/eg.png" alt="العربية"> العربية</a>
+                    <a href="javascript:void(0)" class="lang-item" onclick="setLang('es', event)"><img src="https://flagcdn.com/w40/es.png" alt="Español"> Español</a>
                 </div>
             </div>
             <div id="dark-mode-toggle" onclick="toggleDarkMode()"></div>
@@ -536,24 +672,59 @@
     <div class="section-title" id="title-projects"></div>
     <div class="projects-wrapper">
         <div class="project-item reveal"> 
-            <div class="p-img"><img loading="lazy" src="hr.png.png" id="p1-img"></div>
+            <div class="p-img"><img loading="lazy" src="hr.png.png" id="p1-img" alt="HR Attrition Analysis Dashboard"></div>
             <div class="p-text">
                 <h3 id="p1-title"></h3>
                 <div class="btn-view" onclick="showStudy('hr')" id="p1-btn" style="cursor: pointer;"></div>
             </div>
         </div>
         <div class="project-item reveal">
-            <div class="p-img"><img loading="lazy" src="sales.png1.png" id="p2-img"></div>
+            <div class="p-img"><img loading="lazy" src="sales.png1.png" id="p2-img" alt="Project Completion Report Dashboard"></div>
             <div class="p-text">
                 <h3 id="p2-title"></h3>
                 <div class="btn-view" onclick="showStudy('sales')" id="p2-btn" style="cursor: pointer;"></div>
             </div>
         </div>
         <div class="project-item reveal"> 
-            <div class="p-img"><img loading="lazy" src="Overviewpng1.png" id="p3-img"></div>
+            <div class="p-img"><img loading="lazy" src="Overviewpng1.png" id="p3-img" alt="Global Superstore Strategy Dashboard"></div>
             <div class="p-text">
                 <h3 id="p3-title"></h3>
                 <div class="btn-view" onclick="showStudy('furniture')" id="p3-btn" style="cursor: pointer;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-title" id="title-my-tool"></div>
+    <div class="agb-tool-section reveal">
+        <div class="agb-tool-card">
+            <div class="agb-tool-header">
+                <div>
+                    <div class="agb-tool-badge" id="agb-badge">Live Product</div>
+                    <h2 style="color:white; margin: 10px 0 5px; font-size: clamp(20px,4vw,28px);">AGB Analytics</h2>
+                    <p style="color:rgba(255,255,255,0.75); margin:0; font-size:14px;" id="agb-subtitle">agbinsights.com</p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 60" style="width:90px;height:auto;opacity:0.9;flex-shrink:0">
+                    <defs><linearGradient id="agbG" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.3"/><stop offset="100%" style="stop-color:#ffffff;stop-opacity:1"/></linearGradient></defs>
+                    <g transform="translate(5,0)">
+                        <text x="0" y="48" font-family="Arial Black,sans-serif" font-size="44" font-weight="900" letter-spacing="-3" fill="white">AGB</text>
+                        <path d="M5 55 L45 55 L75 32 L115 38 L158 12" stroke="url(#agbG)" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M158 12 L145 15 L152 23 Z" fill="white"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="agb-tool-body">
+                <div class="agb-tool-desc" style="flex:1;">
+                    <p id="agb-desc" style="font-size:15px; line-height:1.7; color:var(--text-gray); margin:0 0 15px;"></p>
+                    <div class="agb-tool-features">
+                        <span class="agb-feat-tag" id="agb-f1"></span>
+                        <span class="agb-feat-tag" id="agb-f2"></span>
+                        <span class="agb-feat-tag" id="agb-f3"></span>
+                        <span class="agb-feat-tag" id="agb-f4"></span>
+                        <span class="agb-feat-tag" id="agb-f5"></span>
+                        <span class="agb-feat-tag" id="agb-f6"></span>
+                    </div>
+                    <p style="font-size:13px; color:var(--text-gray); margin-top:14px; opacity:0.7;" id="agb-note"></p>
+                </div>
             </div>
         </div>
     </div>
@@ -589,7 +760,13 @@
     let lastScrollPos = 0;
     let selectedRating = 5;
     let typingTimeout; // لتتبع التايم آوت الخاص بالكتابة
+    /* ── Ratings API ─────────────────────────────────────────────
+       SheetDB free tier: 500 req/month. For extra protection,
+       move this to a Vercel serverless function (/api/ratings).
+    ── */
     const SHEETDB_URL = 'https://sheetdb.io/api/v1/jv44e0ygedwit';
+    let _lastFetch = 0;
+    function _canFetch(minGap=3000){ const now=Date.now(); if(now-_lastFetch<minGap)return false; _lastFetch=now; return true; }
     const translations = {
         en: {
             name: "Ahmed Tarek", 
@@ -613,10 +790,15 @@
             ratePrompt: "Leave a Review", namePlace: "Name", ratePlace: "Write your feedback...", rateBtn: "Submit",
             alert: "Please enter both name and comment", thanks: "Thank you for your feedback!",
             viewRatings: "View & Add Reviews", loading: "Loading reviews...",
-            copyMsg: "Copied!", cv: "CV", lang: "Languages",
+            copyMsg: "Copied!", cv: "CV ↓", lang: "Languages",
             status: "Available",
             interactive: "Interactive Experience",
-            dashDesc: "Dive into my analytics process with this live dashboard. Feel free to interact with filters!"
+            dashDesc: "Dive into my analytics process with this live dashboard. Feel free to interact with filters!",
+            myTool: "My Analytics Tool",
+            agbDesc: "As a data analyst, I identified a gap: most analytics tools are either too complex or too expensive for small and mid-sized businesses. So I built AGB Analytics — a web-based dashboard platform that lets any team upload their data and instantly get insights, charts, and KPIs with no setup required.",
+            agbF1: "Upload Any Data", agbF2: "Auto-detect Domain", agbF3: "Live Charts",
+            agbF4: "KPI Cards", agbF5: "Export & Share", agbF6: "Multi-language",
+            agbNote: "✦ You are currently browsing this platform."
         },
         ar: {
             name: "أحمد طارق", 
@@ -640,10 +822,15 @@
             ratePrompt: "أضف تقييمك", namePlace: "الاسم", ratePlace: "اكتب رأيك هنا...", rateBtn: "إرسال",
             alert: "يرجى إدخال الاسم والتعليق", thanks: "شكراً لتقييمك!",
             viewRatings: "عرض وإضافة التقييمات", loading: "جاري تحميل التقييمات...",
-            copyMsg: "تم النسخ!", cv: "السيرة الذاتية", lang: "اللغات",
+            copyMsg: "تم النسخ!", cv: "السيرة ↓", lang: "اللغات",
             status: "متاح",
             interactive: "تجربة تفاعلية حية",
-            dashDesc: "انغمس في عملية التحليل الخاصة بي عبر لوحة البيانات الحية هذه. لا تتردد في استخدام الفلاتر!"
+            dashDesc: "انغمس في عملية التحليل الخاصة بي عبر لوحة البيانات الحية هذه. لا تتردد في استخدام الفلاتر!",
+            myTool: "أداة التحليل الخاصة بي",
+            agbDesc: "كمحلل بيانات، لاحظت فجوة حقيقية: معظم أدوات التحليل إما معقدة جداً أو مكلفة للشركات الصغيرة والمتوسطة. لذا قمت ببناء AGB Analytics — منصة لوحة بيانات تتيح لأي فريق رفع بياناته والحصول فوراً على رؤى ومخططات ومؤشرات أداء دون أي إعداد مسبق.",
+            agbF1: "رفع أي بيانات", agbF2: "كشف تلقائي للمجال", agbF3: "مخططات حية",
+            agbF4: "بطاقات KPI", agbF5: "تصدير ومشاركة", agbF6: "متعدد اللغات",
+            agbNote: "✦ أنت تتصفح هذه المنصة الآن."
         },
         es: {
             name: "Ahmed Tarek", 
@@ -667,10 +854,15 @@
             ratePrompt: "Deja una reseña", namePlace: "Nombre", ratePlace: "Escribe tu opinión...", rateBtn: "Enviar",
             alert: "Por favor, introduzca su name y comentario", thanks: "¡Gracias por tu comentario!",
             viewRatings: "Ver y añadir reseñas", loading: "Cargando reseñas...",
-            copyMsg: "¡Copiado!", cv: "CV", lang: "Idiomas",
+            copyMsg: "¡Copiado!", cv: "CV ↓", lang: "Idiomas",
             status: "Disponible",
             interactive: "Experiencia Interactiva",
-            dashDesc: "Explore mis habilidades analíticas con este panel interactivo. ¡No dude en usar los filtros!"
+            dashDesc: "Explore mis habilidades analíticas con este panel interactivo. ¡No dude en usar los filtros!",
+            myTool: "Mi Herramienta Analítica",
+            agbDesc: "Como analista de datos, identifiqué una brecha: la mayoría de las herramientas analíticas son demasiado complejas o costosas para pequeñas empresas. Por eso construí AGB Analytics — una plataforma de dashboard web que permite a cualquier equipo cargar datos y obtener insights al instante.",
+            agbF1: "Cargar Cualquier Dato", agbF2: "Detección Automática", agbF3: "Gráficos en Vivo",
+            agbF4: "Tarjetas KPI", agbF5: "Exportar y Compartir", agbF6: "Multilingüe",
+            agbNote: "✦ Actualmente estás navegando esta plataforma."
         }
     };
     
@@ -762,7 +954,7 @@
         clean: {
             en: { title: "Data Cleaning & Transformation", desc: "Using Power Query to remove duplicates, fix errors, and transform data into a usable, structured format." },
             ar: { title: "تنظيف وتحويل البيانات", desc: "استخدام Power Query لإزالة التكرارات، وإصلاح الأخطاء، وتحويل البيانات إلى تنسيق هيكلي قابل للاستخدام." },
-            es: { title: "Limpieza de Datos", desc: "Uso de Power Query para eliminar duplicados, corregير errores y transformar los datos." }
+            es: { title: "Limpieza de Datos", desc: "Uso de Power Query para eliminar duplicados, corregir errores y transformar los datos." }
         },
         model: {
             en: { title: "Data Modeling & DAX", desc: "Creating relationships between tables and writing DAX formulas to calculate complex business metrics." },
@@ -817,7 +1009,7 @@
         hr: { 
             en: { title: "HR Attrition Analysis", o: "Identify factors behind turnover.", c: "High turnover rates.", s: "Power BI dashboard with DAX.", i: "15% reduction opportunity.", t: "Power BI, DAX" },
             ar: { title: "تحليل استقالات الموظفين", o: "تحديد أسباب ترك العمل.", c: "معدلات دوران عالية.", s: "لوحة بيانات Power BI.", i: "فرصة تقليل 15%.", t: "Power BI, DAX" },
-            es: { title: "Análisis de Rotación", o: "Identificar factores.", c: "Alta rotación.", s: "Dashboard Power BI.", i: "Meجورا del 15%.", t: "Power BI, DAX" },
+            es: { title: "Análisis de Rotación", o: "Identificar factores.", c: "Alta rotación.", s: "Dashboard Power BI.", i: "Mejora del 15%.", t: "Power BI, DAX" },
             imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
         },
         sales: {
@@ -829,7 +1021,7 @@
         furniture: { 
             en: { title: "Global Superstore Strategy", o: "Strategic analysis of global sales data.", c: "Complexity in international markets.", s: "Strategy Analytica Dashboard.", i: "Optimized expansion strategy.", t: "Power BI, DAX" },
             ar: { title: "استراتيجية المتجر العالمي", o: "تحليل استراتيجي لبيانات المبيعات العالمية.", c: "التعقيد في الأسواق الدولية.", s: "لوحة بيانات Strategy Analytica.", i: "استراتيجية توسع محسنة.", t: "Power BI, DAX" },
-            es: { title: "Estrategia Global", o: "Análisis estratégico de ventas.", c: "Compleجidad en mercados internacionales.", s: "Dashboard Strategy Analytica.", i: "Estrategia de expansión optimizada.", t: "Power BI, DAX" },
+            es: { title: "Estrategia Global", o: "Análisis estratégico de ventas.", c: "Complejidad en mercados internacionales.", s: "Dashboard Strategy Analytica.", i: "Estrategia de expansión optimizada.", t: "Power BI, DAX" },
             imgs: ['Overviewpng1.png', 'Furniture Loss Analysispng2.png', 'Stakeholders Analysispng3.png']
         }
     };
@@ -895,6 +1087,20 @@ function updateUI() {
     document.getElementById('p3-btn').innerText = t.viewBtn;
     document.getElementById('back-btn').innerText = t.back;
     document.getElementById('view-ratings-text').innerText = t.viewRatings;
+    const cvLabel = document.getElementById('cv-label');
+    if(cvLabel) cvLabel.innerText = t.cv;
+    
+    // AGB Analytics section
+    const myToolTitle = document.getElementById('title-my-tool');
+    if(myToolTitle) myToolTitle.innerText = t.myTool || '';
+    const agbDescEl = document.getElementById('agb-desc');
+    if(agbDescEl) agbDescEl.innerText = t.agbDesc || '';
+    const agbFields = ['agb-f1','agb-f2','agb-f3','agb-f4','agb-f5','agb-f6'];
+    const agbKeys  = ['agbF1','agbF2','agbF3','agbF4','agbF5','agbF6'];
+    agbFields.forEach((id,i)=>{ const el=document.getElementById(id); if(el) el.innerText=t[agbKeys[i]]||''; });
+    const agbNote = document.getElementById('agb-note');
+    if(agbNote) agbNote.innerText = t.agbNote || '';
+
     document.getElementById('lang-label').innerText = t.lang;
 
     const iconContainer = document.getElementById('dark-mode-toggle');
@@ -1013,6 +1219,7 @@ function updateUI() {
     }
 
     function fetchReviews() {
+        if(!_canFetch())return;
         fetch(SHEETDB_URL)
         .then(res => res.json())
         .then(data => {
