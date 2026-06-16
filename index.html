@@ -730,6 +730,21 @@
                         <span class="agb-feat-tag" id="agb-f6"></span>
                     </div>
                     <p style="font-size:13px; color:var(--text-gray); margin-top:14px; opacity:0.7;" id="agb-note"></p>
+                    
+                    <!-- Live Demo Embed -->
+                    <div style="margin-top:20px;">
+                        <p style="font-size:12px; color:var(--text-gray); opacity:0.6; margin-bottom:8px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase;" id="agb-demo-label">Live Demo</p>
+                        <div style="border-radius:12px; overflow:hidden; border:1px solid var(--border, #e8ecf0); box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+                            <iframe 
+                                src="https://ahmedgharibbadran.github.io/agb-demo-/" 
+                                width="100%" 
+                                height="420" 
+                                style="border:none; display:block;"
+                                loading="lazy"
+                                title="AGB Analytics Live Demo">
+                            </iframe>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -804,7 +819,7 @@
             agbDesc: "As a data analyst, I identified a gap: most analytics tools are either too complex or too expensive for small and mid-sized businesses. So I built AGB Analytics — a web-based dashboard platform that lets any team upload their data and instantly get insights, charts, and KPIs with no setup required.",
             agbF1: "Upload Any Data", agbF2: "Auto-detect Domain", agbF3: "Live Charts",
             agbF4: "KPI Cards", agbF5: "Export & Share", agbF6: "Multi-language",
-            agbNote: "✦ You are currently browsing this platform."
+            agbNote: "✦ You are currently browsing this platform.", agbDemo: "Live Demo"
         },
         ar: {
             name: "أحمد طارق", 
@@ -836,7 +851,7 @@
             agbDesc: "كمحلل بيانات، لاحظت فجوة حقيقية: معظم أدوات التحليل إما معقدة جداً أو مكلفة للشركات الصغيرة والمتوسطة. لذا قمت ببناء AGB Analytics — منصة لوحة بيانات تتيح لأي فريق رفع بياناته والحصول فوراً على رؤى ومخططات ومؤشرات أداء دون أي إعداد مسبق.",
             agbF1: "رفع أي بيانات", agbF2: "كشف تلقائي للمجال", agbF3: "مخططات حية",
             agbF4: "بطاقات KPI", agbF5: "تصدير ومشاركة", agbF6: "متعدد اللغات",
-            agbNote: "✦ أنت تتصفح هذه المنصة الآن."
+            agbNote: "✦ أنت تتصفح هذه المنصة الآن.", agbDemo: "عرض مباشر"
         },
         es: {
             name: "Ahmed Tarek", 
@@ -868,14 +883,14 @@
             agbDesc: "Como analista de datos, identifiqué una brecha: la mayoría de las herramientas analíticas son demasiado complejas o costosas para pequeñas empresas. Por eso construí AGB Analytics — una plataforma de dashboard web que permite a cualquier equipo cargar datos y obtener insights al instante.",
             agbF1: "Cargar Cualquier Dato", agbF2: "Detección Automática", agbF3: "Gráficos en Vivo",
             agbF4: "Tarjetas KPI", agbF5: "Exportar y Compartir", agbF6: "Multilingüe",
-            agbNote: "✦ Actualmente estás navegando esta plataforma."
+            agbNote: "✦ Actualmente estás navegando esta plataforma.", agbDemo: "Demo en Vivo"
         }
     };
     
     const typingJobs = {
-        en: ["Data Analyst", "Power BI", "SQL", "Excel", "Insights Explorer"],
-        ar: ["محلل بيانات", "باور بي آي", "SQL", "إكسيل", "مستكشف رؤى"],
-        es: ["Analista de Datos", "Power BI", "SQL", "Excel", "Analista de Problemas"]
+        en: ["Data Analyst", "Power BI", "SQL", "Excel", "AI-Powered Analytics"],
+        ar: ["محلل بيانات", "باور بي آي", "SQL", "إكسيل", "تحليلات بالذكاء الاصطناعي"],
+        es: ["Analista de Datos", "Power BI", "SQL", "Excel", "Analítica con IA"]
     };
     
     let jobIdx = 0;
@@ -1106,6 +1121,8 @@ function updateUI() {
     agbFields.forEach((id,i)=>{ const el=document.getElementById(id); if(el) el.innerText=t[agbKeys[i]]||''; });
     const agbNote = document.getElementById('agb-note');
     if(agbNote) agbNote.innerText = t.agbNote || '';
+    const agbDemo = document.getElementById('agb-demo-label');
+    if(agbDemo) agbDemo.innerText = t.agbDemo || 'Live Demo';
 
     document.getElementById('lang-label').innerText = t.lang;
 
